@@ -1,71 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ACSHS - TechPro Track</title>
+    <title>TechPro Track | ACSHS</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="acshs-logo.jpg">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        header {
+            background: #171b22;
+            color: white;
+            padding: 15px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 5px solid #fffb00;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 3px;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+        }
+
+        .logo p {
+            color: #fffb00;
+            font-size: 13px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #fffb00;
+        }
+
+        .hero {
+            background: linear-gradient(
+                rgba(23, 27, 34, .9),
+                rgba(242, 140, 0, .9)
+            );
+
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: auto;
+            font-size: 18px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 7%;
+        }
+
+        .title {
+            text-align: center;
+            color: #e32619;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            border-left: 7px solid #f28c00;
+            box-shadow: 0 5px 15px rgba(0,0,0,.08);
+        }
+
+        .box h3 {
+            color: #e32619;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-top: 6px solid #f28c00;
+            box-shadow: 0 5px 15px rgba(0,0,0,.08);
+        }
+
+        .card h3 {
+            color: #e32619;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #444;
+        }
+
+        .specializations {
+            margin-top: 50px;
+        }
+
+        .specialization {
+            background: white;
+            padding: 25px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            border-left: 6px solid #fffb00;
+            box-shadow: 0 4px 12px rgba(0,0,0,.07);
+        }
+
+        .specialization h3 {
+            color: #e32619;
+            margin-bottom: 8px;
+        }
+
+        .skills {
+            background: #171b22;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .skills h3 {
+            color: #fffb00;
+            margin-bottom: 15px;
+        }
+
+        .skills li {
+            margin-bottom: 8px;
+            margin-left: 20px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 45px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 28px;
+            margin: 7px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back {
+            background: #171b22;
+            color: white;
+        }
+
+        .enroll {
+            background: #e32619;
+            color: white;
+        }
+
+        .button:hover {
+            opacity: .85;
+        }
+
+        footer {
+            background: #171b22;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-top: 6px solid #fffb00;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <header>
-        <h1>Technical-Professional Track</h1>
-        <p>Antipolo City Senior High School</p>
-    </header>
 
-    <main>
+<header>
 
-        <section>
-            <h2>About the TechPro Track</h2>
+    <div class="logo">
+
+        <img src="acshs-logo.jpg"
+             alt="ACSHS Logo">
+
+        <div>
+
+            <h1>
+                ANTIPOLO CITY SENIOR HIGH SCHOOL
+            </h1>
 
             <p>
-                The Technical-Professional Track provides learners with
-                practical knowledge and skills that can prepare them for
-                employment, entrepreneurship, further education, and
-                specialized technical training.
+                Enrollment Portal
             </p>
-        </section>
 
-        <section>
-            <h2>Programs Offered</h2>
+        </div>
 
-            <div class="program">
-                <h3>ICT</h3>
-                <p>
-                    Information and Communications Technology programs
-                    develop skills in computer systems, programming,
-                    digital technology, and related areas.
-                </p>
-            </div>
+    </div>
 
-            <div class="program">
-                <h3>Other TechPro Programs</h3>
-                <p>
-                    Add the specific Technical-Professional programs
-                    offered by ACSHS here.
-                </p>
-            </div>
-        </section>
 
-        <section>
-            <h2>Why Choose TechPro?</h2>
+    <nav>
 
-            <ul>
-                <li>Develop practical and technical skills</li>
-                <li>Gain hands-on learning experience</li>
-                <li>Prepare for industry-related opportunities</li>
-                <li>Develop skills for employment or entrepreneurship</li>
-            </ul>
-        </section>
-
-        <a href="index.html" class="learn-more">
-            ← Back to Home
+        <a href="index.html">
+            Home
         </a>
 
-    </main>
+        <a href="index.html#programs">
+            Programs
+        </a>
+
+        <a href="index.html#enrollment">
+            Enrollment
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h2>
+        TechPro Track
+    </h2>
+
+    <p>
+        Explore practical, technical, and
+        hands-on learning opportunities
+        available through the TechPro program.
+    </p>
+
+</section>
+
+
+<main>
+
+
+    <h2 class="title">
+        About TechPro
+    </h2>
+
+    <p class="intro">
+
+        TechPro focuses on practical and technical
+        learning through hands-on activities,
+        projects, application of skills, and
+        technology-related learning.
+
+    </p>
+
+
+    <div class="box">
+
+        <h3>
+            What is TechPro?
+        </h3>
+
+        <p>
+
+            The TechPro program provides learners
+            with opportunities to develop practical
+            and technical skills through activities
+            that emphasize application and practice.
+
+        </p>
+
+    </div>
+
+
+    <h2 class="title">
+        What Can You Learn?
+    </h2>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <h3>
+                💻 Computer Skills
+            </h3>
+
+            <p>
+
+                Develop computer-related knowledge,
+                technical skills, troubleshooting,
+                and technology-based activities.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🔧 Practical Skills
+            </h3>
+
+            <p>
+
+                Develop skills through hands-on
+                activities, projects, tools,
+                materials, and practical exercises.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🛠️ Technical Skills
+            </h3>
+
+            <p>
+
+                Learn technical procedures and
+                apply knowledge to practical
+                situations.
+
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                💼 Career Skills
+            </h3>
+
+            <p>
+
+                Build practical skills that can
+                support future training, work,
+                or further education.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="specializations">
+
+        <h2 class="title">
+            TechPro Specializations
+        </h2>
+
+
+        <div class="specialization">
+
+            <h3>
+                💻 ICT / Computer Systems Servicing
+            </h3>
+
+            <p>
+
+                Focuses on computer-related
+                activities, systems, troubleshooting,
+                and technical skills.
+
+            </p>
+
+        </div>
+
+
+        <div class="specialization">
+
+            <h3>
+                🏠 Home Economics
+            </h3>
+
+            <p>
+
+                Focuses on practical activities,
+                services, livelihood, and
+                home-economics-related skills.
+
+            </p>
+
+        </div>
+
+
+        <div class="specialization">
+
+            <h3>
+                🔨 Industrial Arts
+            </h3>
+
+            <p>
+
+                Focuses on hands-on activities
+                involving tools, materials,
+                technical processes, and projects.
+
+            </p>
+
+        </div>
+
+
+        <div class="specialization">
+
+            <h3>
+                ⚙️ Other TechPro Specialization
+            </h3>
+
+            <p>
+
+                Other technical and practical
+                learning areas may be available
+                depending on the school's offerings.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="skills">
+
+        <h3>
+            Skills You Can Develop
+        </h3>
+
+        <ul>
+
+            <li>Technical problem-solving</li>
+
+            <li>Practical application</li>
+
+            <li>Computer and technology skills</li>
+
+            <li>Project development</li>
+
+            <li>Hands-on skills</li>
+
+            <li>Collaboration</li>
+
+            <li>Technical communication</li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="buttons">
+
+        <a href="index.html"
+           class="button back">
+
+            ← BACK TO HOME
+
+        </a>
+
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfG9t4oIq5GHqrwuOeb49N5IA4d-qL8dQARxsjdmXdIbYum7w/viewform?usp=header"
+           target="_blank"
+           class="button enroll">
+
+            ENROLL NOW
+
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        <strong>
+            Antipolo City Senior High School
+        </strong>
+    </p>
+
+    <p>
+        Enrollment Portal
+    </p>
+
+    <p>
+        © 2026 ACSHS
+    </p>
+
+</footer>
+
 
 </body>
+
 </html>
