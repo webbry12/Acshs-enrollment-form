@@ -5,13 +5,26 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>TechPro Track | ACSHS</title>
+    <title>TechPro Program | ACSHS</title>
 
-    <link rel="icon" type="image/jpeg" href="acshs-logo.jpg">
+    <link rel="icon"
+          type="image/jpeg"
+          href="acshs-logo.jpg">
 
     <style>
+
+        :root {
+            --yellow: #fffb00;
+            --orange: #f28c00;
+            --red: #e32619;
+            --dark: #171b22;
+            --gray: #f4f4f4;
+            --white: #ffffff;
+            --text: #222222;
+        }
 
         * {
             box-sizing: border-box;
@@ -19,66 +32,93 @@
             padding: 0;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            color: #222;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--gray);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
         header {
-            background: #171b22;
+            background: var(--dark);
             color: white;
-            padding: 15px 7%;
+            padding: 14px 7%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 5px solid #fffb00;
+            border-bottom: 6px solid var(--yellow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .logo {
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .logo img {
-            width: 60px;
-            height: 60px;
+        .logo-container img {
+            width: 65px;
+            height: 65px;
             object-fit: contain;
             background: white;
             border-radius: 50%;
             padding: 3px;
         }
 
-        .logo h1 {
+        .school-name h1 {
             font-size: 20px;
+            margin-bottom: 2px;
         }
 
-        .logo p {
-            color: #fffb00;
-            font-size: 13px;
+        .school-name p {
+            color: var(--yellow);
+            font-size: 14px;
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 20px;
             font-weight: bold;
         }
 
         nav a:hover {
-            color: #fffb00;
+            color: var(--yellow);
         }
 
+        /* =========================
+           HERO
+        ========================= */
+
         .hero {
-            background: linear-gradient(
-                rgba(23, 27, 34, .9),
-                rgba(242, 140, 0, .9)
-            );
+            background:
+                linear-gradient(
+                    rgba(23, 27, 34, 0.88),
+                    rgba(242, 140, 0, 0.90)
+                );
 
             color: white;
+            padding: 80px 8%;
             text-align: center;
-            padding: 80px 20px;
+        }
+
+        .hero-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
         }
 
         .hero h2 {
@@ -87,71 +127,96 @@
         }
 
         .hero p {
-            max-width: 750px;
+            max-width: 850px;
             margin: auto;
             font-size: 18px;
         }
 
+        /* =========================
+           MAIN
+        ========================= */
+
         main {
             max-width: 1100px;
             margin: auto;
-            padding: 60px 7%;
+            padding: 60px 6%;
         }
 
-        .title {
+        .section-title {
             text-align: center;
-            color: #e32619;
             font-size: 32px;
             margin-bottom: 15px;
+            color: var(--red);
         }
 
-        .intro {
+        .subtitle {
             text-align: center;
-            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto 40px;
             color: #555;
         }
 
-        .box {
+        /* =========================
+           INFO BOX
+        ========================= */
+
+        .info-box {
             background: white;
-            padding: 30px;
-            margin-bottom: 25px;
+            padding: 35px;
             border-radius: 15px;
-            border-left: 7px solid #f28c00;
-            box-shadow: 0 5px 15px rgba(0,0,0,.08);
+            margin-bottom: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 7px solid var(--orange);
         }
 
-        .box h3 {
-            color: #e32619;
-            margin-bottom: 10px;
-            font-size: 24px;
+        .info-box h3 {
+            color: var(--red);
+            margin-bottom: 12px;
+            font-size: 25px;
         }
+
+        .info-box p {
+            margin-bottom: 12px;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
 
         .cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         .card {
             background: white;
-            padding: 30px;
+            padding: 28px;
             border-radius: 15px;
-            border-top: 6px solid #f28c00;
-            box-shadow: 0 5px 15px rgba(0,0,0,.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 6px solid var(--orange);
         }
 
         .card h3 {
-            color: #e32619;
-            margin-bottom: 12px;
+            color: var(--red);
+            margin-bottom: 10px;
         }
 
-        .card p {
-            color: #444;
+        .card ul {
+            padding-left: 20px;
         }
 
-        .specializations {
-            margin-top: 50px;
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           SPECIALIZATIONS
+        ========================= */
+
+        .specialization-container {
+            margin-top: 35px;
         }
 
         .specialization {
@@ -159,32 +224,44 @@
             padding: 25px;
             margin-bottom: 18px;
             border-radius: 12px;
-            border-left: 6px solid #fffb00;
-            box-shadow: 0 4px 12px rgba(0,0,0,.07);
+            border-left: 6px solid var(--orange);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
         .specialization h3 {
-            color: #e32619;
+            color: var(--red);
             margin-bottom: 8px;
         }
 
+        /* =========================
+           SKILLS
+        ========================= */
+
         .skills {
-            background: #171b22;
+            background: var(--dark);
             color: white;
-            padding: 30px;
+            padding: 35px;
             border-radius: 15px;
             margin-top: 40px;
         }
 
         .skills h3 {
-            color: #fffb00;
+            color: var(--yellow);
             margin-bottom: 15px;
+            font-size: 25px;
+        }
+
+        .skills ul {
+            padding-left: 22px;
         }
 
         .skills li {
             margin-bottom: 8px;
-            margin-left: 20px;
         }
+
+        /* =========================
+           BUTTONS
+        ========================= */
 
         .buttons {
             text-align: center;
@@ -198,47 +275,102 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .back {
-            background: #171b22;
+        .primary {
+            background: var(--red);
             color: white;
         }
 
-        .enroll {
-            background: #e32619;
+        .primary:hover {
+            background: #b91c12;
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            background: var(--dark);
             color: white;
         }
 
-        .button:hover {
-            opacity: .85;
+        .secondary:hover {
+            background: #303640;
+            transform: translateY(-2px);
         }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
-            background: #171b22;
+            background: var(--dark);
             color: white;
             text-align: center;
-            padding: 30px;
-            border-top: 6px solid #fffb00;
+            padding: 35px;
+            border-top: 7px solid var(--yellow);
         }
 
-        @media (max-width: 700px) {
+        footer strong {
+            font-size: 18px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
 
             header {
-                flex-direction: column;
-                gap: 15px;
+                padding: 10px 4%;
             }
 
-            nav a {
-                margin: 5px;
+            nav {
+                display: none;
+            }
+
+            .school-name h1 {
+                font-size: 14px;
+            }
+
+            .school-name p {
+                font-size: 11px;
+            }
+
+            .logo-container img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .hero {
+                padding: 60px 7%;
             }
 
             .hero h2 {
                 font-size: 36px;
             }
 
+            .hero p {
+                font-size: 16px;
+            }
+
             .cards {
                 grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 45px 5%;
+            }
+
+            .info-box,
+            .card,
+            .specialization,
+            .skills {
+                padding: 22px;
             }
 
         }
@@ -251,14 +383,18 @@
 <body>
 
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-    <div class="logo">
+    <div class="logo-container">
 
         <img src="acshs-logo.jpg"
-             alt="ACSHS Logo">
+             alt="Antipolo City Senior High School Logo">
 
-        <div>
+        <div class="school-name">
 
             <h1>
                 ANTIPOLO CITY SENIOR HIGH SCHOOL
@@ -292,76 +428,93 @@
 </header>
 
 
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
 
+    <div class="hero-icon">
+        ⚙️
+    </div>
+
     <h2>
-        TechPro Track
+        TechPro Program
     </h2>
 
     <p>
         Explore practical, technical, and
-        hands-on learning opportunities
-        available through the TechPro program.
+        career-oriented learning opportunities
+        through hands-on activities and skills
+        development.
     </p>
 
 </section>
 
 
+<!-- =========================
+     MAIN
+========================= -->
+
 <main>
 
 
-    <h2 class="title">
-        About TechPro
+    <h2 class="section-title">
+        About the TechPro Program
     </h2>
 
-    <p class="intro">
+    <p class="subtitle">
 
-        TechPro focuses on practical and technical
-        learning through hands-on activities,
-        projects, application of skills, and
-        technology-related learning.
+        The TechPro Program focuses on practical,
+        technical, and hands-on learning. It is intended
+        for learners who want to develop useful skills
+        through application, practice, and technical
+        activities.
 
     </p>
 
 
-    <div class="box">
+    <!-- OVERVIEW -->
+
+    <div class="info-box">
 
         <h3>
             What is TechPro?
         </h3>
 
         <p>
+            TechPro provides opportunities for learners
+            interested in developing practical and
+            technical skills.
+        </p>
 
-            The TechPro program provides learners
-            with opportunities to develop practical
-            and technical skills through activities
-            that emphasize application and practice.
-
+        <p>
+            Learning activities may involve hands-on
+            practice, technical procedures, problem-solving,
+            and application of skills in different
+            situations.
         </p>
 
     </div>
 
 
-    <h2 class="title">
-        What Can You Learn?
-    </h2>
+    <!-- WHAT STUDENTS DEVELOP -->
 
+    <h2 class="section-title">
+        What Can Learners Develop?
+    </h2>
 
     <div class="cards">
 
-
         <div class="card">
 
             <h3>
-                💻 Computer Skills
+                🛠️ Practical Skills
             </h3>
 
             <p>
-
-                Develop computer-related knowledge,
-                technical skills, troubleshooting,
-                and technology-based activities.
-
+                Develop skills through activities that
+                involve practice and application.
             </p>
 
         </div>
@@ -370,15 +523,12 @@
         <div class="card">
 
             <h3>
-                🔧 Practical Skills
+                💻 Technical Skills
             </h3>
 
             <p>
-
-                Develop skills through hands-on
-                activities, projects, tools,
-                materials, and practical exercises.
-
+                Learn technical concepts, procedures,
+                tools, and technology-related activities.
             </p>
 
         </div>
@@ -387,15 +537,12 @@
         <div class="card">
 
             <h3>
-                🛠️ Technical Skills
+                🔧 Hands-on Learning
             </h3>
 
             <p>
-
-                Learn technical procedures and
-                apply knowledge to practical
-                situations.
-
+                Apply concepts through practical activities,
+                demonstrations, projects, and exercises.
             </p>
 
         </div>
@@ -404,28 +551,32 @@
         <div class="card">
 
             <h3>
-                💼 Career Skills
+                💼 Career Preparation
             </h3>
 
             <p>
-
-                Build practical skills that can
-                support future training, work,
-                or further education.
-
+                Build practical skills that may support
+                future career, training, or further
+                educational goals.
             </p>
 
         </div>
-
 
     </div>
 
 
-    <div class="specializations">
+    <!-- SPECIALIZATIONS -->
 
-        <h2 class="title">
+    <div class="specialization-container">
+
+        <h2 class="section-title">
             TechPro Specializations
         </h2>
+
+        <p class="subtitle">
+            The current ACSHS website identifies the
+            following TechPro-related areas.
+        </p>
 
 
         <div class="specialization">
@@ -435,11 +586,11 @@
             </h3>
 
             <p>
-
-                Focuses on computer-related
-                activities, systems, troubleshooting,
-                and technical skills.
-
+                An area focused on computer and
+                information-technology-related practical
+                skills, including computer systems,
+                troubleshooting, and related technical
+                activities.
             </p>
 
         </div>
@@ -452,11 +603,10 @@
             </h3>
 
             <p>
-
-                Focuses on practical activities,
-                services, livelihood, and
-                home-economics-related skills.
-
+                An area focused on practical skills and
+                activities related to home economics,
+                services, livelihood, and related
+                applications.
             </p>
 
         </div>
@@ -469,11 +619,10 @@
             </h3>
 
             <p>
-
-                Focuses on hands-on activities
-                involving tools, materials,
-                technical processes, and projects.
-
+                An area focused on practical and technical
+                activities involving tools, materials,
+                processes, construction-related skills,
+                and hands-on projects.
             </p>
 
         </div>
@@ -486,17 +635,17 @@
             </h3>
 
             <p>
-
                 Other technical and practical
-                learning areas may be available
-                depending on the school's offerings.
-
+                specializations may be presented according
+                to the school's available program offerings.
             </p>
 
         </div>
 
     </div>
 
+
+    <!-- SKILLS -->
 
     <div class="skills">
 
@@ -506,41 +655,52 @@
 
         <ul>
 
-            <li>Technical problem-solving</li>
+            <li>
+                Technical problem-solving
+            </li>
 
-            <li>Practical application</li>
+            <li>
+                Practical application
+            </li>
 
-            <li>Computer and technology skills</li>
+            <li>
+                Equipment and tool awareness
+            </li>
 
-            <li>Project development</li>
+            <li>
+                Project development
+            </li>
 
-            <li>Hands-on skills</li>
+            <li>
+                Collaboration
+            </li>
 
-            <li>Collaboration</li>
+            <li>
+                Workplace-oriented skills
+            </li>
 
-            <li>Technical communication</li>
+            <li>
+                Technical communication
+            </li>
 
         </ul>
 
     </div>
 
 
+    <!-- BUTTONS -->
+
     <div class="buttons">
 
         <a href="index.html"
-           class="button back">
-
+           class="button secondary">
             ← BACK TO HOME
-
         </a>
-
 
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfG9t4oIq5GHqrwuOeb49N5IA4d-qL8dQARxsjdmXdIbYum7w/viewform?usp=header"
            target="_blank"
-           class="button enroll">
-
+           class="button primary">
             ENROLL NOW
-
         </a>
 
     </div>
@@ -548,6 +708,10 @@
 
 </main>
 
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
