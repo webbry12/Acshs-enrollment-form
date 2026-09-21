@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Program | ACSHS</title>
+
+    <link rel="icon"
+          type="image/jpeg"
+          href="acshs-logo.jpg">
+
+    <style>
+
+        :root {
+            --yellow: #fffb00;
+            --orange: #f28c00;
+            --red: #e32619;
+            --dark: #171b22;
+            --gray: #f4f4f4;
+            --white: #ffffff;
+            --text: #222222;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--gray);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 14px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 6px solid var(--yellow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-container img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 3px;
+        }
+
+        .school-name h1 {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        .school-name p {
+            color: var(--yellow);
+            font-size: 14px;
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: var(--yellow);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            background:
+                linear-gradient(
+                    rgba(23, 27, 34, 0.88),
+                    rgba(227, 38, 25, 0.88)
+                );
+
+            color: white;
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .hero-icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 18px;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--red);
+        }
+
+        .subtitle {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #555;
+        }
+
+        /* =========================
+           INFO BOX
+        ========================= */
+
+        .info-box {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin-bottom: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 7px solid var(--orange);
+        }
+
+        .info-box h3 {
+            color: var(--red);
+            margin-bottom: 12px;
+            font-size: 25px;
+        }
+
+        .info-box p {
+            margin-bottom: 12px;
+        }
+
+        /* =========================
+           PROGRAM CARDS
+        ========================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 6px solid var(--orange);
+        }
+
+        .card h3 {
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           STRANDS
+        ========================= */
+
+        .strand-container {
+            margin-top: 35px;
+        }
+
+        .strand {
+            background: white;
+            padding: 25px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            border-left: 6px solid var(--yellow);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .strand h3 {
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .buttons {
+            text-align: center;
+            margin-top: 45px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 28px;
+            margin: 7px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .primary {
+            background: var(--red);
+            color: white;
+        }
+
+        .primary:hover {
+            background: #b91c12;
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            background: var(--dark);
+            color: white;
+        }
+
+        .secondary:hover {
+            background: #303640;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 35px;
+            border-top: 7px solid var(--yellow);
+        }
+
+        footer strong {
+            font-size: 18px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            header {
+                padding: 10px 4%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .school-name h1 {
+                font-size: 14px;
+            }
+
+            .school-name p {
+                font-size: 11px;
+            }
+
+            .logo-container img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .hero {
+                padding: 60px 7%;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 45px 5%;
+            }
+
+            .info-box,
+            .card,
+            .strand {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo-container">
+
+        <img src="acshs-logo.jpg"
+             alt="Antipolo City Senior High School Logo">
+
+        <div class="school-name">
+
+            <h1>
+                ANTIPOLO CITY SENIOR HIGH SCHOOL
+            </h1>
+
+            <p>
+                Enrollment Portal
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#programs">
+            Programs
+        </a>
+
+        <a href="index.html#enrollment">
+            Enrollment
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-icon">
+        📚
+    </div>
+
+    <h2>
+        Academic Program
+    </h2>
+
+    <p>
+        Explore the Academic Program and learn more
+        about its areas of learning, academic preparation,
+        research, communication, and possible pathways
+        for further education.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main>
+
+
+    <h2 class="section-title">
+        About the Academic Program
+    </h2>
+
+    <p class="subtitle">
+
+        The Academic Program is intended for learners who
+        want to strengthen their academic knowledge,
+        communication skills, research abilities, and
+        preparation for further education.
+
+    </p>
+
+
+    <!-- OVERVIEW -->
+
+    <div class="info-box">
+
+        <h3>
+            What is the Academic Program?
+        </h3>
+
+        <p>
+            The Academic Program provides learners with
+            opportunities to develop knowledge and skills
+            through academic learning, research,
+            communication, analysis, and other learning
+            activities.
+        </p>
+
+        <p>
+            It can help learners prepare for their future
+            educational goals while developing skills that
+            may be useful in college and other forms of
+            higher education.
+        </p>
+
+    </div>
+
+
+    <!-- WHAT STUDENTS DEVELOP -->
+
+    <h2 class="section-title">
+        What Can Learners Develop?
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>
+                📖 Academic Knowledge
+            </h3>
+
+            <p>
+                Build knowledge and understanding through
+                classroom learning and academic activities.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🔬 Research Skills
+            </h3>
+
+            <p>
+                Develop skills in gathering information,
+                analyzing ideas, preparing research outputs,
+                and presenting findings.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🗣️ Communication
+            </h3>
+
+            <p>
+                Strengthen written and oral communication
+                skills through presentations, discussions,
+                and academic activities.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🎓 College Preparation
+            </h3>
+
+            <p>
+                Develop academic habits and skills that may
+                help learners prepare for further education.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- AREAS -->
+
+    <div class="strand-container">
+
+        <h2 class="section-title">
+            Academic Areas
+        </h2>
+
+        <p class="subtitle">
+            The current ACSHS website identifies the
+            following Academic-related areas.
+        </p>
+
+
+        <div class="strand">
+
+            <h3>
+                STEM Related
+            </h3>
+
+            <p>
+                An area for learners interested in science,
+                technology, mathematics, problem-solving,
+                investigation, and related academic
+                activities.
+            </p>
+
+        </div>
+
+
+        <div class="strand">
+
+            <h3>
+                HUMSS Related
+            </h3>
+
+            <p>
+                An area for learners interested in humanities,
+                social sciences, communication, society,
+                culture, and related academic activities.
+            </p>
+
+        </div>
+
+
+        <div class="strand">
+
+            <h3>
+                ABM Related
+            </h3>
+
+            <p>
+                An area for learners interested in business,
+                accounting, management, entrepreneurship,
+                organization, and related academic activities.
+            </p>
+
+        </div>
+
+
+        <div class="strand">
+
+            <h3>
+                Hands-on Expertise
+            </h3>
+
+            <p>
+                An area identified on the current website
+                for learning activities that emphasize
+                practical application and development of
+                skills.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SKILLS -->
+
+    <div class="info-box">
+
+        <h3>
+            Skills for Future Learning
+        </h3>
+
+        <ul style="padding-left: 22px;">
+
+            <li>
+                Critical thinking
+            </li>
+
+            <li>
+                Research and information gathering
+            </li>
+
+            <li>
+                Written and oral communication
+            </li>
+
+            <li>
+                Problem-solving
+            </li>
+
+            <li>
+                Collaboration
+            </li>
+
+            <li>
+                Academic presentation
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <a href="index.html"
+           class="button secondary">
+            ← BACK TO HOME
+        </a>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfG9t4oIq5GHqrwuOeb49N5IA4d-qL8dQARxsjdmXdIbYum7w/viewform?usp=header"
+           target="_blank"
+           class="button primary">
+            ENROLL NOW
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        <strong>
+            Antipolo City Senior High School
+        </strong>
+    </p>
+
+    <p>
+        Enrollment Portal
+    </p>
+
+    <p>
+        © 2026 ACSHS
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
