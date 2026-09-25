@@ -1,2320 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Admission | ACSHS</title>
-
-<link rel="icon"
-type="image/jpeg"
-href="acshs-logo.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antipolo City Senior High School | Admission</title>
+<link rel="icon" href="acshs-logo.jpg">
 
 <style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#333}
 
-/* =========================
-   GENERAL
-========================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+/* SAME SITE HEADER STYLE */
+header{
+    background:linear-gradient(90deg,#f5b400,#e85d04,#b71c1c);
+    color:white;
+    padding:14px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
 }
-
-body {
-    background: #f3f3f3;
-    color: #333;
+.school{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
-
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-
-    background:
-    linear-gradient(
-        90deg,
-        #ffcc00,
-        #ff9800,
-        #e53935
-    );
-
-    padding: 15px 7%;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    flex-wrap: wrap;
+.school img{
+    width:55px;height:55px;object-fit:contain;
+    background:white;border-radius:50%;
 }
-
-.logo-area {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
+.school-name h1{
+    font-size:21px;margin:0;font-weight:800;
 }
-
-.logo-area img {
-
-    width: 55px;
-
-    height: 55px;
-
-    border-radius: 50%;
-
-    object-fit: cover;
-
-    background: white;
+.school-name p{margin:3px 0 0;font-size:14px}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav a{
+    color:white;text-decoration:none;font-weight:bold;
+    padding:9px 12px;border-radius:6px;
 }
+nav a:hover{background:rgba(255,255,255,.2)}
 
-.logo-area h2 {
-
-    color: white;
-
-    font-size: 20px;
+.hero{
+    background:white;
+    text-align:center;
+    padding:48px 20px 35px;
+    border-bottom:5px solid #f5b400;
 }
+.hero h2{margin:0;color:#b71c1c;font-size:34px}
+.hero p{color:#666;margin:10px 0 0}
 
-nav {
-
-    display: flex;
-
-    gap: 18px;
-
-    flex-wrap: wrap;
+.container{max-width:1050px;margin:30px auto;padding:0 18px}
+.section{
+    background:white;border-radius:14px;padding:28px;
+    margin-bottom:20px;box-shadow:0 4px 18px rgba(0,0,0,.08);
 }
-
-nav a {
-
-    color: white;
-
-    text-decoration: none;
-
-    font-weight: bold;
+.section h2{
+    color:#b71c1c;margin:0 0 20px;
+    border-bottom:3px solid #f5b400;padding-bottom:9px;
 }
-
-nav a:hover {
-
-    color: #333;
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.full{grid-column:1/-1}
+label{display:block;font-weight:bold;margin-bottom:6px}
+input,select,textarea{
+    width:100%;padding:12px;border:1px solid #bbb;border-radius:7px;
+    font-size:15px;background:#fff;
 }
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-
-    background:
-
-    linear-gradient(
-        rgba(0,0,0,.55),
-        rgba(0,0,0,.55)
-    ),
-
-    url("acshs-logo.jpg");
-
-    background-size: cover;
-
-    background-position: center;
-
-    padding: 70px 20px;
-
-    text-align: center;
-
-    color: white;
+textarea{min-height:105px;resize:vertical}
+.required{color:#b71c1c}
+.note{
+    background:#fff8df;border-left:5px solid #f5b400;
+    padding:12px;margin:12px 0;border-radius:5px;
 }
-
-.hero h1 {
-
-    font-size: 42px;
-
-    margin-bottom: 12px;
+.photo-area{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+#preview{
+    display:none;width:130px;height:160px;object-fit:cover;
+    border:1px solid #aaa;border-radius:6px;
 }
-
-.hero p {
-
-    font-size: 18px;
+.actions{text-align:center}
+button{
+    background:#b71c1c;color:#fff;border:0;border-radius:7px;
+    padding:14px 30px;font-size:16px;font-weight:bold;cursor:pointer;
 }
-
-
-/* =========================
-   FORM SECTION
-========================= */
-
-.form-section {
-
-    padding: 50px 15px;
+button:hover{background:#8f1515}
+button:disabled{opacity:.6;cursor:not-allowed}
+.status{display:none;margin-top:16px;padding:14px;border-radius:7px;font-weight:bold}
+.success{background:#e5f6e8;color:#176b2c}
+.error{background:#fde7e7;color:#9b1c1c}
+footer{
+    background:#333;color:white;text-align:center;padding:28px 15px;
+    margin-top:40px;
 }
-
-.form-container {
-
-    max-width: 900px;
-
-    margin: auto;
-
-    background: white;
-
-    padding: 40px;
-
-    border-radius: 15px;
-
-    box-shadow:
-    0 5px 20px rgba(0,0,0,.12);
+@media(max-width:700px){
+    header{padding:12px 4%}
+    .school-name h1{font-size:16px}
+    .grid{grid-template-columns:1fr}
+    .full{grid-column:auto}
+    nav a{font-size:13px;padding:7px}
+    .hero h2{font-size:27px}
 }
-
-.form-title {
-
-    text-align: center;
-
-    color: #e65100;
-
-    margin-bottom: 10px;
-
-    font-size: 30px;
-}
-
-.form-description {
-
-    text-align: center;
-
-    color: #666;
-
-    line-height: 1.6;
-
-    margin-bottom: 30px;
-}
-
-.form-group {
-
-    margin-bottom: 22px;
-}
-
-label {
-
-    display: block;
-
-    font-weight: bold;
-
-    margin-bottom: 8px;
-}
-
-.required {
-
-    color: red;
-}
-
-input,
-select,
-textarea {
-
-    width: 100%;
-
-    padding: 13px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 8px;
-
-    font-size: 15px;
-
-    background: white;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-
-    outline: none;
-
-    border-color: #ff9800;
-
-    box-shadow:
-    0 0 5px rgba(255,152,0,.25);
-}
-
-textarea {
-
-    min-height: 100px;
-
-    resize: vertical;
-}
-
-
-/* =========================
-   ELECTIVE SECTION
-========================= */
-
-.elective-box {
-
-    background: #fff8e1;
-
-    border-left: 5px solid #ff9800;
-
-    padding: 20px;
-
-    border-radius: 8px;
-
-    margin-top: 10px;
-
-    margin-bottom: 25px;
-}
-
-.elective-box h3 {
-
-    color: #e65100;
-
-    margin-bottom: 8px;
-}
-
-.elective-box p {
-
-    color: #666;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-.optgroup-title {
-
-    font-weight: bold;
-}
-
-
-/* =========================
-   PHOTO
-========================= */
-
-.photo-box {
-
-    border: 2px dashed #ff9800;
-
-    padding: 25px;
-
-    text-align: center;
-
-    border-radius: 10px;
-
-    background: #fffaf0;
-}
-
-.photo-box input {
-
-    border: none;
-
-    padding: 10px;
-}
-
-.photo-preview {
-
-    display: none;
-
-    width: 2in;
-
-    height: 2in;
-
-    object-fit: cover;
-
-    margin: 15px auto 5px;
-
-    border: 2px solid #333;
-}
-
-
-/* =========================
-   BUTTON
-========================= */
-
-.generate-btn {
-
-    width: 100%;
-
-    border: none;
-
-    padding: 16px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #ff9800,
-        #e53935
-    );
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-}
-
-.generate-btn:hover {
-
-    transform: translateY(-2px);
-
-    box-shadow:
-    0 5px 12px rgba(0,0,0,.15);
-}
-
-
-/* =========================
-   NOTICE
-========================= */
-
-.note {
-
-    margin-top: 20px;
-
-    padding: 15px;
-
-    background: #fff3cd;
-
-    border-left: 5px solid #ff9800;
-
-    line-height: 1.5;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   PRINTABLE
-========================= */
-
-#printable {
-
-    display: none;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-
-    background: #333;
-
-    color: white;
-
-    text-align: center;
-
-    padding: 30px 20px;
-
-    margin-top: 30px;
-}
-
-footer p {
-
-    margin: 6px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:700px) {
-
-    header {
-
-        justify-content: center;
-
-        gap: 15px;
-    }
-
-    nav {
-
-        justify-content: center;
-    }
-
-    .hero h1 {
-
-        font-size: 30px;
-    }
-
-    .form-container {
-
-        padding: 25px 20px;
-    }
-
-}
-
-
-/* =========================
-   PRINT
-========================= */
-
-@media print {
-
-    body * {
-
-        visibility: hidden;
-    }
-
-    #printable,
-    #printable * {
-
-        visibility: visible;
-    }
-
-    #printable {
-
-        display: block;
-
-        position: absolute;
-
-        left: 0;
-
-        top: 0;
-
-        width: 100%;
-    }
-
-    @page {
-
-        size: A4;
-
-        margin: 12mm;
-    }
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
+<!-- SAME HEADER / NAVIGATION AS THE MAIN INDEX PAGE -->
 <header>
+    <div class="school">
+        <img src="acshs-logo.jpg" alt="ACSHS Logo">
+        <div class="school-name">
+            <h1>ANTIPOLO CITY SENIOR HIGH SCHOOL</h1>
+            <p>Admission Portal</p>
+        </div>
+    </div>
 
-<div class="logo-area">
-
-<img
-src="acshs-logo.jpg"
-alt="ACSHS Logo">
-
-<h2>
-Antipolo City Senior High School
-</h2>
-
-</div>
-
-
-<nav>
-
-<a href="index.html">
-Home
-</a>
-
-<a href="index.html#about">
-About
-</a>
-
-<a href="index.html#programs">
-Programs
-</a>
-
-<a href="admission-survey.html">
-Admission 
-</a>
-
-<a href="index.html#contact">
-Contact
-</a>
-
-</nav>
-
+    <nav>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="admission-survey.html">Admission</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
 </header>
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero">
-
-<h1>
-Admission
-</h1>
-
-<p>
-for School Year 2027–2028
-</p>
-
+    <h2>Admission Survey</h2>
+    <p>School Year 2027–2028</p>
 </section>
 
-
-<!-- =====================================================
-     FORM
-===================================================== -->
-
-<section class="form-section">
-
-<div class="form-container">
-
-
-<h2 class="form-title">
-
-Admission Information Form
-
-</h2>
-
-
-<p class="form-description">
-
-Please complete the information below.
-Select your preferred Academic Track electives
-if applicable. After completing the form,
-you can generate and print your admission
-information sheet.
-
-</p>
-
+<main class="container">
 
 <form id="admissionForm">
 
-
-<!-- =================================================
-     PERSONAL INFORMATION
-================================================= -->
-
-<div class="elective-box">
-
-<h3>
-1. Personal Information
-</h3>
-
-<p>
-Please provide your basic information as an incoming
-Grade 11 learner.
-</p>
-
+<!-- 1 -->
+<section class="section">
+<h2>1. Personal Information</h2>
+<div class="grid">
+<div><label>First Name <span class="required">*</span></label><input name="firstName" required></div>
+<div><label>Middle Name</label><input name="middleName"></div>
+<div><label>Last Name <span class="required">*</span></label><input name="lastName" required></div>
+<div><label>Suffix</label><input name="suffix" placeholder="Jr., III, etc."></div>
+<div><label>Date of Birth <span class="required">*</span></label><input type="date" name="birthDate" required></div>
+<div><label>Age <span class="required">*</span></label><input type="number" name="age" min="10" max="30" required></div>
+<div><label>Sex <span class="required">*</span></label>
+<select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+<div><label>Citizenship</label><input name="citizenship" value="Filipino"></div>
+<div><label>Place of Birth</label><input name="placeOfBirth"></div>
+<div><label>Learner Reference Number (LRN)</label><input name="lrn"></div>
+<div><label>Email Address <span class="required">*</span></label><input type="email" name="email" required></div>
+<div><label>Mobile Number <span class="required">*</span></label><input type="tel" name="mobile" required></div>
 </div>
-
-
-<!-- FULL NAME -->
-
-<div class="form-group">
-
-<label>
-Full Name (SN, FN MI)
-<span class="required">*</span>
-</label>
-
-<input
-type="text"
-id="fullName"
-placeholder="Last Name, First Name, Middle Name"
-required>
-
-</div>
-
-
-<!-- DATE OF BIRTH -->
-
-<div class="form-group">
-
-<label>
-Date of Birth
-<span class="required">*</span>
-</label>
-
-<input
-type="date"
-id="birthDate"
-required>
-
-</div>
-
-
-<!-- AGE -->
-
-<div class="form-group">
-
-<label>
-Age
-<span class="required">*</span>
-</label>
-
-<input
-type="number"
-id="age"
-min="10"
-max="30"
-required>
-
-</div>
-
-
-<!-- SEX -->
-
-<div class="form-group">
-
-<label>
-Sex
-<span class="required">*</span>
-</label>
-
-<select id="sex" required>
-
-<option value="">
-Select
-</option>
-
-<option value="Male">
-Male
-</option>
-
-<option value="Female">
-Female
-</option>
-
-<option value="Prefer not to say">
-Prefer not to say
-</option>
-
-</select>
-
-</div>
-
-
-<!-- ADDRESS -->
-
-<div class="form-group">
-
-<label>
-Complete Address
-<span class="required">*</span>
-</label>
-
-<textarea
-id="address"
-placeholder="House/Street, Barangay, City/Municipality, Province"
-required></textarea>
-
-</div>
-
-
-<!-- PREVIOUS SCHOOL -->
-
-<div class="form-group">
-
-<label>
-Previous School
-<span class="required">*</span>
-</label>
-
-<input
-type="text"
-id="previousSchool"
-placeholder="Name of previous school"
-required>
-
-</div>
-
-
-<!-- =================================================
-     PROGRAM
-================================================= -->
-
-<div class="elective-box">
-
-<h3>
-2. Program and Elective Preferences
-</h3>
-
-<p>
-
-Choose your preferred track and indicate your
-preferred Academic electives.
-
-The selections are preferences only and do not
-guarantee that every elective will be offered.
-
-</p>
-
-</div>
-
-
-<!-- TRACK -->
-
-<div class="form-group">
-
-<label>
-
-Preferred Track
-<span class="required">*</span>
-
-</label>
-
-
-<select id="program" required>
-
-<option value="">
-Select Track
-</option>
-
-<option value="Academic Track">
-Academic Track
-</option>
-
-<option value="TechPro Track">
-TechPro Track
-</option>
-
-</select>
-
-</div>
-
-
-<!-- ACADEMIC CLUSTER -->
-
-<div class="form-group">
-
-<label>
-Preferred Academic Cluster
-</label>
-
-
-<select id="academicCluster">
-
-<option value="">
-Select Cluster
-</option>
-
-<option value="Science, Technology, Engineering, and Mathematics">
-Science, Technology, Engineering, and Mathematics
-</option>
-
-<option value="Arts, Social Sciences, and Humanities">
-Arts, Social Sciences, and Humanities
-</option>
-
-<option value="Business and Entrepreneurship">
-Business and Entrepreneurship
-</option>
-
-</select>
-
-</div>
-
-
-<!-- =================================================
-     ELECTIVE 1
-================================================= -->
-
-<div class="form-group">
-
-<label>
-
-First Choice Elective
-<span class="required">*</span>
-
-</label>
-
-
-<select id="elective1" required>
-
-<option value="">
-Select First Choice
-</option>
-
-
-<optgroup label="Science, Technology, Engineering, and Mathematics">
-
-<option>
-Finite Mathematics 1
-</option>
-
-<option>
-Finite Mathematics 2
-</option>
-
-<option>
-Biology 1
-</option>
-
-<option>
-Biology 2
-</option>
-
-<option>
-Chemistry 1
-</option>
-
-<option>
-Chemistry 2
-</option>
-
-<option>
-Earth and Space Science 1
-</option>
-
-<option>
-Earth and Space Science 2
-</option>
-
-<option>
-Physics 1
-</option>
-
-<option>
-Physics 2
-</option>
-
-<option>
-Pre-Calculus
-</option>
-
-<option>
-Advanced Mathematics
-</option>
-
-</optgroup>
-
-
-<optgroup label="Arts, Social Sciences, and Humanities">
-
-<option>
-Contemporary Literature 1
-</option>
-
-<option>
-Creative Composition 1
-</option>
-
-<option>
-Arts 1
-</option>
-
-<option>
-Arts 2
-</option>
-
-<option>
-Filipino 1
-</option>
-
-<option>
-Introduction to Philosophy
-</option>
-
-<option>
-Social Sciences
-</option>
-
-<option>
-Philippine Governance
-</option>
-
-</optgroup>
-
-
-<optgroup label="Business and Entrepreneurship">
-
-<option>
-Business 1 - Basic Accounting
-</option>
-
-<option>
-Introduction to Organization and Management
-</option>
-
-<option>
-Business 2 - Business Finance and Income Taxation
-</option>
-
-<option>
-Business 3 - Business Economics
-</option>
-
-<option>
-Contemporary Marketing
-</option>
-
-<option>
-Entrepreneurship
-</option>
-
-</optgroup>
-
-</select>
-
-</div>
-
-
-<!-- =================================================
-     ELECTIVE 2
-================================================= -->
-
-<div class="form-group">
-
-<label>
-Second Choice Elective
-</label>
-
-
-<select id="elective2">
-
-<option value="">
-Select Second Choice
-</option>
-
-<option>
-Finite Mathematics 1
-</option>
-
-<option>
-Finite Mathematics 2
-</option>
-
-<option>
-Biology 1
-</option>
-
-<option>
-Biology 2
-</option>
-
-<option>
-Chemistry 1
-</option>
-
-<option>
-Chemistry 2
-</option>
-
-<option>
-Earth and Space Science 1
-</option>
-
-<option>
-Earth and Space Science 2
-</option>
-
-<option>
-Physics 1
-</option>
-
-<option>
-Physics 2
-</option>
-
-<option>
-Pre-Calculus
-</option>
-
-<option>
-Advanced Mathematics
-</option>
-
-<option>
-Contemporary Literature 1
-</option>
-
-<option>
-Creative Composition 1
-</option>
-
-<option>
-Arts 1
-</option>
-
-<option>
-Arts 2
-</option>
-
-<option>
-Filipino 1
-</option>
-
-<option>
-Introduction to Philosophy
-</option>
-
-<option>
-Social Sciences
-</option>
-
-<option>
-Philippine Governance
-</option>
-
-<option>
-Business 1 - Basic Accounting
-</option>
-
-<option>
-Introduction to Organization and Management
-</option>
-
-<option>
-Business 2 - Business Finance and Income Taxation
-</option>
-
-<option>
-Business 3 - Business Economics
-</option>
-
-<option>
-Contemporary Marketing
-</option>
-
-<option>
-Entrepreneurship
-</option>
-
-</select>
-
-</div>
-
-
-<!-- =================================================
-     ELECTIVE 3
-================================================= -->
-
-<div class="form-group">
-
-<label>
-Third Choice Elective
-</label>
-
-
-<select id="elective3">
-
-<option value="">
-Select Third Choice
-</option>
-
-<option>
-Finite Mathematics 1
-</option>
-
-<option>
-Finite Mathematics 2
-</option>
-
-<option>
-Biology 1
-</option>
-
-<option>
-Biology 2
-</option>
-
-<option>
-Chemistry 1
-</option>
-
-<option>
-Chemistry 2
-</option>
-
-<option>
-Earth and Space Science 1
-</option>
-
-<option>
-Earth and Space Science 2
-</option>
-
-<option>
-Physics 1
-</option>
-
-<option>
-Physics 2
-</option>
-
-<option>
-Pre-Calculus
-</option>
-
-<option>
-Advanced Mathematics
-</option>
-
-<option>
-Contemporary Literature 1
-</option>
-
-<option>
-Creative Composition 1
-</option>
-
-<option>
-Arts 1
-</option>
-
-<option>
-Arts 2
-</option>
-
-<option>
-Filipino 1
-</option>
-
-<option>
-Introduction to Philosophy
-</option>
-
-<option>
-Social Sciences
-</option>
-
-<option>
-Philippine Governance
-</option>
-
-<option>
-Business 1 - Basic Accounting
-</option>
-
-<option>
-Introduction to Organization and Management
-</option>
-
-<option>
-Business 2 - Business Finance and Income Taxation
-</option>
-
-<option>
-Business 3 - Business Economics
-</option>
-
-<option>
-Contemporary Marketing
-</option>
-
-<option>
-Entrepreneurship
-</option>
-
-</select>
-
-</div>
-
-
-<!-- =================================================
-     CONTACT
-================================================= -->
-
-<div class="elective-box">
-
-<h3>
-3. Contact Information
-</h3>
-
-<p>
-Provide contact information that can be used
-for admission-related communication.
-</p>
-
-</div>
-
-
-<!-- EMAIL -->
-
-<div class="form-group">
-
-<label>
-Email Address
-</label>
-
-<input
-type="email"
-id="email"
-placeholder="example@email.com">
-
-</div>
-
-
-<!-- CONTACT -->
-
-<div class="form-group">
-
-<label>
-Contact Number
-</label>
-
-<input
-type="tel"
-id="contact"
-placeholder="09XXXXXXXXX">
-
-</div>
-
-
-<!-- GUARDIAN -->
-
-<div class="form-group">
-
-<label>
-Parent / Guardian Name
-</label>
-
-<input
-type="text"
-id="guardian"
-placeholder="Parent or guardian full name">
-
-</div>
-
-
-<!-- =================================================
-     PHOTO
-================================================= -->
-
-<div class="elective-box">
-
-<h3>
-4. Passport-Size Picture
-</h3>
-
-<p>
-Upload a clear JPG or PNG image. The selected
-picture will appear on the printable admission form.
-</p>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-
-Passport-Size Picture
-<span class="required">*</span>
-
-</label>
-
-
-<div class="photo-box">
-
-<p>
-Choose your picture below.
-</p>
-
-<br>
-
-
-<input
-type="file"
-id="photo"
-accept="image/jpeg,image/png"
-required>
-
-
-<img
-id="photoPreview"
-class="photo-preview"
-alt="Passport Photo Preview">
-
-
-<p id="photoName"></p>
-
-</div>
-
-</div>
-
-
-<!-- =================================================
-     SURVEY
-================================================= -->
-
-<div class="elective-box">
-
-<h3>
-5. Admission 
-</h3>
-
-<p>
-Tell us about your interests and expectations.
-</p>
-
-</div>
-
-
-<!-- REASON -->
-
-<div class="form-group">
-
-<label>
-Reason for Choosing ACSHS
-</label>
-
-<textarea
-id="reason"
-placeholder="Write your reason..."></textarea>
-
-</div>
-
-
-<!-- EXPECTATIONS -->
-
-<div class="form-group">
-
-<label>
-What do you expect from ACSHS?
-</label>
-
-<textarea
-id="expectation"
-placeholder="Write your expectations..."></textarea>
-
-</div>
-
-
-<!-- CONCERNS -->
-
-<div class="form-group">
-
-<label>
-Questions or Concerns About Enrollment
-</label>
-
-<textarea
-id="concerns"
-placeholder="Write your questions or concerns..."></textarea>
-
-</div>
-
-
-<!-- =================================================
-     GENERATE
-================================================= -->
-
-<button
-type="submit"
-class="generate-btn">
-
-PRINT ADMISSION FORM
-
-</button>
-
-
-</form>
-
-
-<div class="note">
-
-<strong>Important:</strong>
-
-Please check all information carefully before
-generating your printable form.
-
-The elective selections are preferences and do not
-guarantee that a particular elective will be offered.
-
-</div>
-
-
-</div>
-
 </section>
 
-
-<!-- =====================================================
-     PRINTABLE DOCUMENT
-===================================================== -->
-
-<div id="printable">
-
-<div style="
-border:2px solid #333;
-padding:18px;
-min-height:260mm;
-">
-
-
-<!-- SCHOOL HEADER -->
-
-<table style="
-width:100%;
-border-bottom:2px solid #333;
-padding-bottom:10px;
-">
-
-<tr>
-
-<td style="width:85px;">
-
-<img
-src="acshs-logo.jpg"
-style="
-width:70px;
-height:70px;
-object-fit:cover;
-">
-
-</td>
-
-
-<td style="text-align:center;">
-
-<h2>
-ANTIPOLO CITY SENIOR HIGH SCHOOL
-</h2>
-
-<h3>
-ADMISSION FORM
-</h3>
-
-<p>
-School Year 2027–2028
-</p>
-
-</td>
-
-
-<td style="
-width:120px;
-text-align:center;
-">
-
-<img
-id="printPhoto"
-style="
-width:100px;
-height:100px;
-object-fit:cover;
-border:1px solid #333;
-">
-
-<p style="font-size:10px;">
-PASSPORT PHOTO
-</p>
-
-</td>
-
-</tr>
-
-</table>
-
-
-<br>
-
-
-<!-- PERSONAL -->
-
-<h3 style="
-background:#eee;
-padding:8px;
-">
-
-1. PERSONAL INFORMATION
-
-</h3>
-
-<br>
-
-
-<table style="
-width:100%;
-border-collapse:collapse;
-">
-
-<tr>
-
-<td style="
-padding:7px;
-width:35%;
-">
-
-<strong>Full Name:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printName">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-<strong>Date of Birth:</strong>
-</td>
-
-<td
-style="padding:7px;"
-id="printBirth">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-<strong>Age:</strong>
-</td>
-
-<td
-style="padding:7px;"
-id="printAge">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-<strong>Sex:</strong>
-</td>
-
-<td
-style="padding:7px;"
-id="printSex">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="
-padding:7px;
-vertical-align:top;
-">
-
-<strong>Complete Address:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printAddress">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-<strong>Previous School:</strong>
-</td>
-
-<td
-style="padding:7px;"
-id="printPreviousSchool">
-</td>
-
-</tr>
-
-</table>
-
-
-<br>
-
-
-<!-- PROGRAM -->
-
-<h3 style="
-background:#eee;
-padding:8px;
-">
-
-2. PROGRAM AND ELECTIVES
-
-</h3>
-
-<br>
-
-
-<table style="
-width:100%;
-border-collapse:collapse;
-">
-
-<tr>
-
-<td style="
-padding:7px;
-width:35%;
-">
-
-<strong>Preferred Track:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printProgram">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-
-<strong>Academic Cluster:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printCluster">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-
-<strong>First Choice:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printElective1">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-
-<strong>Second Choice:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printElective2">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-
-<strong>Third Choice:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printElective3">
-</td>
-
-</tr>
-
-</table>
-
-
-<br>
-
-
-<!-- CONTACT -->
-
-<h3 style="
-background:#eee;
-padding:8px;
-">
-
-3. CONTACT INFORMATION
-
-</h3>
-
-<br>
-
-
-<table style="
-width:100%;
-border-collapse:collapse;
-">
-
-<tr>
-
-<td style="
-padding:7px;
-width:35%;
-">
-
-<strong>Email:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printEmail">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-
-<strong>Contact Number:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printContact">
-</td>
-
-</tr>
-
-
-<tr>
-
-<td style="padding:7px;">
-
-<strong>Parent / Guardian:</strong>
-
-</td>
-
-<td
-style="padding:7px;"
-id="printGuardian">
-</td>
-
-</tr>
-
-</table>
-
-
-<br>
-
-
-<!-- SURVEY -->
-
-<h3 style="
-background:#eee;
-padding:8px;
-">
-
-4. ADMISSION SURVEY
-
-</h3>
-
-<br>
-
-
-<p>
-<strong>Reason for Choosing ACSHS:</strong>
-</p>
-
-<p
-id="printReason"
-style="
-min-height:45px;
-padding:8px 0;
-border-bottom:1px solid #999;
-">
-</p>
-
-
-<br>
-
-
-<p>
-<strong>Expectations from ACSHS:</strong>
-</p>
-
-<p
-id="printExpectation"
-style="
-min-height:45px;
-padding:8px 0;
-border-bottom:1px solid #999;
-">
-</p>
-
-
-<br>
-
-
-<p>
-<strong>Questions / Concerns:</strong>
-</p>
-
-<p
-id="printConcerns"
-style="
-min-height:45px;
-padding:8px 0;
-border-bottom:1px solid #999;
-">
-</p>
-
-
-<br><br>
-
-
-<!-- SIGNATURE -->
-
-<table style="width:100%;">
-
-<tr>
-
-<td style="width:50%;">
-
-________________________________
-
-<br>
-
-<strong>
-Applicant / Learner Signature
-</strong>
-
-</td>
-
-
-<td style="width:50%;">
-
-________________________________
-
-<br>
-
-<strong>
-Date
-</strong>
-
-</td>
-
-</tr>
-
-</table>
-
-
-<br><br>
-
-
-<p style="
-font-size:10px;
-color:#555;
-text-align:center;
-">
-
-This document is an admission information sheet.
-It does not by itself constitute confirmation of enrollment.
-
-</p>
-
-
+<!-- 2 -->
+<section class="section">
+<h2>2. Address Information</h2>
+<div class="grid">
+<div><label>House/Unit No.</label><input name="houseNo"></div>
+<div><label>Street</label><input name="street"></div>
+<div><label>Subdivision/Village</label><input name="subdivision"></div>
+<div><label>Barangay <span class="required">*</span></label><input name="barangay" required></div>
+<div><label>City/Municipality <span class="required">*</span></label><input name="city" required></div>
+<div><label>Province <span class="required">*</span></label><input name="province" required></div>
+<div><label>Region</label><input name="region"></div>
+<div><label>ZIP Code</label><input name="zip"></div>
 </div>
+</section>
 
+<!-- 3 -->
+<section class="section">
+<h2>3. Parent/Guardian Information</h2>
+<div class="grid">
+<div><label>Father's Name</label><input name="fatherName"></div>
+<div><label>Father's Contact Number</label><input name="fatherContact"></div>
+<div><label>Mother's Name</label><input name="motherName"></div>
+<div><label>Mother's Contact Number</label><input name="motherContact"></div>
+<div><label>Guardian's Name <span class="required">*</span></label><input name="guardianName" required></div>
+<div><label>Relationship to Learner <span class="required">*</span></label><input name="guardianRelationship" required></div>
+<div><label>Guardian's Contact Number <span class="required">*</span></label><input name="guardianContact" required></div>
+<div><label>Guardian's Email</label><input type="email" name="guardianEmail"></div>
 </div>
+</section>
 
+<!-- 4 -->
+<section class="section">
+<h2>4. Emergency Contact</h2>
+<div class="grid">
+<div><label>Full Name <span class="required">*</span></label><input name="emergencyName" required></div>
+<div><label>Relationship <span class="required">*</span></label><input name="emergencyRelationship" required></div>
+<div><label>Contact Number <span class="required">*</span></label><input name="emergencyContact" required></div>
+<div><label>Email</label><input type="email" name="emergencyEmail"></div>
+<div class="full"><label>Address</label><textarea name="emergencyAddress"></textarea></div>
+</div>
+</section>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- 5 -->
+<section class="section">
+<h2>5. Program Preferences</h2>
+<div class="grid">
+<div><label>Preferred Track <span class="required">*</span></label>
+<select name="track" required>
+<option value="">Select Track</option>
+<option>Academic Track</option>
+<option>TechPro Track</option>
+</select></div>
+
+<div><label>Preferred Academic Cluster</label>
+<select name="cluster">
+<option value="">Select Cluster</option>
+<option>Science, Technology, Engineering, and Mathematics</option>
+<option>Arts, Social Sciences, and Humanities</option>
+<option>Business and Entrepreneurship</option>
+</select></div>
+
+<div><label>First Elective Choice</label><select name="elective1"><option value="">Select</option></select></div>
+<div><label>Second Elective Choice</label><select name="elective2"><option value="">Select</option></select></div>
+<div><label>Third Elective Choice</label><select name="elective3"><option value="">Select</option></select></div>
+<div class="full"><label>Why did you choose this track?</label><textarea name="whyTrack"></textarea></div>
+</div>
+</section>
+
+<!-- 6 -->
+<section class="section">
+<h2>6. Student Interests</h2>
+<div class="grid">
+<div class="full"><label>Favorite Subjects</label><input name="favoriteSubjects"></div>
+<div><label>Strongest Area</label><input name="strongestArea"></div>
+<div><label>Skill You Want to Develop</label><input name="skillsToDevelop"></div>
+<div><label>Career Interest</label><input name="careerInterest"></div>
+<div><label>Preferred College Course</label><input name="collegeCourse"></div>
+<div><label>Future Profession</label><input name="futureProfession"></div>
+<div class="full"><label>Extracurricular Interests</label><textarea name="extracurricularInterests"></textarea></div>
+</div>
+</section>
+
+<!-- 7 -->
+<section class="section">
+<h2>7. Admission Question</h2>
+<label>Why do you want to enroll at Antipolo City Senior High School? <span class="required">*</span></label>
+<textarea name="admissionReason" required></textarea>
+</section>
+
+<!-- 8 -->
+<section class="section">
+<h2>8. Document</h2>
+<label>Passport-size Photo <span class="required">*</span></label>
+<div class="photo-area">
+<div>
+<input type="file" id="photo" accept="image/jpeg,image/png" required>
+<div class="note">JPG or PNG only.</div>
+</div>
+<img id="preview" alt="Photo preview">
+</div>
+</section>
+
+<!-- 9 -->
+<section class="section">
+<h2>9. Declaration</h2>
+<label>
+<input type="checkbox" name="declaration" required>
+I confirm that the information I provided is accurate and that I have discussed this application with my parent/guardian.
+<span class="required">*</span>
+</label>
+</section>
+
+<section class="section actions">
+<div class="note">
+Please review your information before submitting your application.
+</div>
+<button id="submitBtn" type="submit">SUBMIT APPLICATION</button>
+<div id="status" class="status"></div>
+</section>
+
+</form>
+</main>
 
 <footer>
-
-<p>
-<strong>
-Antipolo City Senior High School
-</strong>
-</p>
-
-<p>
-Admission Survey | School Year 2027–2028
-</p>
-
-<p>
-© 2026 ACSHS
-</p>
-
+<p><strong>ANTIPOLO CITY SENIOR HIGH SCHOOL</strong></p>
+<p>Admission Portal</p>
 </footer>
 
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
+const FLOW_URL = "PASTE_YOUR_POWER_AUTOMATE_HTTP_URL_HERE";
 
+const electives = [
+"Finite Mathematics 1","Finite Mathematics 2","Biology 1","Biology 2",
+"Chemistry 1","Chemistry 2","Earth and Space Science 1","Earth and Space Science 2",
+"Physics 1","Physics 2","Pre-Calculus","Advanced Mathematics",
+"Contemporary Literature 1","Creative Composition 1","Arts 1","Arts 2",
+"Filipino 1","Introduction to Philosophy","Social Sciences","Philippine Governance",
+"Business 1 - Basic Accounting","Introduction to Organization and Management",
+"Business 2 - Business Finance and Income Taxation","Business 3 - Business Economics",
+"Contemporary Marketing","Entrepreneurship"
+];
 
-/* ==========================================
-   PHOTO PREVIEW
-========================================== */
+document.querySelectorAll('[name^="elective"]').forEach(select=>{
+    electives.forEach(item=>{
+        const option=document.createElement("option");
+        option.value=item;
+        option.textContent=item;
+        select.appendChild(option);
+    });
+});
 
-const photoInput =
-document.getElementById("photo");
+const photo=document.getElementById("photo");
+const preview=document.getElementById("preview");
 
-const photoPreview =
-document.getElementById("photoPreview");
-
-let photoData = "";
-
-
-photoInput.addEventListener(
-"change",
-function() {
-
-    const file = this.files[0];
-
-    if (!file) {
-        return;
-    }
-
-
-    if (!file.type.startsWith("image/")) {
-
-        alert(
-            "Please select a JPG or PNG image."
-        );
-
-        this.value = "";
-
-        return;
-    }
-
-
-    const reader =
-    new FileReader();
-
-
-    reader.onload =
-    function(event) {
-
-        photoData =
-        event.target.result;
-
-        photoPreview.src =
-        photoData;
-
-        photoPreview.style.display =
-        "block";
-
+photo.addEventListener("change",()=>{
+    const file=photo.files[0];
+    if(!file)return;
+    const reader=new FileReader();
+    reader.onload=e=>{
+        preview.src=e.target.result;
+        preview.style.display="block";
     };
-
-
     reader.readAsDataURL(file);
-
 });
 
+function fileToBase64(file){
+    return new Promise((resolve,reject)=>{
+        const reader=new FileReader();
+        reader.onload=()=>resolve(reader.result.split(",")[1]);
+        reader.onerror=reject;
+        reader.readAsDataURL(file);
+    });
+}
 
-/* ==========================================
-   FORM
-========================================== */
+document.getElementById("admissionForm").addEventListener("submit",async e=>{
+    e.preventDefault();
 
-const form =
-document.getElementById(
-    "admissionForm"
-);
+    const status=document.getElementById("status");
+    const btn=document.getElementById("submitBtn");
 
-
-form.addEventListener(
-"submit",
-function(event) {
-
-    event.preventDefault();
-
-
-    if (!photoData) {
-
-        alert(
-            "Please upload your passport-size picture first."
-        );
-
+    if(FLOW_URL.includes("PASTE_YOUR_POWER_AUTOMATE")){
+        status.className="status error";
+        status.textContent="The admission form is not connected to Power Automate yet.";
+        status.style.display="block";
         return;
-
     }
 
-
-    /* ================================
-       GET VALUES
-    ================================= */
-
-    const fullName =
-    document.getElementById(
-        "fullName"
-    ).value;
-
-    const birthDate =
-    document.getElementById(
-        "birthDate"
-    ).value;
-
-    const age =
-    document.getElementById(
-        "age"
-    ).value;
-
-    const sex =
-    document.getElementById(
-        "sex"
-    ).value;
-
-    const address =
-    document.getElementById(
-        "address"
-    ).value;
-
-    const previousSchool =
-    document.getElementById(
-        "previousSchool"
-    ).value;
-
-    const program =
-    document.getElementById(
-        "program"
-    ).value;
-
-    const cluster =
-    document.getElementById(
-        "academicCluster"
-    ).value;
-
-    const elective1 =
-    document.getElementById(
-        "elective1"
-    ).value;
-
-    const elective2 =
-    document.getElementById(
-        "elective2"
-    ).value;
-
-    const elective3 =
-    document.getElementById(
-        "elective3"
-    ).value;
-
-    const email =
-    document.getElementById(
-        "email"
-    ).value;
-
-    const contact =
-    document.getElementById(
-        "contact"
-    ).value;
-
-    const guardian =
-    document.getElementById(
-        "guardian"
-    ).value;
-
-    const reason =
-    document.getElementById(
-        "reason"
-    ).value;
-
-    const expectation =
-    document.getElementById(
-        "expectation"
-    ).value;
-
-    const concerns =
-    document.getElementById(
-        "concerns"
-    ).value;
-
-
-    /* ================================
-       PRINT VALUES
-    ================================= */
-
-    document.getElementById(
-        "printName"
-    ).textContent =
-    fullName;
-
-
-    document.getElementById(
-        "printBirth"
-    ).textContent =
-    birthDate;
-
-
-    document.getElementById(
-        "printAge"
-    ).textContent =
-    age;
-
-
-    document.getElementById(
-        "printSex"
-    ).textContent =
-    sex;
-
-
-    document.getElementById(
-        "printAddress"
-    ).textContent =
-    address;
-
-
-    document.getElementById(
-        "printPreviousSchool"
-    ).textContent =
-    previousSchool;
-
-
-    document.getElementById(
-        "printProgram"
-    ).textContent =
-    program;
-
-
-    document.getElementById(
-        "printCluster"
-    ).textContent =
-    cluster || "Not specified";
-
-
-    document.getElementById(
-        "printElective1"
-    ).textContent =
-    elective1;
-
-
-    document.getElementById(
-        "printElective2"
-    ).textContent =
-    elective2 || "Not specified";
-
-
-    document.getElementById(
-        "printElective3"
-    ).textContent =
-    elective3 || "Not specified";
-
-
-    document.getElementById(
-        "printEmail"
-    ).textContent =
-    email || "Not specified";
-
-
-    document.getElementById(
-        "printContact"
-    ).textContent =
-    contact || "Not specified";
-
-
-    document.getElementById(
-        "printGuardian"
-    ).textContent =
-    guardian || "Not specified";
-
-
-    document.getElementById(
-        "printReason"
-    ).textContent =
-    reason || "Not specified";
-
-
-    document.getElementById(
-        "printExpectation"
-    ).textContent =
-    expectation || "Not specified";
-
-
-    document.getElementById(
-        "printConcerns"
-    ).textContent =
-    concerns || "None";
-
-
-    /* ================================
-       PRINT PHOTO
-    ================================= */
-
-    document.getElementById(
-        "printPhoto"
-    ).src =
-    photoData;
-
-
-    /* ================================
-       HIDE WEBSITE
-    ================================= */
-
-    document.querySelector(
-        "header"
-    ).style.display =
-    "none";
-
-
-    document.querySelector(
-        ".hero"
-    ).style.display =
-    "none";
-
-
-    document.querySelector(
-        ".form-section"
-    ).style.display =
-    "none";
-
-
-    document.querySelector(
-        "footer"
-    ).style.display =
-    "none";
-
-
-    document.getElementById(
-        "printable"
-    ).style.display =
-    "block";
-
-
-    /* ================================
-       OPEN PRINT / SAVE AS PDF
-    ================================= */
-
-    setTimeout(
-    function() {
-
-        window.print();
-
-    },
-    500
-    );
-
+    btn.disabled=true;
+    btn.textContent="SUBMITTING...";
+
+    try{
+        const formData=new FormData(e.target);
+        const data={};
+
+        formData.forEach((value,key)=>{
+            if(key!=="declaration") data[key]=value;
+        });
+
+        data.applicationId="ACSHS-"+Date.now();
+        data.submittedAt=new Date().toISOString();
+        data.declaration=true;
+
+        const file=photo.files[0];
+
+        if(file){
+            if(file.size>5*1024*1024){
+                throw new Error("Passport photo must be 5 MB or smaller.");
+            }
+            data.photoFileName=file.name;
+            data.photoContentType=file.type;
+            data.photoBase64=await fileToBase64(file);
+        }
+
+        const response=await fetch(FLOW_URL,{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(data)
+        });
+
+        if(!response.ok) throw new Error("The submission could not be sent.");
+
+        const result=await response.json();
+
+        if(result.success===false){
+            throw new Error(result.message||"Submission failed.");
+        }
+
+        status.className="status success";
+        status.textContent="Application submitted successfully. Application ID: "+
+            (result.applicationId||data.applicationId);
+        status.style.display="block";
+
+        e.target.reset();
+        preview.style.display="none";
+        preview.src="";
+
+    }catch(error){
+        status.className="status error";
+        status.textContent="Submission failed: "+error.message;
+        status.style.display="block";
+    }
+
+    btn.disabled=false;
+    btn.textContent="SUBMIT APPLICATION";
 });
-
 </script>
 
-
 </body>
-
 </html>
