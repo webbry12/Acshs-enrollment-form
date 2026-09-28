@@ -277,6 +277,13 @@ Please review your information before submitting your application.
 */
 const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
+  
+const isConfigured = Boolean(SUPABASE_URL && SUPABASE_KEY);
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 const electives = [ "Finite Mathematics 1","Finite Mathematics 2","Biology 1","Biology 2",
 "Chemistry 1","Chemistry 2","Earth and Space Science 1","Earth and Space Science 2",
@@ -327,9 +334,12 @@ photo.addEventListener("change",()=>{
 const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
 
-const isConfigured =
-    SUPABASE_URL.startsWith("https://") &&
-    SUPABASE_KEY.startsWith("sb_publishable_");
+const isConfigured = Boolean(SUPABASE_URL && SUPABASE_KEY);
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 const supabase = isConfigured
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
