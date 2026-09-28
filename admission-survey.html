@@ -277,28 +277,50 @@ Please review your information before submitting your application.
 */
 const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
-  
+
 const isConfigured = Boolean(SUPABASE_URL && SUPABASE_KEY);
 
-const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+const supabase = isConfigured
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
 
-const electives = [ "Finite Mathematics 1","Finite Mathematics 2","Biology 1","Biology 2",
-"Chemistry 1","Chemistry 2","Earth and Space Science 1","Earth and Space Science 2",
-"Physics 1","Physics 2","Pre-Calculus","Advanced Mathematics",
-"Contemporary Literature 1","Creative Composition 1","Arts 1","Arts 2",
-"Filipino 1","Introduction to Philosophy","Social Sciences","Philippine Governance",
-"Business 1 - Basic Accounting","Introduction to Organization and Management",
-"Business 2 - Business Finance and Income Taxation","Business 3 - Business Economics",
-"Contemporary Marketing","Entrepreneurship" ];
+const electives = [
+    "Finite Mathematics 1",
+    "Finite Mathematics 2",
+    "Biology 1",
+    "Biology 2",
+    "Chemistry 1",
+    "Chemistry 2",
+    "Earth and Space Science 1",
+    "Earth and Space Science 2",
+    "Physics 1",
+    "Physics 2",
+    "Pre-Calculus",
+    "Advanced Mathematics",
+    "Contemporary Literature 1",
+    "Creative Composition 1",
+    "Arts 1",
+    "Arts 2",
+    "Filipino 1",
+    "Introduction to Philosophy",
+    "Social Sciences",
+    "Philippine Governance",
+    "Business 1 - Basic Accounting",
+    "Introduction to Organization and Management",
+    "Business 2 - Business Finance and Income Taxation",
+    "Business 3 - Business Economics",
+    "Contemporary Marketing",
+    "Entrepreneurship"
+];
 
-document.querySelectorAll('[name^="elective"]').forEach(select=>{
-    electives.forEach(item=>{
-        const option=document.createElement("option");
-        option.value=item;
-        option.textContent=item;
+["elective1", "elective2", "elective3"].forEach(name => {
+    const select = document.querySelector(`[name="${name}"]`);
+    if (!select) return;
+
+    electives.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
         select.appendChild(option);
     });
 });
