@@ -13,7 +13,7 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#3
 
 /* SAME SITE HEADER STYLE */
 header{
-    background:linear-gradient(90deg,#383535,#383535);
+    background:linear-gradient(90deg,#f5b400,#e85d04,#b71c1c);
     color:white;
     padding:14px 6%;
     display:flex;
@@ -125,7 +125,7 @@ footer{
 </header>
 
 <section class="hero">
-    <h2>Admission Form</h2>
+    <h2>Admission Survey</h2>
     <p>School Year 2027–2028</p>
 </section>
 
@@ -145,9 +145,9 @@ footer{
 <div><label>Age <span class="required">*</span></label><input type="number" name="age" min="10" max="30" required></div>
 <div><label>Sex <span class="required">*</span></label>
 <select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
-<div><label>Citizenship<span class="required">*</span></label><input name="citizenship" value="Filipino"></div>
+<div><label>Citizenship</label><input name="citizenship" value="Filipino"></div>
 <div><label>Place of Birth</label><input name="placeOfBirth"></div>
-<div><label>Learner Reference Number (LRN)<span class="required">*</span><input name="lrn"></div>
+<div><label>Learner Reference Number (LRN)</label><input name="lrn"></div>
 <div><label>Email Address <span class="required">*</span></label><input type="email" name="email" required></div>
 <div><label>Mobile Number <span class="required">*</span></label><input type="tel" name="mobile" required></div>
 </div>
@@ -164,7 +164,7 @@ footer{
 <div><label>City/Municipality <span class="required">*</span></label><input name="city" required></div>
 <div><label>Province <span class="required">*</span></label><input name="province" required></div>
 <div><label>Region</label><input name="region"></div>
-<div><label>ZIP Code<span class="required">*</span></label><input name="zip"></div>
+<div><label>ZIP Code</label><input name="zip"></div>
 </div>
 </section>
 
@@ -179,13 +179,13 @@ footer{
 <div><label>Guardian's Name <span class="required">*</span></label><input name="guardianName" required></div>
 <div><label>Relationship to Learner <span class="required">*</span></label><input name="guardianRelationship" required></div>
 <div><label>Guardian's Contact Number <span class="required">*</span></label><input name="guardianContact" required></div>
-<div><label>Guardian's Email<span class="required">*</span></label><input type="email" name="guardianEmail"></div>
+<div><label>Guardian's Email</label><input type="email" name="guardianEmail"></div>
 </div>
 </section>
 
 <!-- 4 -->
 <section class="section">
-<h2>4. Emergency Contact Person</h2>
+<h2>4. Emergency Contact</h2>
 <div class="grid">
 <div><label>Full Name <span class="required">*</span></label><input name="emergencyName" required></div>
 <div><label>Relationship <span class="required">*</span></label><input name="emergencyRelationship" required></div>
@@ -202,110 +202,97 @@ footer{
 <div><label>Preferred Track <span class="required">*</span></label>
 <select name="track" required>
 <option value="">Select Track</option>
-<option>Academic Track</option>
-<option>TechPro Track</option>
+<option value="Academic">Academic Track</option>
+<option value="TechPro">TechPro Track</option>
 </select></div>
 
-<div>
-    <label>First Elective Choice<span class="required">*</span></label>
-    <select name="elective1" required>
-        <option value="">Select First Elective</option>
+<div><label>Preferred Academic Cluster</label>
+<select name="cluster">
+<option value="">Select Cluster</option>
+<option>Science, Technology, Engineering, and Mathematics</option>
+<option>Arts, Social Sciences, and Humanities</option>
+<option>Business and Entrepreneurship</option>
+</select></div>
 
-        <option value="Finite Mathematics 1">Finite Mathematics 1</option>
-        <option value="Finite Mathematics 2">Finite Mathematics 2</option>
-        <option value="Biology 1">Biology 1</option>
-        <option value="Biology 2">Biology 2</option>
-        <option value="Chemistry 1">Chemistry 1</option>
-        <option value="Chemistry 2">Chemistry 2</option>
-        <option value="Earth and Space Science 1">Earth and Space Science 1</option>
-        <option value="Earth and Space Science 2">Earth and Space Science 2</option>
-        <option value="Physics 1">Physics 1</option>
-        <option value="Physics 2">Physics 2</option>
-        <option value="Pre-Calculus">Pre-Calculus</option>
-        <option value="Advanced Mathematics">Advanced Mathematics</option>
-        <option value="Contemporary Literature 1">Contemporary Literature 1</option>
-        <option value="Creative Composition 1">Creative Composition 1</option>
-        <option value="Arts 1">Arts 1</option>
-        <option value="Arts 2">Arts 2</option>
-        <option value="Filipino 1">Filipino 1</option>
-        <option value="Introduction to Philosophy">Introduction to Philosophy</option>
-        <option value="Social Sciences">Social Sciences</option>
-        <option value="Philippine Governance">Philippine Governance</option>
-        <option value="Business 1 - Basic Accounting">Business 1 - Basic Accounting</option>
-        <option value="Introduction to Organization and Management">Introduction to Organization and Management</option>
-        <option value="Business 2 - Business Finance and Income Taxation">Business 2 - Business Finance and Income Taxation</option>
-        <option value="Business 3 - Business Economics">Business 3 - Business Economics</option>
-        <option value="Contemporary Marketing">Contemporary Marketing</option>
-        <option value="Entrepreneurship">Entrepreneurship</option>
-    </select>
-</div>
-
-<div>
-    <label>Second Elective Choice<span class="required">*</span></label>
-    <select name="elective2" required>
-        <option value="">Select Second Elective</option>
-
-        <option value="Finite Mathematics 1">Finite Mathematics 1</option>
-        <option value="Finite Mathematics 2">Finite Mathematics 2</option>
-        <option value="Biology 1">Biology 1</option>
-        <option value="Biology 2">Biology 2</option>
-        <option value="Chemistry 1">Chemistry 1</option>
-        <option value="Chemistry 2">Chemistry 2</option>
-        <option value="Earth and Space Science 1">Earth and Space Science 1</option>
-        <option value="Earth and Space Science 2">Earth and Space Science 2</option>
-        <option value="Physics 1">Physics 1</option>
-        <option value="Physics 2">Physics 2</option>
-        <option value="Pre-Calculus">Pre-Calculus</option>
-        <option value="Advanced Mathematics">Advanced Mathematics</option>
-        <option value="Contemporary Literature 1">Contemporary Literature 1</option>
-        <option value="Creative Composition 1">Creative Composition 1</option>
-        <option value="Arts 1">Arts 1</option>
-        <option value="Arts 2">Arts 2</option>
-        <option value="Filipino 1">Filipino 1</option>
-        <option value="Introduction to Philosophy">Introduction to Philosophy</option>
-        <option value="Social Sciences">Social Sciences</option>
-        <option value="Philippine Governance">Philippine Governance</option>
-        <option value="Business 1 - Basic Accounting">Business 1 - Basic Accounting</option>
-        <option value="Introduction to Organization and Management">Introduction to Organization and Management</option>
-        <option value="Business 2 - Business Finance and Income Taxation">Business 2 - Business Finance and Income Taxation</option>
-        <option value="Business 3 - Business Economics">Business 3 - Business Economics</option>
-        <option value="Contemporary Marketing">Contemporary Marketing</option>
-        <option value="Entrepreneurship">Entrepreneurship</option>
-    </select>
-</div>
-
-<div>
-    <label>Third Elective Choice<span class="required">*</span></label>
-    <select name="elective3" required>
-        <option value="">Select Third Elective</option>
-
-        <option value="Finite Mathematics 1">Finite Mathematics 1</option>
-        <option value="Finite Mathematics 2">Finite Mathematics 2</option>
-        <option value="Biology 1">Biology 1</option>
-        <option value="Biology 2">Biology 2</option>
-        <option value="Chemistry 1">Chemistry 1</option>
-        <option value="Chemistry 2">Chemistry 2</option>
-        <option value="Earth and Space Science 1">Earth and Space Science 1</option>
-        <option value="Earth and Space Science 2">Earth and Space Science 2</option>
-        <option value="Physics 1">Physics 1</option>
-        <option value="Physics 2">Physics 2</option>
-        <option value="Pre-Calculus">Pre-Calculus</option>
-        <option value="Advanced Mathematics">Advanced Mathematics</option>
-        <option value="Contemporary Literature 1">Contemporary Literature 1</option>
-        <option value="Creative Composition 1">Creative Composition 1</option>
-        <option value="Arts 1">Arts 1</option>
-        <option value="Arts 2">Arts 2</option>
-        <option value="Filipino 1">Filipino 1</option>
-        <option value="Introduction to Philosophy">Introduction to Philosophy</option>
-        <option value="Social Sciences">Social Sciences</option>
-        <option value="Philippine Governance">Philippine Governance</option>
-        <option value="Business 1 - Basic Accounting">Business 1 - Basic Accounting</option>
-        <option value="Introduction to Organization and Management">Introduction to Organization and Management</option>
-        <option value="Business 2 - Business Finance and Income Taxation">Business 2 - Business Finance and Income Taxation</option>
-        <option value="Business 3 - Business Economics">Business 3 - Business Economics</option>
-        <option value="Contemporary Marketing">Contemporary Marketing</option>
-        <option value="Entrepreneurship">Entrepreneurship</option>
-    </select>
+<div><label>First Elective Choice <span class="required">*</span></label><select name="elective1" required><option value="">Select First Elective</option><option value="Finite Mathematics 1">Finite Mathematics 1</option>
+<option value="Finite Mathematics 2">Finite Mathematics 2</option>
+<option value="Biology 1">Biology 1</option>
+<option value="Biology 2">Biology 2</option>
+<option value="Chemistry 1">Chemistry 1</option>
+<option value="Chemistry 2">Chemistry 2</option>
+<option value="Earth and Space Science 1">Earth and Space Science 1</option>
+<option value="Earth and Space Science 2">Earth and Space Science 2</option>
+<option value="Physics 1">Physics 1</option>
+<option value="Physics 2">Physics 2</option>
+<option value="Pre-Calculus">Pre-Calculus</option>
+<option value="Advanced Mathematics">Advanced Mathematics</option>
+<option value="Contemporary Literature 1">Contemporary Literature 1</option>
+<option value="Creative Composition 1">Creative Composition 1</option>
+<option value="Arts 1">Arts 1</option>
+<option value="Arts 2">Arts 2</option>
+<option value="Filipino 1">Filipino 1</option>
+<option value="Introduction to Philosophy">Introduction to Philosophy</option>
+<option value="Social Sciences">Social Sciences</option>
+<option value="Philippine Governance">Philippine Governance</option>
+<option value="Business 1 - Basic Accounting">Business 1 - Basic Accounting</option>
+<option value="Introduction to Organization and Management">Introduction to Organization and Management</option>
+<option value="Business 2 - Business Finance and Income Taxation">Business 2 - Business Finance and Income Taxation</option>
+<option value="Business 3 - Business Economics">Business 3 - Business Economics</option>
+<option value="Contemporary Marketing">Contemporary Marketing</option>
+<option value="Entrepreneurship">Entrepreneurship</option></select></div>
+<div><label>Second Elective Choice <span class="required">*</span></label><select name="elective2" required><option value="">Select Second Elective</option><option value="Finite Mathematics 1">Finite Mathematics 1</option>
+<option value="Finite Mathematics 2">Finite Mathematics 2</option>
+<option value="Biology 1">Biology 1</option>
+<option value="Biology 2">Biology 2</option>
+<option value="Chemistry 1">Chemistry 1</option>
+<option value="Chemistry 2">Chemistry 2</option>
+<option value="Earth and Space Science 1">Earth and Space Science 1</option>
+<option value="Earth and Space Science 2">Earth and Space Science 2</option>
+<option value="Physics 1">Physics 1</option>
+<option value="Physics 2">Physics 2</option>
+<option value="Pre-Calculus">Pre-Calculus</option>
+<option value="Advanced Mathematics">Advanced Mathematics</option>
+<option value="Contemporary Literature 1">Contemporary Literature 1</option>
+<option value="Creative Composition 1">Creative Composition 1</option>
+<option value="Arts 1">Arts 1</option>
+<option value="Arts 2">Arts 2</option>
+<option value="Filipino 1">Filipino 1</option>
+<option value="Introduction to Philosophy">Introduction to Philosophy</option>
+<option value="Social Sciences">Social Sciences</option>
+<option value="Philippine Governance">Philippine Governance</option>
+<option value="Business 1 - Basic Accounting">Business 1 - Basic Accounting</option>
+<option value="Introduction to Organization and Management">Introduction to Organization and Management</option>
+<option value="Business 2 - Business Finance and Income Taxation">Business 2 - Business Finance and Income Taxation</option>
+<option value="Business 3 - Business Economics">Business 3 - Business Economics</option>
+<option value="Contemporary Marketing">Contemporary Marketing</option>
+<option value="Entrepreneurship">Entrepreneurship</option></select></div>
+<div><label>Third Elective Choice <span class="required">*</span></label><select name="elective3" required><option value="">Select Third Elective</option><option value="Finite Mathematics 1">Finite Mathematics 1</option>
+<option value="Finite Mathematics 2">Finite Mathematics 2</option>
+<option value="Biology 1">Biology 1</option>
+<option value="Biology 2">Biology 2</option>
+<option value="Chemistry 1">Chemistry 1</option>
+<option value="Chemistry 2">Chemistry 2</option>
+<option value="Earth and Space Science 1">Earth and Space Science 1</option>
+<option value="Earth and Space Science 2">Earth and Space Science 2</option>
+<option value="Physics 1">Physics 1</option>
+<option value="Physics 2">Physics 2</option>
+<option value="Pre-Calculus">Pre-Calculus</option>
+<option value="Advanced Mathematics">Advanced Mathematics</option>
+<option value="Contemporary Literature 1">Contemporary Literature 1</option>
+<option value="Creative Composition 1">Creative Composition 1</option>
+<option value="Arts 1">Arts 1</option>
+<option value="Arts 2">Arts 2</option>
+<option value="Filipino 1">Filipino 1</option>
+<option value="Introduction to Philosophy">Introduction to Philosophy</option>
+<option value="Social Sciences">Social Sciences</option>
+<option value="Philippine Governance">Philippine Governance</option>
+<option value="Business 1 - Basic Accounting">Business 1 - Basic Accounting</option>
+<option value="Introduction to Organization and Management">Introduction to Organization and Management</option>
+<option value="Business 2 - Business Finance and Income Taxation">Business 2 - Business Finance and Income Taxation</option>
+<option value="Business 3 - Business Economics">Business 3 - Business Economics</option>
+<option value="Contemporary Marketing">Contemporary Marketing</option>
+<option value="Entrepreneurship">Entrepreneurship</option></select></div>
+<div class="full"><label>Why did you choose this track?</label><textarea name="whyTrack"></textarea></div>
 </div>
 </section>
 
@@ -313,9 +300,13 @@ footer{
 <section class="section">
 <h2>6. Student Interests</h2>
 <div class="grid">
+<div class="full"><label>Favorite Subjects</label><input name="favoriteSubjects"></div>
 <div><label>Strongest Area</label><input name="strongestArea"></div>
+<div><label>Skill You Want to Develop</label><input name="skillsToDevelop"></div>
+<div><label>Career Interest</label><input name="careerInterest"></div>
 <div><label>Preferred College Course</label><input name="collegeCourse"></div>
 <div><label>Future Profession</label><input name="futureProfession"></div>
+<div class="full"><label>Extracurricular Interests</label><textarea name="extracurricularInterests"></textarea></div>
 </div>
 </section>
 
@@ -341,7 +332,7 @@ footer{
 
 <!-- 9 -->
 <section class="section">
-<h2>9. Confirmation</h2>
+<h2>9. Declaration</h2>
 <label>
 <input type="checkbox" name="declaration" required>
 I confirm that the information I provided is accurate and that I have discussed this application with my parent/guardian.
@@ -365,133 +356,96 @@ Please review your information before submitting your application.
 <p>Admission Portal</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/*
-  ACSHS FREE DATABASE CONFIGURATION
-  Replace these two values with your Supabase project values.
-  Use the PUBLISHABLE/ANON key only. NEVER put a secret/service_role key here.
-*/
+/* Public browser configuration: use only the publishable/anon key here. */
 const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
-  
-const isConfigured = Boolean(SUPABASE_URL && SUPABASE_KEY);
+const isConfigured = !SUPABASE_URL.includes("PASTE_YOUR") && !SUPABASE_KEY.includes("PASTE_YOUR");
+const supabase = (isConfigured && window.supabase)
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
 
-const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+const photo = document.getElementById("photo");
+const preview = document.getElementById("preview");
+const form = document.getElementById("admissionForm");
+const statusBox = document.getElementById("status");
+const submitBtn = document.getElementById("submitBtn");
 
-const electives = [ "Finite Mathematics 1","Finite Mathematics 2","Biology 1","Biology 2",
-"Chemistry 1","Chemistry 2","Earth and Space Science 1","Earth and Space Science 2",
-"Physics 1","Physics 2","Pre-Calculus","Advanced Mathematics",
-"Contemporary Literature 1","Creative Composition 1","Arts 1","Arts 2",
-"Filipino 1","Introduction to Philosophy","Social Sciences","Philippine Governance",
-"Business 1 - Basic Accounting","Introduction to Organization and Management",
-"Business 2 - Business Finance and Income Taxation","Business 3 - Business Economics",
-"Contemporary Marketing","Entrepreneurship" ];
-
-function loadElectives(){
-    ["elective1","elective2","elective3"].forEach(name=>{
-        const select=document.querySelector(`select[name="${name}"]`);
-        if(!select) return;
-
-        select.innerHTML='<option value="">Select</option>';
-
-        electives.forEach(item=>{
-            const option=document.createElement("option");
-            option.value=item;
-            option.textContent=item;
-            select.appendChild(option);
-        });
-    });
+function showStatus(message, kind) {
+    statusBox.className = "status " + kind;
+    statusBox.textContent = message;
+    statusBox.style.display = "block";
+    statusBox.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
-loadElectives();
-
-const photo=document.getElementById("photo");
-const preview=document.getElementById("preview");
-
-photo.addEventListener("change",()=>{
-    const file=photo.files[0];
-    if(!file)return;
-    if(file.size > 5 * 1024 * 1024){
-        photo.value="";
-        preview.style.display="none";
-        preview.src="";
+photo.addEventListener("change", () => {
+    const file = photo.files && photo.files[0];
+    if (!file) {
+        preview.style.display = "none";
+        preview.src = "";
+        return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+        photo.value = "";
+        preview.style.display = "none";
+        preview.src = "";
         alert("Passport photo must be 5 MB or smaller.");
         return;
     }
-    if(!["image/jpeg","image/png"].includes(file.type)){
-        photo.value="";
-        preview.style.display="none";
-        preview.src="";
+    if (!["image/jpeg", "image/png"].includes(file.type)) {
+        photo.value = "";
+        preview.style.display = "none";
+        preview.src = "";
         alert("Please upload a JPG or PNG passport-size photo.");
         return;
     }
-    const reader=new FileReader();
-    reader.onload=e=>{
-        preview.src=e.target.result;
-        preview.style.display="block";
+    const reader = new FileReader();
+    reader.onload = event => {
+        preview.src = event.target.result;
+        preview.style.display = "block";
     };
     reader.readAsDataURL(file);
 });
 
-const supabase = isConfigured
-    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-    : null;
-
-document.getElementById("admissionForm").addEventListener("submit",async e=>{
-    e.preventDefault();
-
-    const status=document.getElementById("status");
-    const btn=document.getElementById("submitBtn");
-
-    if(!isConfigured){
-        status.className="status error";
-        status.textContent="The admission database is not connected yet. Add your Supabase project URL and publishable key to this page.";
-        status.style.display="block";
+form.addEventListener("submit", async event => {
+    event.preventDefault();
+    if (!isConfigured || !supabase) {
+        showStatus("The database is not configured. Please contact the school administrator.", "error");
         return;
     }
 
-    btn.disabled=true;
-    btn.textContent="SUBMITTING...";
+    submitBtn.disabled = true;
+    submitBtn.textContent = "SUBMITTING...";
+    statusBox.style.display = "none";
+    let applicationSaved = false;
+    let photoPath = null;
+    let applicationId = null;
 
-    try{
-        const formData=new FormData(e.target);
-        const data={};
-
-        formData.forEach((value,key)=>{
-            if(key!=="declaration" && key!=="photo") data[key]=value;
+    try {
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            if (key !== "declaration" && key !== "photo") data[key] = value;
         });
 
-        const applicationId="ACSHS-"+Date.now();
-        const submittedAt=new Date().toISOString();
+        const file = photo.files && photo.files[0];
+        // UUID makes application IDs difficult to guess when confirming email.
+        applicationId = "ACSHS-" + crypto.randomUUID();
+        const submittedAt = new Date().toISOString();
 
-        let photoPath=null;
-        const file=photo.files[0];
-
-        if(file){
-            if(file.size > 5*1024*1024){
-                throw new Error("Passport photo must be 5 MB or smaller.");
-            }
-            if(!["image/jpeg","image/png"].includes(file.type)){
-                throw new Error("Passport photo must be JPG or PNG.");
-            }
-
-            const ext=file.type==="image/png" ? "png" : "jpg";
-            photoPath=`applications/${applicationId}.${ext}`;
-
-            const {error: uploadError}=await supabase.storage
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) throw new Error("Passport photo must be 5 MB or smaller.");
+            if (!["image/jpeg", "image/png"].includes(file.type)) throw new Error("Passport photo must be JPG or PNG.");
+            const extension = file.type === "image/png" ? "png" : "jpg";
+            photoPath = `applications/${applicationId}.${extension}`;
+            const { error: uploadError } = await supabase.storage
                 .from("student-photos")
-                .upload(photoPath,file,{
-                    contentType:file.type,
-                    upsert:false
-                });
-
-            if(uploadError) throw new Error("Photo upload failed: "+uploadError.message);
+                .upload(photoPath, file, { contentType: file.type, upsert: false });
+            if (uploadError) throw new Error("Photo upload failed: " + uploadError.message);
         }
 
-        const record={
+        const record = {
             application_id: applicationId,
             submitted_at: submittedAt,
             first_name: data.firstName || null,
@@ -504,7 +458,7 @@ document.getElementById("admissionForm").addEventListener("submit",async e=>{
             citizenship: data.citizenship || null,
             place_of_birth: data.placeOfBirth || null,
             lrn: data.lrn || null,
-            email: data.email || null,
+            email: (data.email || "").trim().toLowerCase() || null,
             mobile: data.mobile || null,
             house_no: data.houseNo || null,
             street: data.street || null,
@@ -543,36 +497,52 @@ document.getElementById("admissionForm").addEventListener("submit",async e=>{
             admission_reason: data.admissionReason || null,
             photo_file_name: file ? file.name : null,
             photo_file_path: photoPath,
-            declaration: true
+            declaration: form.elements.declaration.checked
         };
 
-        const {error}=await supabase
-            .from("applications")
-            .insert(record);
+        const { error: insertError } = await supabase.from("applications").insert(record);
+        if (insertError) throw new Error("Database save failed: " + insertError.message);
+        applicationSaved = true;
 
-        if(error){
-            if(photoPath){
-                await supabase.storage.from("student-photos").remove([photoPath]);
+        // The database save is the success boundary. Email problems must not imply
+        // that the application was lost or encourage a duplicate submission.
+        let emailMessage = "Your application has been received. Please keep your Application ID.";
+        try {
+            const { data: emailResult, error: emailError } = await supabase.functions.invoke(
+                "send-admission-confirmation",
+                { body: { applicationId, email: record.email } }
+            );
+            if (!emailError && emailResult && emailResult.sent) {
+                emailMessage = "A confirmation email was sent to " + record.email + ". Please check your inbox and spam folder.";
+            } else {
+                emailMessage = "Your application was saved, but the confirmation email could not be sent yet. Please keep your Application ID and contact the school if needed.";
+                if (emailError) console.error("Confirmation email error:", emailError.message);
+                else console.error("Confirmation email response:", emailResult);
             }
-            throw new Error(error.message);
+        } catch (emailError) {
+            console.error("Confirmation email error:", emailError);
+            emailMessage = "Your application was saved, but the confirmation email could not be sent yet. Please keep your Application ID and contact the school if needed.";
         }
 
-        status.className="status success";
-        status.textContent="Application submitted successfully. Application ID: "+applicationId;
-        status.style.display="block";
-
-        e.target.reset();
-        preview.style.display="none";
-        preview.src="";
-
-    }catch(error){
-        status.className="status error";
-        status.textContent="Submission failed: "+error.message;
-        status.style.display="block";
+        showStatus("APPLICATION RECEIVED SUCCESSFULLY! Application ID: " + applicationId + ". " + emailMessage, "success");
+        form.reset();
+        preview.style.display = "none";
+        preview.src = "";
+    } catch (error) {
+        console.error("Admission submission error:", error);
+        if (applicationSaved) {
+            showStatus("Your application was saved. Application ID: " + applicationId + ". Please keep this ID. Some follow-up processing failed; contact the school if needed.", "success");
+        } else {
+            // If the photo uploaded but the database insert failed, clean up the file.
+            if (photoPath && supabase) {
+                try { await supabase.storage.from("student-photos").remove([photoPath]); } catch (_) {}
+            }
+            showStatus("Submission failed: " + (error && error.message ? error.message : "Unknown error") + ". Your application was not confirmed as saved. Please correct the issue and try again.", "error");
+        }
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "SUBMIT APPLICATION";
     }
-
-    btn.disabled=false;
-    btn.textContent="SUBMIT APPLICATION";
 });
 </script>
 
