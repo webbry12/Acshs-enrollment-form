@@ -275,8 +275,8 @@ Please review your information before submitting your application.
   Replace these two values with your Supabase project values.
   Use the PUBLISHABLE/ANON key only. NEVER put a secret/service_role key here.
 */
-const SUPABASE_URL = "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE";
-const SUPABASE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
 
 const electives = [ "Finite Mathematics 1","Finite Mathematics 2","Biology 1","Biology 2",
 "Chemistry 1","Chemistry 2","Earth and Space Science 1","Earth and Space Science 2",
@@ -325,8 +325,8 @@ photo.addEventListener("change",()=>{
 });
 
 const isConfigured =
-    !SUPABASE_URL.includes("PASTE_YOUR") &&
-    !SUPABASE_KEY.includes("PASTE_YOUR");
+    !SUPABASE_URL.includes("https://zrqnneyioonoahgrdzgv.supabase.co") &&
+    !SUPABASE_KEY.includes("sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo");
 
 const supabase = isConfigured
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
