@@ -13,7 +13,7 @@ body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#3
 
 /* SAME SITE HEADER STYLE */
 header{
-    background:linear-gradient(90deg,#f5b400,#e85d04,#b71c1c);
+    background:linear-gradient(90deg,#383535,#383535);
     color:white;
     padding:14px 6%;
     display:flex;
@@ -145,9 +145,9 @@ footer{
 <div><label>Age <span class="required">*</span></label><input type="number" name="age" min="10" max="30" required></div>
 <div><label>Sex <span class="required">*</span></label>
 <select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
-<div><label>Citizenship</label><input name="citizenship" value="Filipino"></div>
+<div><label>Citizenship<span class="required">*</span></label><input name="citizenship" value="Filipino"></div>
 <div><label>Place of Birth</label><input name="placeOfBirth"></div>
-<div><label>Learner Reference Number (LRN)</label><input name="lrn"></div>
+<div><label>Learner Reference Number (LRN)<span class="required">*</span><input name="lrn"></div>
 <div><label>Email Address <span class="required">*</span></label><input type="email" name="email" required></div>
 <div><label>Mobile Number <span class="required">*</span></label><input type="tel" name="mobile" required></div>
 </div>
@@ -164,7 +164,7 @@ footer{
 <div><label>City/Municipality <span class="required">*</span></label><input name="city" required></div>
 <div><label>Province <span class="required">*</span></label><input name="province" required></div>
 <div><label>Region</label><input name="region"></div>
-<div><label>ZIP Code</label><input name="zip"></div>
+<div><label>ZIP Code<span class="required">*</span></label><input name="zip"></div>
 </div>
 </section>
 
@@ -179,13 +179,13 @@ footer{
 <div><label>Guardian's Name <span class="required">*</span></label><input name="guardianName" required></div>
 <div><label>Relationship to Learner <span class="required">*</span></label><input name="guardianRelationship" required></div>
 <div><label>Guardian's Contact Number <span class="required">*</span></label><input name="guardianContact" required></div>
-<div><label>Guardian's Email</label><input type="email" name="guardianEmail"></div>
+<div><label>Guardian's Email<span class="required">*</span></label><input type="email" name="guardianEmail"></div>
 </div>
 </section>
 
 <!-- 4 -->
 <section class="section">
-<h2>4. Emergency Contact</h2>
+<h2>4. Emergency Contact Person</h2>
 <div class="grid">
 <div><label>Full Name <span class="required">*</span></label><input name="emergencyName" required></div>
 <div><label>Relationship <span class="required">*</span></label><input name="emergencyRelationship" required></div>
@@ -206,9 +206,9 @@ footer{
 <option>TechPro Track</option>
 </select></div>
 
-<div><label>First Elective Choice</label><select name="elective1"><option value="">Select</option></select></div>
-<div><label>Second Elective Choice</label><select name="elective2"><option value="">Select</option></select></div>
-<div><label>Third Elective Choice</label><select name="elective3"><option value="">Select</option></select></div>
+<div><label>First Elective Choice<span class="required">*</span></label><select name="elective1"><option value="">Select</option></select></div>
+<div><label>Second Elective Choice<span class="required">*</span></label><select name="elective2"><option value="">Select</option></select></div>
+<div><label>Third Elective Choice<span class="required">*</span></label><select name="elective3"><option value="">Select</option></select></div>
 <div class="full"><label>Why did you choose this track?</label><textarea name="whyTrack"></textarea></div>
 </div>
 </section>
@@ -270,18 +270,22 @@ Please review your information before submitting your application.
 </footer>
 
 <script>
-const FLOW_URL = "PASTE_YOUR_POWER_AUTOMATE_HTTP_URL_HERE";
+/*
+  ACSHS FREE DATABASE CONFIGURATION
+  Replace these two values with your Supabase project values.
+  Use the PUBLISHABLE/ANON key only. NEVER put a secret/service_role key here.
+*/
+const SUPABASE_URL = "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE";
+const SUPABASE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
 
-const electives = [
-"Finite Mathematics 1","Finite Mathematics 2","Biology 1","Biology 2",
+const electives = [ "Finite Mathematics 1","Finite Mathematics 2","Biology 1","Biology 2",
 "Chemistry 1","Chemistry 2","Earth and Space Science 1","Earth and Space Science 2",
 "Physics 1","Physics 2","Pre-Calculus","Advanced Mathematics",
 "Contemporary Literature 1","Creative Composition 1","Arts 1","Arts 2",
 "Filipino 1","Introduction to Philosophy","Social Sciences","Philippine Governance",
 "Business 1 - Basic Accounting","Introduction to Organization and Management",
 "Business 2 - Business Finance and Income Taxation","Business 3 - Business Economics",
-"Contemporary Marketing","Entrepreneurship"
-];
+"Contemporary Marketing","Entrepreneurship" ];
 
 document.querySelectorAll('[name^="elective"]').forEach(select=>{
     electives.forEach(item=>{
@@ -298,6 +302,20 @@ const preview=document.getElementById("preview");
 photo.addEventListener("change",()=>{
     const file=photo.files[0];
     if(!file)return;
+    if(file.size > 5 * 1024 * 1024){
+        photo.value="";
+        preview.style.display="none";
+        preview.src="";
+        alert("Passport photo must be 5 MB or smaller.");
+        return;
+    }
+    if(!["image/jpeg","image/png"].includes(file.type)){
+        photo.value="";
+        preview.style.display="none";
+        preview.src="";
+        alert("Please upload a JPG or PNG passport-size photo.");
+        return;
+    }
     const reader=new FileReader();
     reader.onload=e=>{
         preview.src=e.target.result;
@@ -306,14 +324,13 @@ photo.addEventListener("change",()=>{
     reader.readAsDataURL(file);
 });
 
-function fileToBase64(file){
-    return new Promise((resolve,reject)=>{
-        const reader=new FileReader();
-        reader.onload=()=>resolve(reader.result.split(",")[1]);
-        reader.onerror=reject;
-        reader.readAsDataURL(file);
-    });
-}
+const isConfigured =
+    !SUPABASE_URL.includes("PASTE_YOUR") &&
+    !SUPABASE_KEY.includes("PASTE_YOUR");
+
+const supabase = isConfigured
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+    : null;
 
 document.getElementById("admissionForm").addEventListener("submit",async e=>{
     e.preventDefault();
@@ -321,9 +338,9 @@ document.getElementById("admissionForm").addEventListener("submit",async e=>{
     const status=document.getElementById("status");
     const btn=document.getElementById("submitBtn");
 
-    if(FLOW_URL.includes("PASTE_YOUR_POWER_AUTOMATE")){
+    if(!isConfigured){
         status.className="status error";
-        status.textContent="The admission form is not connected to Power Automate yet.";
+        status.textContent="The admission database is not connected yet. Add your Supabase project URL and publishable key to this page.";
         status.style.display="block";
         return;
     }
@@ -336,41 +353,104 @@ document.getElementById("admissionForm").addEventListener("submit",async e=>{
         const data={};
 
         formData.forEach((value,key)=>{
-            if(key!=="declaration") data[key]=value;
+            if(key!=="declaration" && key!=="photo") data[key]=value;
         });
 
-        data.applicationId="ACSHS-"+Date.now();
-        data.submittedAt=new Date().toISOString();
-        data.declaration=true;
+        const applicationId="ACSHS-"+Date.now();
+        const submittedAt=new Date().toISOString();
 
+        let photoPath=null;
         const file=photo.files[0];
 
         if(file){
-            if(file.size>5*1024*1024){
+            if(file.size > 5*1024*1024){
                 throw new Error("Passport photo must be 5 MB or smaller.");
             }
-            data.photoFileName=file.name;
-            data.photoContentType=file.type;
-            data.photoBase64=await fileToBase64(file);
+            if(!["image/jpeg","image/png"].includes(file.type)){
+                throw new Error("Passport photo must be JPG or PNG.");
+            }
+
+            const ext=file.type==="image/png" ? "png" : "jpg";
+            photoPath=`applications/${applicationId}.${ext}`;
+
+            const {error: uploadError}=await supabase.storage
+                .from("student-photos")
+                .upload(photoPath,file,{
+                    contentType:file.type,
+                    upsert:false
+                });
+
+            if(uploadError) throw new Error("Photo upload failed: "+uploadError.message);
         }
 
-        const response=await fetch(FLOW_URL,{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(data)
-        });
+        const record={
+            application_id: applicationId,
+            submitted_at: submittedAt,
+            first_name: data.firstName || null,
+            middle_name: data.middleName || null,
+            last_name: data.lastName || null,
+            suffix: data.suffix || null,
+            birth_date: data.birthDate || null,
+            age: data.age ? Number(data.age) : null,
+            sex: data.sex || null,
+            citizenship: data.citizenship || null,
+            place_of_birth: data.placeOfBirth || null,
+            lrn: data.lrn || null,
+            email: data.email || null,
+            mobile: data.mobile || null,
+            house_no: data.houseNo || null,
+            street: data.street || null,
+            subdivision: data.subdivision || null,
+            barangay: data.barangay || null,
+            city: data.city || null,
+            province: data.province || null,
+            region: data.region || null,
+            zip: data.zip || null,
+            father_name: data.fatherName || null,
+            father_contact: data.fatherContact || null,
+            mother_name: data.motherName || null,
+            mother_contact: data.motherContact || null,
+            guardian_name: data.guardianName || null,
+            guardian_relationship: data.guardianRelationship || null,
+            guardian_contact: data.guardianContact || null,
+            guardian_email: data.guardianEmail || null,
+            emergency_name: data.emergencyName || null,
+            emergency_relationship: data.emergencyRelationship || null,
+            emergency_contact: data.emergencyContact || null,
+            emergency_email: data.emergencyEmail || null,
+            emergency_address: data.emergencyAddress || null,
+            preferred_track: data.track || null,
+            preferred_academic_cluster: data.cluster || null,
+            first_elective: data.elective1 || null,
+            second_elective: data.elective2 || null,
+            third_elective: data.elective3 || null,
+            why_track: data.whyTrack || null,
+            favorite_subjects: data.favoriteSubjects || null,
+            strongest_area: data.strongestArea || null,
+            skills_to_develop: data.skillsToDevelop || null,
+            career_interest: data.careerInterest || null,
+            preferred_college_course: data.collegeCourse || null,
+            future_profession: data.futureProfession || null,
+            extracurricular_interests: data.extracurricularInterests || null,
+            admission_reason: data.admissionReason || null,
+            photo_file_name: file ? file.name : null,
+            photo_file_path: photoPath,
+            declaration: true
+        };
 
-        if(!response.ok) throw new Error("The submission could not be sent.");
+        const {error}=await supabase
+            .from("applications")
+            .insert(record);
 
-        const result=await response.json();
-
-        if(result.success===false){
-            throw new Error(result.message||"Submission failed.");
+        if(error){
+            if(photoPath){
+                await supabase.storage.from("student-photos").remove([photoPath]);
+            }
+            throw new Error(error.message);
         }
 
         status.className="status success";
-        status.textContent="Application submitted successfully. Application ID: "+
-            (result.applicationId||data.applicationId);
+        status.textContent="Application submitted successfully. Application ID: "+applicationId;
         status.style.display="block";
 
         e.target.reset();
