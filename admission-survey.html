@@ -324,9 +324,12 @@ photo.addEventListener("change",()=>{
     reader.readAsDataURL(file);
 });
 
+const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
+
 const isConfigured =
-    !SUPABASE_URL.includes("https://zrqnneyioonoahgrdzgv.supabase.co") &&
-    !SUPABASE_KEY.includes("sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo");
+    SUPABASE_URL.startsWith("https://") &&
+    SUPABASE_KEY.startsWith("sb_publishable_");
 
 const supabase = isConfigured
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
