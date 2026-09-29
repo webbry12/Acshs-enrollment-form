@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACSHS Admission Statistics</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f5f5;color:#222}
+header{background:linear-gradient(135deg,#f7b500,#f28c00,#d62828);color:white;padding:24px}
+header h1{margin:0;font-size:26px}
+header p{margin:7px 0 0}
+.container{max-width:1250px;margin:24px auto;padding:0 16px}
+.card{background:white;border-radius:14px;padding:20px;margin-bottom:20px;box-shadow:0 3px 15px rgba(0,0,0,.08)}
+.login{max-width:450px;margin:70px auto}
+input,button,select{padding:12px;border:1px solid #ccc;border-radius:8px;font-size:15px}
+input,select{width:100%;margin:7px 0 14px}
+button{cursor:pointer;border:0;background:#d62828;color:white;font-weight:bold}
+button.secondary{background:#555}
+.message{padding:10px;border-radius:8px;margin-top:10px;display:none}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{background:#fff;border-radius:14px;padding:20px;box-shadow:0 3px 15px rgba(0,0,0,.08)}
+.stat small{color:#666}.stat strong{font-size:32px;display:block;margin-top:8px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.chartbox{height:330px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px;border-bottom:1px solid #eee;text-align:left}
+th{background:#fafafa}
+.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.tablewrap{overflow:auto}
+@media(max-width:850px){.grid,.charts{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid,.charts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>ANTIPOLO CITY SENIOR HIGH SCHOOL</h1>
+    <p>Admission Statistics Dashboard • 2027–2028</p>
+  </div>
+</header>
+
+<div class="container">
+  <section id="loginCard" class="card login">
+    <h2>Admin Login</h2>
+    <p>Authorized school staff only.</p>
+    <label>Email</label>
+    <input id="email" type="email" autocomplete="username">
+    <label>Password</label>
+    <input id="password" type="password" autocomplete="current-password">
+    <button id="loginBtn">LOGIN</button>
+    <div id="loginMsg" class="message"></div>
+  </section>
+
+  <section id="dashboard" style="display:none">
+    <div class="card toolbar">
+      <div>
+        <h2 style="margin:0">Admission Statistics</h2>
+        <p style="margin:6px 0;color:#666">Live statistics from submitted applications.</p>
+      </div>
+      <div>
+        <button id="refreshBtn">REFRESH</button>
+        <button id="logoutBtn" class="secondary">LOG OUT</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="stat"><small>Total Applicants</small><strong id="total">0</strong></div>
+      <div class="stat"><small>Academic</small><strong id="academic">0</strong></div>
+      <div class="stat"><small>TechPro</small><strong id="techpro">0</strong></div>
+      <div class="stat"><small>Applications Today</small><strong id="today">0</strong></div>
+    </div>
+
+    <div class="charts">
+      <div class="card chartbox"><h3>Applicants by Track</h3><canvas id="trackChart"></canvas></div>
+      <div class="card chartbox"><h3>Applicants by Sex</h3><canvas id="sexChart"></canvas></div>
+      <div class="card chartbox"><h3>Top Electives</h3><canvas id="electiveChart"></canvas></div>
+      <div class="card chartbox"><h3>Top Barangays</h3><canvas id="barangayChart"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="toolbar">
+        <h3>Recent Applications</h3>
+        <button id="csvBtn">EXPORT CSV</button>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr>
+            <th>Application ID</th><th>Submitted</th><th>Name</th>
+            <th>Track</th><th>Barangay</th><th>Email</th>
+          </tr></thead>
+          <tbody id="applicationsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
+const configured = !SUPABASE_URL.includes("PASTE_YOUR") && !SUPABASE_KEY.includes("PASTE_YOUR");
+const supabase = configured ? window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY) : null;
+
+let trackChart, sexChart, electiveChart, barangayChart;
+let latestApplications=[];
+
+function msg(el,text,ok=false){
+  el.textContent=text;
+  el.style.display="block";
+  el.style.background=ok?"#e8f5e9":"#ffebee";
+  el.style.color=ok?"#1b5e20":"#b71c1c";
+}
+
+document.getElementById("loginBtn").onclick=async()=>{
+  const box=document.getElementById("loginMsg");
+  if(!configured){msg(box,"Add your Supabase URL and publishable key first.");return;}
+  const email=document.getElementById("email").value.trim();
+  const password=document.getElementById("password").value;
+  const {error}=await supabase.auth.signInWithPassword({email,password});
+  if(error){msg(box,error.message);return;}
+  await showDashboard();
+};
+
+document.getElementById("logoutBtn").onclick=async()=>{
+  await supabase.auth.signOut();
+  document.getElementById("dashboard").style.display="none";
+  document.getElementById("loginCard").style.display="block";
+};
+
+document.getElementById("refreshBtn").onclick=loadDashboard;
+
+async function showDashboard(){
+  document.getElementById("loginCard").style.display="none";
+  document.getElementById("dashboard").style.display="block";
+  await loadDashboard();
+}
+
+async function loadDashboard(){
+  const [{data:summary,error:e1},
+         {data:tracks,error:e2},
+         {data:sex,error:e3},
+         {data:electives,error:e4},
+         {data:barangays,error:e5},
+         {data:apps,error:e6}] = await Promise.all([
+    supabase.from("application_statistics").select("*").single(),
+    supabase.from("track_statistics").select("*"),
+    supabase.from("sex_statistics").select("*"),
+    supabase.from("elective_statistics").select("*").limit(10),
+    supabase.from("barangay_statistics").select("*").limit(10),
+    supabase.from("applications").select("application_id,submitted_at,first_name,middle_name,last_name,preferred_track,barangay,email").order("submitted_at",{ascending:false}).limit(100)
+  ]);
+
+  const err=[e1,e2,e3,e4,e5,e6].find(Boolean);
+  if(err){alert("Dashboard error: "+err.message);return;}
+
+  document.getElementById("total").textContent=summary.total_applications;
+  document.getElementById("academic").textContent=summary.academic_count;
+  document.getElementById("techpro").textContent=summary.techpro_count;
+  document.getElementById("today").textContent=summary.applications_today;
+
+  drawChart("trackChart",trackChart,"bar",tracks.map(x=>x.track),tracks.map(x=>x.applicant_count),x=>trackChart=x);
+  drawChart("sexChart",sexChart,"doughnut",sex.map(x=>x.sex),sex.map(x=>x.applicant_count),x=>sexChart=x);
+  drawChart("electiveChart",electiveChart,"bar",electives.map(x=>x.elective),electives.map(x=>x.applicant_count),x=>electiveChart=x);
+  drawChart("barangayChart",barangayChart,"bar",barangays.map(x=>x.barangay),barangays.map(x=>x.applicant_count),x=>barangayChart=x);
+
+  latestApplications=apps||[];
+  document.getElementById("applicationsBody").innerHTML=latestApplications.map(a=>`
+    <tr>
+      <td>${escapeHtml(a.application_id||"")}</td>
+      <td>${new Date(a.submitted_at).toLocaleString()}</td>
+      <td>${escapeHtml([a.first_name,a.middle_name,a.last_name].filter(Boolean).join(" "))}</td>
+      <td>${escapeHtml(a.preferred_track||"")}</td>
+      <td>${escapeHtml(a.barangay||"")}</td>
+      <td>${escapeHtml(a.email||"")}</td>
+    </tr>`).join("");
+}
+
+function drawChart(id,old,type,labels,data,setter){
+  if(old) old.destroy();
+  const c=new Chart(document.getElementById(id),{
+    type,
+    data:{labels,datasets:[{label:"Applicants",data}]},
+    options:{responsive:true,maintainAspectRatio:false}
+  });
+  setter(c);
+}
+
+function escapeHtml(v){
+  return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+
+document.getElementById("csvBtn").onclick=()=>{
+  const headers=["Application ID","Submitted At","Name","Track","Barangay","Email"];
+  const rows=latestApplications.map(a=>[
+    a.application_id,new Date(a.submitted_at).toISOString(),
+    [a.first_name,a.middle_name,a.last_name].filter(Boolean).join(" "),
+    a.preferred_track,a.barangay,a.email
+  ]);
+  const csv=[headers,...rows].map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\n");
+  const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download="ACSHS-Applications.csv";a.click();
+  URL.revokeObjectURL(url);
+};
+
+(async()=>{
+  if(!configured)return;
+  const {data:{session}}=await supabase.auth.getSession();
+  if(session) await showDashboard();
+})();
+</script>
+</body>
+</html>
