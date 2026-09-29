@@ -358,13 +358,14 @@ Please review your information before submitting your application.
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* Public browser configuration: use only the publishable/anon key here. */
+/* Supabase browser connection */
 const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
-const isConfigured = !SUPABASE_URL.includes("PASTE_YOUR") && !SUPABASE_KEY.includes("PASTE_YOUR");
-const supabase = (isConfigured && window.supabase)
-    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-    : null;
+
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 const photo = document.getElementById("photo");
 const preview = document.getElementById("preview");
@@ -410,43 +411,38 @@ photo.addEventListener("change", () => {
 
 form.addEventListener("submit", async event => {
     event.preventDefault();
-    if (!isConfigured || !supabase) {
-        showStatus("The database is not configured. Please contact the school administrator.", "error");
-        return;
-    }
 
     submitBtn.disabled = true;
     submitBtn.textContent = "SUBMITTING...";
     statusBox.style.display = "none";
-    let applicationSaved = false;
-    let photoPath = null;
-    let applicationId = null;
 
     try {
         const formData = new FormData(form);
         const data = {};
+
         formData.forEach((value, key) => {
-            if (key !== "declaration" && key !== "photo") data[key] = value;
+            if (key !== "declaration" && key !== "photo") {
+                data[key] = value;
+            }
         });
 
         const file = photo.files && photo.files[0];
-        // UUID makes application IDs difficult to guess when confirming email.
-        applicationId = "ACSHS-" + crypto.randomUUID();
-        const submittedAt = new Date().toISOString();
 
-        if (file) {
-            if (file.size > 5 * 1024 * 1024) throw new Error("Passport photo must be 5 MB or smaller.");
-            if (!["image/jpeg", "image/png"].includes(file.type)) throw new Error("Passport photo must be JPG or PNG.");
-            const extension = file.type === "image/png" ? "png" : "jpg";
-            photoPath = `applications/${applicationId}.${extension}`;
-            const { error: uploadError } = await supabase.storage
-                .from("student-photos")
-                .upload(photoPath, file, { contentType: file.type, upsert: false });
-            if (uploadError) throw new Error("Photo upload failed: " + uploadError.message);
+        if (!file) throw new Error("Please upload your passport-size photo.");
+        if (file.size > 5 * 1024 * 1024) {
+            throw new Error("Passport photo must be 5 MB or smaller.");
+        }
+        if (!["image/jpeg", "image/png"].includes(file.type)) {
+            throw new Error("Passport photo must be JPG or PNG.");
         }
 
+        const applicationId = "ACSHS-" + crypto.randomUUID();
+        const submittedAt = new Date().toISOString();
+
+        // First clean test: save the application directly to Supabase.
+        // Email, Excel, Edge Functions, and photo storage will be added later.
         const record = {
-            application_id: applicationId,
+            id: applicationId,
             submitted_at: submittedAt,
             first_name: data.firstName || null,
             middle_name: data.middleName || null,
@@ -459,15 +455,17 @@ form.addEventListener("submit", async event => {
             place_of_birth: data.placeOfBirth || null,
             lrn: data.lrn || null,
             email: (data.email || "").trim().toLowerCase() || null,
-            mobile: data.mobile || null,
-            house_no: data.houseNo || null,
+            mobile_number: data.mobile || null,
+
+            house_unit_no: data.houseNo || null,
             street: data.street || null,
-            subdivision: data.subdivision || null,
+            subdivision_village: data.subdivision || null,
             barangay: data.barangay || null,
-            city: data.city || null,
+            city_municipality: data.city || null,
             province: data.province || null,
             region: data.region || null,
-            zip: data.zip || null,
+            zip_code: data.zip || null,
+
             father_name: data.fatherName || null,
             father_contact: data.fatherContact || null,
             mother_name: data.motherName || null,
@@ -476,69 +474,61 @@ form.addEventListener("submit", async event => {
             guardian_relationship: data.guardianRelationship || null,
             guardian_contact: data.guardianContact || null,
             guardian_email: data.guardianEmail || null,
+
             emergency_name: data.emergencyName || null,
             emergency_relationship: data.emergencyRelationship || null,
             emergency_contact: data.emergencyContact || null,
             emergency_email: data.emergencyEmail || null,
             emergency_address: data.emergencyAddress || null,
+
             preferred_track: data.track || null,
             preferred_academic_cluster: data.cluster || null,
             first_elective: data.elective1 || null,
             second_elective: data.elective2 || null,
             third_elective: data.elective3 || null,
             why_track: data.whyTrack || null,
+
             favorite_subjects: data.favoriteSubjects || null,
             strongest_area: data.strongestArea || null,
-            skills_to_develop: data.skillsToDevelop || null,
+            skill_to_develop: data.skillsToDevelop || null,
             career_interest: data.careerInterest || null,
             preferred_college_course: data.collegeCourse || null,
             future_profession: data.futureProfession || null,
             extracurricular_interests: data.extracurricularInterests || null,
+
             admission_reason: data.admissionReason || null,
-            photo_file_name: file ? file.name : null,
-            photo_file_path: photoPath,
-            declaration: form.elements.declaration.checked
+            photo_file_name: file.name || null,
+            photo_file_path: null,
+            declaration: form.elements.declaration.checked ? "Confirmed" : "Not confirmed"
         };
 
-        const { error: insertError } = await supabase.from("applications").insert(record);
-        if (insertError) throw new Error("Database save failed: " + insertError.message);
-        applicationSaved = true;
+        const { error } = await supabase
+            .from("applications")
+            .insert([record]);
 
-        // The database save is the success boundary. Email problems must not imply
-        // that the application was lost or encourage a duplicate submission.
-        let emailMessage = "Your application has been received. Please keep your Application ID.";
-        try {
-            const { data: emailResult, error: emailError } = await supabase.functions.invoke(
-                "send-admission-confirmation",
-                { body: { applicationId, email: record.email } }
-            );
-            if (!emailError && emailResult && emailResult.sent) {
-                emailMessage = "A confirmation email was sent to " + record.email + ". Please check your inbox and spam folder.";
-            } else {
-                emailMessage = "Your application was saved, but the confirmation email could not be sent yet. Please keep your Application ID and contact the school if needed.";
-                if (emailError) console.error("Confirmation email error:", emailError.message);
-                else console.error("Confirmation email response:", emailResult);
-            }
-        } catch (emailError) {
-            console.error("Confirmation email error:", emailError);
-            emailMessage = "Your application was saved, but the confirmation email could not be sent yet. Please keep your Application ID and contact the school if needed.";
+        if (error) {
+            throw new Error("Database save failed: " + error.message);
         }
 
-        showStatus("APPLICATION RECEIVED SUCCESSFULLY! Application ID: " + applicationId + ". " + emailMessage, "success");
+        showStatus(
+            "APPLICATION RECEIVED SUCCESSFULLY! Application ID: " +
+            applicationId +
+            ". Your information has been saved.",
+            "success"
+        );
+
         form.reset();
         preview.style.display = "none";
         preview.src = "";
+
     } catch (error) {
         console.error("Admission submission error:", error);
-        if (applicationSaved) {
-            showStatus("Your application was saved. Application ID: " + applicationId + ". Please keep this ID. Some follow-up processing failed; contact the school if needed.", "success");
-        } else {
-            // If the photo uploaded but the database insert failed, clean up the file.
-            if (photoPath && supabase) {
-                try { await supabase.storage.from("student-photos").remove([photoPath]); } catch (_) {}
-            }
-            showStatus("Submission failed: " + (error && error.message ? error.message : "Unknown error") + ". Your application was not confirmed as saved. Please correct the issue and try again.", "error");
-        }
+        showStatus(
+            "Submission failed: " +
+            (error && error.message ? error.message : "Unknown error") +
+            ". Please correct the issue and try again.",
+            "error"
+        );
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = "SUBMIT APPLICATION";
