@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Application Received | ACSHS</title>
+<link rel="icon" href="acshs-logo.jpg">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;color:#333;min-height:100vh;display:flex;flex-direction:column}
+header{background:linear-gradient(90deg,#f5b400,#e85d04,#b71c1c);color:#fff;padding:14px 6%}.school{display:flex;align-items:center;gap:12px}.school img{width:55px;height:55px;object-fit:contain;background:#fff;border-radius:50%}h1{font-size:20px;margin:0}.school p{margin:3px 0}
+main{width:min(720px,92%);margin:60px auto;flex:1}.card{background:#fff;border-radius:18px;padding:40px 30px;text-align:center;box-shadow:0 8px 28px #0002;border-top:6px solid #f5b400}.icon{width:76px;height:76px;border-radius:50%;margin:0 auto 20px;background:#e5f6e8;color:#176b2c;display:grid;place-items:center;font-size:42px;font-weight:bold}.pending{background:#fff8df;color:#b36b00}.errorIcon{background:#fff0df;color:#b71c1c}.card h2{margin:0 0 12px;color:#176b2c;font-size:30px}.pendingTitle{color:#b36b00!important}.errorTitle{color:#b71c1c!important}.card p{font-size:16px;line-height:1.6}.id{background:#fff8df;border-left:5px solid #f5b400;padding:16px;margin:22px 0;font-size:18px}.id strong{font-size:23px;color:#b71c1c}.note{font-size:14px;color:#666}.buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:25px}a{display:inline-block;text-decoration:none;background:#b71c1c;color:#fff;padding:13px 22px;border-radius:8px;font-weight:bold}a.secondary{background:#555}footer{background:#333;color:#fff;text-align:center;padding:25px 15px}footer p{margin:5px}
+</style></head>
+<body>
+<header><div class="school"><img src="acshs-logo.jpg" alt="ACSHS Logo"><div><h1>ANTIPOLO CITY SENIOR HIGH SCHOOL</h1><p>Admission Portal</p></div></div></header>
+<main><section class="card" id="card"></section></main>
+<footer><p><strong>ANTIPOLO CITY SENIOR HIGH SCHOOL</strong></p><p>School Year 2027–2028</p></footer>
+<script>
+const p=new URLSearchParams(location.search);
+const id=p.get('application_id')||'';
+const sent=p.get('email_sent')==='1';
+const emailError=p.get('email_error')||'';
+const safe=v=>String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const card=document.getElementById('card');
+if(!id){
+ card.innerHTML='<div class="icon errorIcon">!</div><h2 class="errorTitle">No Application ID Found</h2><p>This page is normally shown automatically after a successful admission submission.</p><div class="buttons"><a href="admission-survey.html">Return to Admission Form</a></div>';
+}else if(sent){
+ card.innerHTML='<div class="icon">✓</div><h2>Application Successfully Received!</h2><p>Thank you. Your admission information has been successfully received by <strong>Antipolo City Senior High School</strong>.</p><div class="id">Application ID / LRN<br><strong>'+safe(id)+'</strong></div><p>A confirmation email was successfully sent to the email address you entered on the form.</p><p class="note">Please check your inbox and spam/junk folder. Keep your Application ID for future admission inquiries.</p><p class="note"><strong>Important:</strong> This confirms receipt of your application only. It does not mean final admission or acceptance.</p><div class="buttons"><a href="index.html">Back to Home</a></div>';
+}else{
+ const detail=emailError?'<p class="note">Email service message: '+safe(emailError)+'</p>':'';
+ card.innerHTML='<div class="icon pending">!</div><h2 class="pendingTitle">Application Received — Email Pending</h2><p>Your admission information was successfully saved by <strong>Antipolo City Senior High School</strong>.</p><div class="id">Application ID / LRN<br><strong>'+safe(id)+'</strong></div><p>The confirmation email could not be sent yet. Your application was still saved successfully.</p>'+detail+'<p class="note">Please keep your Application ID. The school can still access your submitted information through the admin dashboard.</p><div class="buttons"><a href="index.html">Back to Home</a><a class="secondary" href="admission-survey.html">Admission Form</a></div>';
+}
+</script></body></html>
