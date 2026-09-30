@@ -450,7 +450,7 @@ form.addEventListener("submit", async event => {
 /* Public browser configuration: use only the publishable/anon key here. */
 const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
 const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
-const isConfigured = !SUPABASE_URL.includes("PASTE_YOUR") && !SUPABASE_KEY.includes("PASTE_YOUR");
+const isConfigured = !SUPABASE_URL.includes("https://zrqnneyioonoahgrdzgv.supabase.co") && !SUPABASE_KEY.includes("sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo");
 const supabase = (isConfigured && window.supabase)
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
     : null;
