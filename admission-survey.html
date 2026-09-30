@@ -1,630 +1,757 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antipolo City Senior High School | Admission</title>
-<link rel="icon" href="acshs-logo.jpg">
-
-<style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#333}
-
-/* SAME SITE HEADER STYLE */
-header{
-    background:linear-gradient(90deg,#f5b400,#e85d04,#b71c1c);
-    color:white;
-    padding:14px 6%;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    flex-wrap:wrap;
-}
-.school{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-.school img{
-    width:55px;height:55px;object-fit:contain;
-    background:white;border-radius:50%;
-}
-.school-name h1{
-    font-size:21px;margin:0;font-weight:800;
-}
-.school-name p{margin:3px 0 0;font-size:14px}
-nav{display:flex;gap:8px;flex-wrap:wrap}
-nav a{
-    color:white;text-decoration:none;font-weight:bold;
-    padding:9px 12px;border-radius:6px;
-}
-nav a:hover{background:rgba(255,255,255,.2)}
-
-.hero{
-    background:white;
-    text-align:center;
-    padding:48px 20px 35px;
-    border-bottom:5px solid #f5b400;
-}
-.hero h2{margin:0;color:#b71c1c;font-size:34px}
-.hero p{color:#666;margin:10px 0 0}
-
-.container{max-width:1050px;margin:30px auto;padding:0 18px}
-.section{
-    background:white;border-radius:14px;padding:28px;
-    margin-bottom:20px;box-shadow:0 4px 18px rgba(0,0,0,.08);
-}
-.section h2{
-    color:#b71c1c;margin:0 0 20px;
-    border-bottom:3px solid #f5b400;padding-bottom:9px;
-}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.full{grid-column:1/-1}
-label{display:block;font-weight:bold;margin-bottom:6px}
-input,select,textarea{
-    width:100%;padding:12px;border:1px solid #bbb;border-radius:7px;
-    font-size:15px;background:#fff;
-}
-textarea{min-height:105px;resize:vertical}
-.required{color:#b71c1c}
-.note{
-    background:#fff8df;border-left:5px solid #f5b400;
-    padding:12px;margin:12px 0;border-radius:5px;
-}
-.photo-area{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-#preview{
-    display:none;width:130px;height:160px;object-fit:cover;
-    border:1px solid #aaa;border-radius:6px;
-}
-.actions{text-align:center}
-button{
-    background:#b71c1c;color:#fff;border:0;border-radius:7px;
-    padding:14px 30px;font-size:16px;font-weight:bold;cursor:pointer;
-}
-button:hover{background:#8f1515}
-button:disabled{opacity:.6;cursor:not-allowed}
-.status{display:none;margin-top:16px;padding:14px;border-radius:7px;font-weight:bold}
-.success{background:#e5f6e8;color:#176b2c}
-.error{background:#fde7e7;color:#9b1c1c}
-footer{
-    background:#333;color:white;text-align:center;padding:28px 15px;
-    margin-top:40px;
-}
-@media(max-width:700px){
-    header{padding:12px 4%}
-    .school-name h1{font-size:16px}
-    .grid{grid-template-columns:1fr}
-    .full{grid-column:auto}
-    nav a{font-size:13px;padding:7px}
-    .hero h2{font-size:27px}
-}
-</style>
-</head>
-
-<body>
-
-<!-- SAME HEADER / NAVIGATION AS THE MAIN INDEX PAGE -->
-<header>
-    <div class="school">
-        <img src="acshs-logo.jpg" alt="ACSHS Logo">
-        <div class="school-name">
-            <h1>ANTIPOLO CITY SENIOR HIGH SCHOOL</h1>
-            <p>Admission Portal</p>
-        </div>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   ACSHS Admission Form | 2027&ndash;2028
+  </title>
+  <link href="acshs-logo.jpg" rel="icon"/>
+  <style>
+   *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;color:#333}header{background:linear-gradient(90deg,#f5b400,#e85d04,#b71c1c);color:#fff;padding:14px 6%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.school{display:flex;align-items:center;gap:12px}.school img{width:55px;height:55px;object-fit:contain;background:#fff;border-radius:50%}h1{font-size:20px;margin:0}.school p{margin:3px 0}nav{display:flex;gap:8px;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;font-weight:bold;padding:9px 12px;border-radius:6px}.hero{background:#fff;text-align:center;padding:42px 20px;border-bottom:5px solid #f5b400}.hero h2{color:#b71c1c;font-size:34px;margin:0}.hero p{color:#666}main{max-width:1050px;margin:30px auto;padding:0 18px}.section{background:#fff;border-radius:14px;padding:28px;margin-bottom:20px;box-shadow:0 4px 18px #0001}.section h2{color:#b71c1c;margin:0 0 20px;border-bottom:3px solid #f5b400;padding-bottom:9px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.full{grid-column:1/-1}label{display:block;font-weight:bold;margin-bottom:6px}input,select,textarea{width:100%;padding:12px;border:1px solid #bbb;border-radius:7px;font-size:15px;background:#fff}textarea{min-height:105px;resize:vertical}.required{color:#b71c1c}.note{background:#fff8df;border-left:5px solid #f5b400;padding:12px;margin:12px 0;border-radius:5px}.actions{text-align:center}button{background:#b71c1c;color:#fff;border:0;border-radius:7px;padding:14px 30px;font-size:16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.6;cursor:not-allowed}.status{display:none;margin-top:16px;padding:16px;border-radius:7px;font-weight:bold;white-space:pre-wrap}.success{background:#e5f6e8;color:#176b2c}.error{background:#fde7e7;color:#9b1c1c}footer{background:#333;color:#fff;text-align:center;padding:28px 15px;margin-top:40px}@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}nav a{font-size:13px}.hero h2{font-size:27px}}
+  </style>
+ </head>
+ <body>
+  <header>
+   <div class="school">
+    <img alt="ACSHS Logo" src="acshs-logo.jpg"/>
+    <div>
+     <h1>
+      ANTIPOLO CITY SENIOR HIGH SCHOOL
+     </h1>
+     <p>
+      Admission Portal
+     </p>
     </div>
+   </div>
+   <nav>
+    <a href="index.html#home">
+     Home
+    </a>
+    <a href="index.html#about">
+     About
+    </a>
+    <a href="index.html#programs">
+     Programs
+    </a>
+    <a href="admission-survey.html">
+     Admission
+    </a>
+    <a href="index.html#contact">
+     Contact
+    </a>
+   </nav>
+  </header>
+  <section class="hero">
+   <h2>
+    Admission Form
+   </h2>
+   <p>
+    School Year 2027&ndash;2028
+   </p>
+  </section>
+  <main>
+   <form id="admissionForm" novalidate="">
+    <section class="section">
+     <h2>
+      1. Personal Information
+     </h2>
+     <div class="grid">
+      <div>
+       <label>
+        First Name
+        <span class="required">
+         *
+        </span>
+       </label>
+       <input name="firstName" required=""/>
+      </div>
+      <div>
+       <label>
+        Middle Name
+       </label>
+       <input name="middleName"/>
+      </div>
+      <div>
+       <label>
+        Last Name
+        <span class="required">
+         *
+        </span>
+       </label>
+       <input name="lastName" required=""/>
+      </div>
+      <div>
+       <label>
+        Suffix
+       </label>
+       <input name="suffix"/>
+      </div>
+      <div>
+       <label>
+        Date of Birth
+        <span class="required">
+         *
+        </span>
+       </label>
+       <input name="birthDate" required="" type="date"/>
+      </div>
+      <div>
+       <label>
+        Age
+       </label>
+       <input max="30" min="10" name="age" type="number"/>
+      </div>
+      <div>
+       <label>
+        Sex
+        <span class="required">
+         *
+        </span>
+       </label>
+       <select name="sex" required="">
+        <option value="">
+         Select
+        </option>
+        <option>
+         Male
+        </option>
+        <option>
+         Female
+        </option>
+       </select>
+      </div>
+      <div>
+       <label>
+        Citizenship
+        <span class="required">
+         *
+        </span>
+       </label>
+       <input name="citizenship" required="" value="Filipino"/>
+      </div>
+      <div>
+       <label>
+        Place of Birth
+       </label>
+       <input name="placeOfBirth"/>
+      </div>
+      <div>
+       <label>
+        LRN / Application ID
+        <span class="required">
+         *
+        </span>
+       </label>
+       <input inputmode="numeric" maxlength="20" name="lrn" pattern="[0-9]{8,20}" required=""/>
+      </div>
+      <div>
+       <label>
+        Email
+        <span class="required">
+         *
+        </span>
+       </label>
+       <input name="email" required="" type="email"/>
+      </div>
+      <div>
+       <label>
+        Mobile Number
+        <span class="required">
+         *
+        </span>
+       </label>
+       <input name="mobile" required="" type="tel"/>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <h2>
+      2. Address Information
+     </h2>
+     <div class="grid">
+      <div>
+       <label>
+        House/Unit No.
+       </label>
+       <input name="houseNo"/>
+      </div>
+      <div>
+       <label>
+        Street
+       </label>
+       <input name="street"/>
+      </div>
+      <div>
+       <label>
+        Subdivision/Village
+       </label>
+       <input name="subdivision"/>
+      </div>
+      <div>
+       <label>
+        Barangay
+       </label>
+       <input name="barangay"/>
+      </div>
+      <div>
+       <label>
+        City/Municipality
+       </label>
+       <input name="city" value="Antipolo City"/>
+      </div>
+      <div>
+       <label>
+        Province
+       </label>
+       <input name="province" value="Rizal"/>
+      </div>
+      <div>
+       <label>
+        Region
+       </label>
+       <input name="region" value="CALABARZON (Region IV-A)"/>
+      </div>
+      <div>
+       <label>
+        ZIP Code
+       </label>
+       <input name="zip"/>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <h2>
+      3. Parent/Guardian Information
+     </h2>
+     <div class="grid">
+      <div>
+       <label>
+        Father's Name
+       </label>
+       <input name="fatherName"/>
+      </div>
+      <div>
+       <label>
+        Father's Contact
+       </label>
+       <input name="fatherContact"/>
+      </div>
+      <div>
+       <label>
+        Mother's Name
+       </label>
+       <input name="motherName"/>
+      </div>
+      <div>
+       <label>
+        Mother's Contact
+       </label>
+       <input name="motherContact"/>
+      </div>
+      <div>
+       <label>
+        Guardian's Name
+       </label>
+       <input name="guardianName"/>
+      </div>
+      <div>
+       <label>
+        Guardian Relationship
+       </label>
+       <input name="guardianRelationship"/>
+      </div>
+      <div>
+       <label>
+        Guardian Contact
+       </label>
+       <input name="guardianContact"/>
+      </div>
+      <div>
+       <label>
+        Guardian Email
+       </label>
+       <input name="guardianEmail" type="email"/>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <h2>
+      4. Emergency Contact
+     </h2>
+     <div class="grid">
+      <div>
+       <label>
+        Name
+       </label>
+       <input name="emergencyName"/>
+      </div>
+      <div>
+       <label>
+        Relationship
+       </label>
+       <input name="emergencyRelationship"/>
+      </div>
+      <div>
+       <label>
+        Contact Number
+       </label>
+       <input name="emergencyContact"/>
+      </div>
+      <div>
+       <label>
+        Email
+       </label>
+       <input name="emergencyEmail" type="email"/>
+      </div>
+      <div class="full">
+       <label>
+        Address
+       </label>
+       <textarea name="emergencyAddress"></textarea>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <h2>
+      5. Program Preferences
+     </h2>
+     <div class="grid">
+      <div>
+       <label>
+        Preferred Track
+        <span class="required">
+         *
+        </span>
+       </label>
+       <select name="track" required="">
+        <option value="">
+         Select Track
+        </option>
+        <option>
+         Academic Track
+        </option>
+        <option>
+         TechPro Track
+        </option>
+       </select>
+      </div>
+      <div>
+       <label>
+        Preferred Academic Cluster
+       </label>
+       <select name="cluster">
+        <option value="">
+         Select Cluster
+        </option>
+        <option value="Science, Technology, Engineering, and Mathematics">
+         Science, Technology, Engineering, and Mathematics
+        </option>
+        <option value="Arts, Social Sciences, and Humanities">
+         Arts, Social Sciences, and Humanities
+        </option>
+        <option value="Business and Entrepreneurship">
+         Business and Entrepreneurship
+        </option>
+       </select>
+      </div>
+      <div>
+       <label>
+        First Elective Choice
+       </label>
+       <select name="elective1">
+        <option value="">
+         Select First Elective
+        </option>
+        <option value="Finite Mathematics 1">
+         Finite Mathematics 1
+        </option>
+        <option value="Finite Mathematics 2">
+         Finite Mathematics 2
+        </option>
+        <option value="Biology 1">
+         Biology 1
+        </option>
+        <option value="Biology 2">
+         Biology 2
+        </option>
+        <option value="Chemistry 1">
+         Chemistry 1
+        </option>
+        <option value="Chemistry 2">
+         Chemistry 2
+        </option>
+        <option value="Earth and Space Science 1">
+         Earth and Space Science 1
+        </option>
+        <option value="Earth and Space Science 2">
+         Earth and Space Science 2
+        </option>
+        <option value="Physics 1">
+         Physics 1
+        </option>
+        <option value="Physics 2">
+         Physics 2
+        </option>
+        <option value="Pre-Calculus">
+         Pre-Calculus
+        </option>
+        <option value="Advanced Mathematics">
+         Advanced Mathematics
+        </option>
+        <option value="Contemporary Literature 1">
+         Contemporary Literature 1
+        </option>
+        <option value="Creative Composition 1">
+         Creative Composition 1
+        </option>
+        <option value="Arts 1">
+         Arts 1
+        </option>
+        <option value="Arts 2">
+         Arts 2
+        </option>
+        <option value="Filipino 1">
+         Filipino 1
+        </option>
+        <option value="Introduction to Philosophy">
+         Introduction to Philosophy
+        </option>
+        <option value="Social Sciences">
+         Social Sciences
+        </option>
+        <option value="Philippine Governance">
+         Philippine Governance
+        </option>
+        <option value="Business 1 - Basic Accounting">
+         Business 1 - Basic Accounting
+        </option>
+        <option value="Introduction to Organization and Management">
+         Introduction to Organization and Management
+        </option>
+        <option value="Business 2 - Business Finance and Income Taxation">
+         Business 2 - Business Finance and Income Taxation
+        </option>
+        <option value="Business 3 - Business Economics">
+         Business 3 - Business Economics
+        </option>
+        <option value="Contemporary Marketing">
+         Contemporary Marketing
+        </option>
+        <option value="Entrepreneurship">
+         Entrepreneurship
+        </option>
+       </select>
+      </div>
+      <div>
+       <label>
+        Second Elective Choice
+       </label>
+       <select name="elective2">
+        <option value="">
+         Select Second Elective
+        </option>
+        <option value="Finite Mathematics 1">
+         Finite Mathematics 1
+        </option>
+        <option value="Finite Mathematics 2">
+         Finite Mathematics 2
+        </option>
+        <option value="Biology 1">
+         Biology 1
+        </option>
+        <option value="Biology 2">
+         Biology 2
+        </option>
+        <option value="Chemistry 1">
+         Chemistry 1
+        </option>
+        <option value="Chemistry 2">
+         Chemistry 2
+        </option>
+        <option value="Earth and Space Science 1">
+         Earth and Space Science 1
+        </option>
+        <option value="Earth and Space Science 2">
+         Earth and Space Science 2
+        </option>
+        <option value="Physics 1">
+         Physics 1
+        </option>
+        <option value="Physics 2">
+         Physics 2
+        </option>
+        <option value="Pre-Calculus">
+         Pre-Calculus
+        </option>
+        <option value="Advanced Mathematics">
+         Advanced Mathematics
+        </option>
+        <option value="Contemporary Literature 1">
+         Contemporary Literature 1
+        </option>
+        <option value="Creative Composition 1">
+         Creative Composition 1
+        </option>
+        <option value="Arts 1">
+         Arts 1
+        </option>
+        <option value="Arts 2">
+         Arts 2
+        </option>
+        <option value="Filipino 1">
+         Filipino 1
+        </option>
+        <option value="Introduction to Philosophy">
+         Introduction to Philosophy
+        </option>
+        <option value="Social Sciences">
+         Social Sciences
+        </option>
+        <option value="Philippine Governance">
+         Philippine Governance
+        </option>
+        <option value="Business 1 - Basic Accounting">
+         Business 1 - Basic Accounting
+        </option>
+        <option value="Introduction to Organization and Management">
+         Introduction to Organization and Management
+        </option>
+        <option value="Business 2 - Business Finance and Income Taxation">
+         Business 2 - Business Finance and Income Taxation
+        </option>
+        <option value="Business 3 - Business Economics">
+         Business 3 - Business Economics
+        </option>
+        <option value="Contemporary Marketing">
+         Contemporary Marketing
+        </option>
+        <option value="Entrepreneurship">
+         Entrepreneurship
+        </option>
+       </select>
+      </div>
+      <div>
+       <label>
+        Third Elective Choice
+       </label>
+       <select name="elective3">
+        <option value="">
+         Select Third Elective
+        </option>
+        <option value="Finite Mathematics 1">
+         Finite Mathematics 1
+        </option>
+        <option value="Finite Mathematics 2">
+         Finite Mathematics 2
+        </option>
+        <option value="Biology 1">
+         Biology 1
+        </option>
+        <option value="Biology 2">
+         Biology 2
+        </option>
+        <option value="Chemistry 1">
+         Chemistry 1
+        </option>
+        <option value="Chemistry 2">
+         Chemistry 2
+        </option>
+        <option value="Earth and Space Science 1">
+         Earth and Space Science 1
+        </option>
+        <option value="Earth and Space Science 2">
+         Earth and Space Science 2
+        </option>
+        <option value="Physics 1">
+         Physics 1
+        </option>
+        <option value="Physics 2">
+         Physics 2
+        </option>
+        <option value="Pre-Calculus">
+         Pre-Calculus
+        </option>
+        <option value="Advanced Mathematics">
+         Advanced Mathematics
+        </option>
+        <option value="Contemporary Literature 1">
+         Contemporary Literature 1
+        </option>
+        <option value="Creative Composition 1">
+         Creative Composition 1
+        </option>
+        <option value="Arts 1">
+         Arts 1
+        </option>
+        <option value="Arts 2">
+         Arts 2
+        </option>
+        <option value="Filipino 1">
+         Filipino 1
+        </option>
+        <option value="Introduction to Philosophy">
+         Introduction to Philosophy
+        </option>
+        <option value="Social Sciences">
+         Social Sciences
+        </option>
+        <option value="Philippine Governance">
+         Philippine Governance
+        </option>
+        <option value="Business 1 - Basic Accounting">
+         Business 1 - Basic Accounting
+        </option>
+        <option value="Introduction to Organization and Management">
+         Introduction to Organization and Management
+        </option>
+        <option value="Business 2 - Business Finance and Income Taxation">
+         Business 2 - Business Finance and Income Taxation
+        </option>
+        <option value="Business 3 - Business Economics">
+         Business 3 - Business Economics
+        </option>
+        <option value="Contemporary Marketing">
+         Contemporary Marketing
+        </option>
+        <option value="Entrepreneurship">
+         Entrepreneurship
+        </option>
+       </select>
+      </div>
+      <div class="full">
+       <label>
+        Why did you choose this track?
+       </label>
+       <textarea name="whyTrack"></textarea>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <h2>
+      6. Student Interests
+     </h2>
+     <div class="grid">
+      <div>
+       <label>
+        Favorite Subjects
+       </label>
+       <input name="favoriteSubjects"/>
+      </div>
+      <div>
+       <label>
+        Strongest Area
+       </label>
+       <input name="strongestArea"/>
+      </div>
+      <div>
+       <label>
+        Skills to Develop
+       </label>
+       <input name="skillsToDevelop"/>
+      </div>
+      <div>
+       <label>
+        Career Interest
+       </label>
+       <input name="careerInterest"/>
+      </div>
+      <div>
+       <label>
+        Preferred College Course
+       </label>
+       <input name="collegeCourse"/>
+      </div>
+      <div>
+       <label>
+        Future Profession
+       </label>
+       <input name="futureProfession"/>
+      </div>
+      <div class="full">
+       <label>
+        Extracurricular Interests
+       </label>
+       <textarea name="extracurricularInterests"></textarea>
+      </div>
+     </div>
+    </section>
+    <section class="section">
+     <h2>
+      7. Admission Question
+     </h2>
+     <label>
+      Why do you want to enroll at Antipolo City Senior High School?
+      <span class="required">
+       *
+      </span>
+     </label>
+     <textarea name="admissionReason" required=""></textarea>
+    </section>
+    <section class="section">
+     <h2>
+      8. Declaration
+     </h2>
+     <label>
+      <input name="declaration" required="" type="checkbox"/>
+      I confirm that the information I provided is accurate and that I have discussed this application with my parent/guardian.
+      <span class="required">
+       *
+      </span>
+     </label>
+    </section>
+    <section class="section actions">
+     <div class="note">
+      Your LRN is your Application ID. The same LRN cannot create a second application.
+     </div>
+     <button id="submitBtn" type="submit">
+      SUBMIT APPLICATION
+     </button>
+     <div class="status" id="status" role="alert">
+     </div>
+    </section>
+   </form>
+  </main>
+  <footer>
+   <p>
+    <strong>
+     ANTIPOLO CITY SENIOR HIGH SCHOOL
+    </strong>
+   </p>
+   <p>
+    Admission Portal
+   </p>
+  </footer>
 
-    <nav>
-        <a href="index.html#home">Home</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#programs">Programs</a>
-        <a href="admission-survey.html">Admission</a>
-        <a href="index.html#contact">Contact</a>
-    </nav>
-</header>
 
-<section class="hero">
-    <h2>Admission Form</h2>
-    <p>School Year 2027–2028</p>
-</section>
-
-<main class="container">
-
-<form id="admissionForm">
-
-<!-- 1 -->
-<section class="section">
-<h2>Personal Information</h2>
-<div class="grid">
-<div><label>First Name <span class="required">*</span></label><input name="firstName" required></div>
-<div><label>Middle Name</label><input name="middleName"></div>
-<div><label>Last Name <span class="required">*</span></label><input name="lastName" required></div>
-<div><label>Suffix</label><input name="suffix" placeholder="Jr., III, etc."></div>
-<div><label>Date of Birth <span class="required">*</span></label><input type="date" name="birthDate" required></div>
-<div><label>Age <span class="required">*</span></label><input type="number" name="age" min="10" max="30" required></div>
-<div><label>Sex <span class="required">*</span></label>
-<select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
-<div><label>Citezenship <span class="required">*</span></span></label><input type="Citezenship" name="Filipino"></div>
-<div><label>Place of Birth</label><input name="placeOfBirth"></div>
-<div><label>Learner Reference Number (LRN)<span class="required">*</span></label><input name="lrn" required inputmode="numeric" maxlength="20" placeholder="Enter your LRN"></div>
-<div><label>Email Address <span class="required">*</span></label><input type="email" name="email" required></div>
-<div><label>Mobile Number <span class="required">*</span></label><input type="tel" name="mobile" required></div>
-</div>
-</section>
-
-<!-- 2 -->
-<section class="section">
-<h2>Address Information</h2>
-<div class="grid">
-<div><label>House/Unit No.</label><input name="houseNo"></div>
-<div><label>Street</label><input name="street"></div>
-<div><label>Subdivision/Village</label><input name="subdivision"></div>
-<div><label>Barangay <span class="required">*</span></label><input name="barangay" required></div>
-<div><label>City/Municipality <span class="required">*</span></label><input name="city" required></div>
-<div><label>Province <span class="required">*</span></label><input name="province" required></div>
-<div><label>Region<span class="required">*</span></label><input name="region"></div>
-<div><label>ZIP Code<span class="required">*</span></label><input name="zip"></div>
-</div>
-</section>
-
-<!-- 3 -->
-<section class="section">
-<h2>Parent/Guardian Information</h2>
-<div class="grid">
-<div><label>Father's Name</label><input name="fatherName" placeholder="Write N/A if None"></div>
-<div><label>Contact Number</label><input name="fatherContact"></div>
-<div><label>Mother's Maiden Name</label><input name="motherName" Placeholder="Write N/A if None"></div>
-<div><label>Contact Number</label><input name="motherContact"></div>
-<div><label>Guardian's Name <span class="required">*</span></label><input name="guardianName" required></div>
-<div><label>Relationship to Learner <span class="required">*</span></label><input name="guardianRelationship" required></div>
-<div><label>Contact Number <span class="required">*</span></label><input name="guardianContact" required></div>
-<div><label>Guardian's Email</label><input type="email" name="guardianEmail"></div>
-</div>
-</section>
-
-<!-- 4 -->
-<section class="section">
-<h2>Emergency Contact</h2>
-<div class="grid">
-<div><label>Full Name <span class="required">*</span></label><input name="emergencyName" required></div>
-<div><label>Relationship <span class="required">*</span></label><input name="emergencyRelationship" required></div>
-<div><label>Contact Number <span class="required">*</span></label><input name="emergencyContact" required></div>
-<div><label>Email</label><input type="email" name="emergencyEmail"></div>
-<div class="full"><label>Address</label><textarea name="emergencyAddress"></textarea></div>
-</div>
-</section>
-
-<!-- 5 -->
-<section class="section">
-<h2>Program Preferences</h2>
-<div class="grid">
-<div><label>Preferred Track <span class="required">*</span></label>
-<select name="track" required>
-<option value="">Select Track</option>
-<option value="Academic">Academic Track</option>
-<option value="TechPro">TechPro Track</option>
-</select></div>
-
-<div><label>First Elective Choice <span class="required">*</span></label><select name="elective1" required><option value="">Select First Elective</option><option value="Finite Mathematics 1">Finite Mathematics 1</option>
-<option value="Finite Mathematics">Finite Mathematics</option>
-<option value="Biology 1">Biology 1</option>
-<option value="Biology 2">Biology 2</option>
-<option value="Chemistry 1">Chemistry 1</option>
-<option value="Chemistry 2">Chemistry 2</option>
-<option value="Earth and Space Science 1">Earth and Space Science 1</option>
-<option value="Earth and Space Science 2">Earth and Space Science 2</option>
-<option value="Physics 1">Physics 1</option>
-<option value="Physics 2">Physics 2</option>
-<option value="Pre-Calculus">Pre-Calculus</option>
-<option value="Basic-Calculus">Basic-Calculus</option>
-<option value="Advanced Mathematics">Advanced Mathematics</option>
-<option value="Creative Writing">Creative Writing</option>
-<option value="Fine Arts">Fine Arts</option>
-<option value="Philosophy">Philosophy</option>
-<option value="Social Sciences">Social Sciences</option>
-<option value="Basic Accounting">Basic Accounting</option>
-<option value="Entrepreneurship">Entrepreneurship</option></select></div>
-<div><label>Second Elective Choice <span class="required">*</span></label><select name="elective2" required><option value="">Select Second Elective</option><option value="Finite Mathematics 1">Finite Mathematics 1</option>
-<option value="Finite Mathematics">Finite Mathematics</option>
-<option value="Biology 1">Biology 1</option>
-<option value="Biology 2">Biology 2</option>
-<option value="Chemistry 1">Chemistry 1</option>
-<option value="Chemistry 2">Chemistry 2</option>
-<option value="Earth and Space Science 1">Earth and Space Science 1</option>
-<option value="Earth and Space Science 2">Earth and Space Science 2</option>
-<option value="Physics 1">Physics 1</option>
-<option value="Physics 2">Physics 2</option>
-<option value="Pre-Calculus">Pre-Calculus</option>
-<option value="Basic-Calculus">Basic-Calculus</option>
-<option value="Advanced Mathematics">Advanced Mathematics</option>
-<option value="Creative Writing">Creative Writing</option>
-<option value="Fine Arts">Fine Arts</option>
-<option value="Philosophy">Philosophy</option>
-<option value="Social Sciences">Social Sciences</option>
-<option value="Basic Accounting">Basic Accounting</option>
-<option value="Entrepreneurship">Entrepreneurship</option></select></div>
-<div><label>Third Elective Choice <span class="required">*</span></label><select name="elective3" required><option value="">Select Third Elective</option><option value="Finite Mathematics 1">Finite Mathematics 1</option>
-<option value="Finite Mathematics">Finite Mathematics</option>
-<option value="Biology 1">Biology 1</option>
-<option value="Biology 2">Biology 2</option>
-<option value="Chemistry 1">Chemistry 1</option>
-<option value="Chemistry 2">Chemistry 2</option>
-<option value="Earth and Space Science 1">Earth and Space Science 1</option>
-<option value="Earth and Space Science 2">Earth and Space Science 2</option>
-<option value="Physics 1">Physics 1</option>
-<option value="Physics 2">Physics 2</option>
-<option value="Pre-Calculus">Pre-Calculus</option>
-<option value="Basic-Calculus">Basic-Calculus</option>
-<option value="Advanced Mathematics">Advanced Mathematics</option>
-<option value="Creative Writing">Creative Writing</option>
-<option value="Fine Arts">Fine Arts</option>
-<option value="Philosophy">Philosophy</option>
-<option value="Social Sciences">Social Sciences</option>
-<option value="Basic Accounting">Basic Accounting</option>
-<option value="Entrepreneurship">Entrepreneurship</option></select></div>
-</div>
-</section>
-
-<!-- 6 -->
-<section class="section">
-<h2>Student Interests</h2>
-<div class="grid">
-<div><label>Preferred College Course</label><input name="collegeCourse"></div>
-<div><label>Future Profession</label><input name="futureProfession"></div>
-</div>
-</section>
-
-<!-- 7 -->
-<section class="section">
-<h2>Admission Question</h2>
-<label>Why do you want to enroll at Antipolo City Senior High School? <span class="required">*</span></label>
-<textarea name="admissionReason" required></textarea>
-</section>
-
-<!-- 8 -->
-<section class="section">
-<h2>Confirmation</h2>
-<label>
-I confirm that the information I provided is accurate and that I have discussed this application with my parent/guardian.
-<span class="required">*</span>
-    <input type="checkbox" name="declaration" required>
-</label>
-</section>
-
-<section class="section actions">
-<div class="note">
-Please review your information before submitting your application.
-
-<button id="submitBtn" type="submit">SUBMIT APPLICATION</button>
-<div id="status" class="status"></div>
-</section>
-
-</form>
-</main>
-
-<footer>
-<p><strong>ANTIPOLO CITY SENIOR HIGH SCHOOL</strong></p>
-<p>Admission Portal</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-/*
-
-*/
-const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
-
-const isConfigured =
-    !SUPABASE_URL.includes("https://zrqnneyioonoahgrdzgv.supabase.co") &&
-    !SUPABASE_KEY.includes("b_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo") &&
-    !!window.supabase;
-
-const supabase = isConfigured
-    ? window.supabase.createClient(https://zrqnneyioonoahgrdzgv.supabase.co,b_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo)
-    : null;
-
-const form = document.getElementById("admissionForm");
-const statusBox = document.getElementById("status");
-const submitBtn = document.getElementById("submitBtn");
-
-function showStatus(message, kind) {
-    statusBox.className = "status " + kind;
-    statusBox.textContent = message;
-    statusBox.style.display = "block";
-    statusBox.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
-form.addEventListener("submit", async event => {
-    event.preventDefault();
-
-    if (!isConfigured || !supabase) {
-        showStatus(
-            "The admission database is not configured. Please contact the school administrator.",
-            "error"
-        );
-        return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "SUBMITTING...";
-    statusBox.style.display = "none";
-
-    try {
-        const formData = new FormData(form);
-        const data = {};
-
-        formData.forEach((value, key) => {
-            if (key !== "declaration") {
-                data[key] = typeof value === "string" ? value.trim() : value;
-            }
-        });
-
-        // The LRN is the Application ID.
-        const applicationId = data.lrn || "";
-
-        if (!applicationId) {
-            throw new Error("Please enter the Learner Reference Number (LRN).");
-        }
-
-        const record = {
-            application_id: applicationId,
-            submitted_at: new Date().toISOString(),
-            first_name: data.firstName || null,
-            middle_name: data.middleName || null,
-            last_name: data.lastName || null,
-            suffix: data.suffix || null,
-            birth_date: data.birthDate || null,
-            age: data.age ? Number(data.age) : null,
-            sex: data.sex || null,
-            citizenship: data.citizenship || null,
-            place_of_birth: data.placeOfBirth || null,
-            lrn: applicationId,
-            email: (data.email || "").toLowerCase() || null,
-            mobile: data.mobile || null,
-            house_no: data.houseNo || null,
-            street: data.street || null,
-            subdivision: data.subdivision || null,
-            barangay: data.barangay || null,
-            city: data.city || null,
-            province: data.province || null,
-            region: data.region || null,
-            zip: data.zip || null,
-            father_name: data.fatherName || null,
-            father_contact: data.fatherContact || null,
-            mother_name: data.motherName || null,
-            mother_contact: data.motherContact || null,
-            guardian_name: data.guardianName || null,
-            guardian_relationship: data.guardianRelationship || null,
-            guardian_contact: data.guardianContact || null,
-            guardian_email: data.guardianEmail || null,
-            emergency_name: data.emergencyName || null,
-            emergency_relationship: data.emergencyRelationship || null,
-            emergency_contact: data.emergencyContact || null,
-            emergency_email: data.emergencyEmail || null,
-            emergency_address: data.emergencyAddress || null,
-            preferred_track: data.track || null,
-            first_elective: data.elective1 || null,
-            second_elective: data.elective2 || null,
-            third_elective: data.elective3 || null,
-            preferred_college_course: data.collegeCourse || null,
-            future_profession: data.futureProfession || null,
-            admission_reason: data.admissionReason || null,
-            declaration: form.elements.declaration.checked
-        };
-
-        const { error } = await supabase
-            .from("applications")
-            .insert(record);
-
-        if (error) {
-            throw new Error(error.message);
-        }
-
-        showStatus(
-            "APPLICATION RECEIVED SUCCESSFULLY! Application ID: " +
-            applicationId +
-            ". Your admission information has been saved.",
-            "success"
-        );
-
-        form.reset();
-
-    } catch (error) {
-        console.error("Admission submission error:", error);
-        showStatus(
-            "SUBMISSION FAILED: " +
-            (error && error.message
-                ? error.message
-                : "Unknown error. Please try again."),
-            "error"
-        );
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "SUBMIT APPLICATION";
-    }
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+         
+     </script>
+     <script>
+const SUPABASE_URL="https://zrqnneyioonoahgrdzgv.supabase.co";
+const SUPABASE_KEY="sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
+         
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+         
+const form=document.getElementById('admissionForm');
+const statusBox=document.getElementById('status');
+const submitBtn=document.getElementById('submitBtn');
+function clean(v){return typeof v==='string'?v.trim():(v??null)}
+         
+function showStatus(m,c){statusBox.className='status '+c;statusBox.textContent=m;statusBox.style.display='block';statusBox.scrollIntoView({behavior:'smooth',block:'center'})}
+form.addEventListener('submit',async function(e){
+ e.preventDefault();e.stopPropagation();
+ if(!form.checkValidity()){form.reportValidity();return}
+ const fd=new FormData(form),lrn=clean(fd.get('lrn')),email=(clean(fd.get('email'))||'').toLowerCase();
+ if(!/^\d{8,20}$/.test(lrn)){showStatus('SUBMISSION FAILED\nLRN must contain 8–20 digits only.','error');return}
+ submitBtn.disabled=true;submitBtn.textContent='SUBMITTING...';statusBox.style.display='none';
+ const record={application_id:lrn,submitted_at:new Date().toISOString(),first_name:clean(fd.get('firstName')),middle_name:clean(fd.get('middleName')),last_name:clean(fd.get('lastName')),suffix:clean(fd.get('suffix')),birth_date:clean(fd.get('birthDate')),age:fd.get('age')?Number(fd.get('age')):null,sex:clean(fd.get('sex')),citizenship:clean(fd.get('citizenship')),place_of_birth:clean(fd.get('placeOfBirth')),lrn:lrn,email:email||null,mobile:clean(fd.get('mobile')),house_no:clean(fd.get('houseNo')),street:clean(fd.get('street')),subdivision:clean(fd.get('subdivision')),barangay:clean(fd.get('barangay')),city:clean(fd.get('city')),province:clean(fd.get('province')),region:clean(fd.get('region')),zip:clean(fd.get('zip')),father_name:clean(fd.get('fatherName')),father_contact:clean(fd.get('fatherContact')),mother_name:clean(fd.get('motherName')),mother_contact:clean(fd.get('motherContact')),guardian_name:clean(fd.get('guardianName')),guardian_relationship:clean(fd.get('guardianRelationship')),guardian_contact:clean(fd.get('guardianContact')),guardian_email:(clean(fd.get('guardianEmail'))||'').toLowerCase()||null,emergency_name:clean(fd.get('emergencyName')),emergency_relationship:clean(fd.get('emergencyRelationship')),emergency_contact:clean(fd.get('emergencyContact')),emergency_email:(clean(fd.get('emergencyEmail'))||'').toLowerCase()||null,emergency_address:clean(fd.get('emergencyAddress')),preferred_track:clean(fd.get('track')),preferred_academic_cluster:clean(fd.get('cluster')),first_elective:clean(fd.get('elective1')),second_elective:clean(fd.get('elective2')),third_elective:clean(fd.get('elective3')),why_track:clean(fd.get('whyTrack')),favorite_subjects:clean(fd.get('favoriteSubjects')),strongest_area:clean(fd.get('strongestArea')),skills_to_develop:clean(fd.get('skillsToDevelop')),career_interest:clean(fd.get('careerInterest')),preferred_college_course:clean(fd.get('collegeCourse')),future_profession:clean(fd.get('futureProfession')),extracurricular_interests:clean(fd.get('extracurricularInterests')),admission_reason:clean(fd.get('admissionReason')),photo_file_name:null,photo_file_path:null,declaration:fd.get('declaration')==='on'};
+ try{
+  const {data,error}=await db.from('applications').insert(record).select('application_id').single();
+  if(error){if(error.code==='23505')throw new Error('This LRN has already been submitted. No duplicate application was created. Application ID: '+lrn);throw new Error(error.message+' [code '+(error.code||'unknown')+']')}
+  const applicationId=data.application_id;let emailSent=false;let emailErrorMessage='';
+  try{const result=await db.functions.invoke('send-admission-confirmation',{body:{applicationId:applicationId,email:record.email}});if(!result.error&&result.data&&result.data.sent){emailSent=true}else{emailErrorMessage=result.error?.message||result.data?.error||'Email service is not configured.'}}catch(err){emailErrorMessage=err?.message||'Unable to contact the email service.'}
+  const params=new URLSearchParams({application_id:applicationId,email_sent:emailSent?'1':'0'});if(!emailSent)params.set('email_error',emailErrorMessage);window.location.href='application-success.html?'+params.toString();
+ }catch(err){console.error('Admission submission error:',err);showStatus('SUBMISSION FAILED\n'+(err.message||err)+'\n\nNo application was confirmed as saved. Please correct the issue and try again.','error');submitBtn.disabled=false;submitBtn.textContent='SUBMIT APPLICATION'}
 });
-</script>
-<script>
-/* Public browser configuration: use only the publishable/anon key here. */
-const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
-const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
-const isConfigured = !SUPABASE_URL.includes("https://zrqnneyioonoahgrdzgv.supabase.co") && !SUPABASE_KEY.includes("sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo");
-const supabase = (isConfigured && window.supabase)
-    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-    : null;
-
-const photo = document.getElementById("photo");
-const preview = document.getElementById("preview");
-const form = document.getElementById("admissionForm");
-const statusBox = document.getElementById("status");
-const submitBtn = document.getElementById("submitBtn");
-
-function showStatus(message, kind) {
-    statusBox.className = "status " + kind;
-    statusBox.textContent = message;
-    statusBox.style.display = "block";
-    statusBox.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
-photo.addEventListener("change", () => {
-    const file = photo.files && photo.files[0];
-    if (!file) {
-        preview.style.display = "none";
-        preview.src = "";
-        return;
-    }
-    if (file.size > 5 * 1024 * 1024) {
-        photo.value = "";
-        preview.style.display = "none";
-        preview.src = "";
-        alert("Passport photo must be 5 MB or smaller.");
-        return;
-    }
-    if (!["image/jpeg", "image/png"].includes(file.type)) {
-        photo.value = "";
-        preview.style.display = "none";
-        preview.src = "";
-        alert("Please upload a JPG or PNG passport-size photo.");
-        return;
-    }
-    const reader = new FileReader();
-    reader.onload = event => {
-        preview.src = event.target.result;
-        preview.style.display = "block";
-    };
-    reader.readAsDataURL(file);
-});
-
-form.addEventListener("submit", async event => {
-    event.preventDefault();
-    if (!isConfigured || !supabase) {
-        showStatus("The database is not configured. Please contact the school administrator.", "error");
-        return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "SUBMITTING...";
-    statusBox.style.display = "none";
-    let applicationSaved = false;
-    let photoPath = null;
-    let applicationId = null;
-
-    try {
-        const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => {
-            if (key !== "declaration" && key !== "photo") data[key] = value;
-        });
-
-        const file = photo.files && photo.files[0];
-        // UUID makes application IDs difficult to guess when confirming email.
-        applicationId = "ACSHS-" + crypto.randomUUID();
-        const submittedAt = new Date().toISOString();
-
-        if (file) {
-            if (file.size > 5 * 1024 * 1024) throw new Error("Passport photo must be 5 MB or smaller.");
-            if (!["image/jpeg", "image/png"].includes(file.type)) throw new Error("Passport photo must be JPG or PNG.");
-            const extension = file.type === "image/png" ? "png" : "jpg";
-            photoPath = `applications/${applicationId}.${extension}`;
-            const { error: uploadError } = await supabase.storage
-                .from("student-photos")
-                .upload(photoPath, file, { contentType: file.type, upsert: false });
-            if (uploadError) throw new Error("Photo upload failed: " + uploadError.message);
-        }
-
-        const record = {
-            application_id: applicationId,
-            submitted_at: submittedAt,
-            first_name: data.firstName || null,
-            middle_name: data.middleName || null,
-            last_name: data.lastName || null,
-            suffix: data.suffix || null,
-            birth_date: data.birthDate || null,
-            age: data.age ? Number(data.age) : null,
-            sex: data.sex || null,
-            citizenship: data.citizenship || null,
-            place_of_birth: data.placeOfBirth || null,
-            lrn: data.lrn || null,
-            email: (data.email || "").trim().toLowerCase() || null,
-            mobile: data.mobile || null,
-            house_no: data.houseNo || null,
-            street: data.street || null,
-            subdivision: data.subdivision || null,
-            barangay: data.barangay || null,
-            city: data.city || null,
-            province: data.province || null,
-            region: data.region || null,
-            zip: data.zip || null,
-            father_name: data.fatherName || null,
-            father_contact: data.fatherContact || null,
-            mother_name: data.motherName || null,
-            mother_contact: data.motherContact || null,
-            guardian_name: data.guardianName || null,
-            guardian_relationship: data.guardianRelationship || null,
-            guardian_contact: data.guardianContact || null,
-            guardian_email: data.guardianEmail || null,
-            emergency_name: data.emergencyName || null,
-            emergency_relationship: data.emergencyRelationship || null,
-            emergency_contact: data.emergencyContact || null,
-            emergency_email: data.emergencyEmail || null,
-            emergency_address: data.emergencyAddress || null,
-            preferred_track: data.track || null,
-            first_elective: data.elective1 || null,
-            second_elective: data.elective2 || null,
-            third_elective: data.elective3 || null,
-            preferred_college_course: data.collegeCourse || null,
-            future_profession: data.futureProfession || null,
-            admission_reason: data.admissionReason || null,
-            declaration: form.elements.declaration.checked
-        };
-
-        const { error: insertError } = await supabase.from("applications").insert(record);
-        if (insertError) throw new Error("Database save failed: " + insertError.message);
-        applicationSaved = true;
-
-        // The database save is the success boundary. Email problems must not imply
-        // that the application was lost or encourage a duplicate submission.
-        let emailMessage = "Your application has been received. Please keep your Application ID.";
-        try {
-            const { data: emailResult, error: emailError } = await supabase.functions.invoke(
-                "send-admission-confirmation",
-                { body: { applicationId, email: record.email } }
-            );
-            if (!emailError && emailResult && emailResult.sent) {
-                emailMessage = "A confirmation email was sent to " + record.email + ". Please check your inbox and spam folder.";
-            } else {
-                emailMessage = "Your application was saved, but the confirmation email could not be sent yet. Please keep your Application ID and contact the school if needed.";
-                if (emailError) console.error("Confirmation email error:", emailError.message);
-                else console.error("Confirmation email response:", emailResult);
-            }
-        } catch (emailError) {
-            console.error("Confirmation email error:", emailError);
-            emailMessage = "Your application was saved, but the confirmation email could not be sent yet. Please keep your Application ID and contact the school if needed.";
-        }
-
-        showStatus("APPLICATION RECEIVED SUCCESSFULLY! Application ID: " + applicationId + ". " + emailMessage, "success");
-        form.reset();
-        preview.style.display = "none";
-        preview.src = "";
-    } catch (error) {
-        console.error("Admission submission error:", error);
-        if (applicationSaved) {
-            showStatus("Your application was saved. Application ID: " + applicationId + ". Please keep this ID. Some follow-up processing failed; contact the school if needed.", "success");
-        } else {
-            // If the photo uploaded but the database insert failed, clean up the file.
-            if (photoPath && supabase) {
-                try { await supabase.storage.from("student-photos").remove([photoPath]); } catch (_) {}
-            }
-            showStatus("Submission failed: " + (error && error.message ? error.message : "Unknown error") + ". Your application was not confirmed as saved. Please correct the issue and try again.", "error");
-        }
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "SUBMIT APPLICATION";
-    }
-});
-</script>
-
-</body>
-</html>
+</script></body></html>
