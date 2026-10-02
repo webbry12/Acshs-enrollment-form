@@ -724,34 +724,234 @@
   </footer>
 
 
-     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-         
-     </script>
-     <script>
-const SUPABASE_URL="https://zrqnneyioonoahgrdzgv.supabase.co";
-const SUPABASE_KEY="sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
-         
-const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-         
-const form=document.getElementById('admissionForm');
-const statusBox=document.getElementById('status');
-const submitBtn=document.getElementById('submitBtn');
-function clean(v){return typeof v==='string'?v.trim():(v??null)}
-         
-function showStatus(m,c){statusBox.className='status '+c;statusBox.textContent=m;statusBox.style.display='block';statusBox.scrollIntoView({behavior:'smooth',block:'center'})}
-form.addEventListener('submit',async function(e){
- e.preventDefault();e.stopPropagation();
- if(!form.checkValidity()){form.reportValidity();return}
- const fd=new FormData(form),lrn=clean(fd.get('lrn')),email=(clean(fd.get('email'))||'').toLowerCase();
- if(!/^\d{8,20}$/.test(lrn)){showStatus('SUBMISSION FAILED\nLRN must contain 8–20 digits only.','error');return}
- submitBtn.disabled=true;submitBtn.textContent='SUBMITTING...';statusBox.style.display='none';
- const record={application_id:lrn,submitted_at:new Date().toISOString(),first_name:clean(fd.get('firstName')),middle_name:clean(fd.get('middleName')),last_name:clean(fd.get('lastName')),suffix:clean(fd.get('suffix')),birth_date:clean(fd.get('birthDate')),age:fd.get('age')?Number(fd.get('age')):null,sex:clean(fd.get('sex')),citizenship:clean(fd.get('citizenship')),place_of_birth:clean(fd.get('placeOfBirth')),lrn:lrn,email:email||null,mobile:clean(fd.get('mobile')),house_no:clean(fd.get('houseNo')),street:clean(fd.get('street')),subdivision:clean(fd.get('subdivision')),barangay:clean(fd.get('barangay')),city:clean(fd.get('city')),province:clean(fd.get('province')),region:clean(fd.get('region')),zip:clean(fd.get('zip')),father_name:clean(fd.get('fatherName')),father_contact:clean(fd.get('fatherContact')),mother_name:clean(fd.get('motherName')),mother_contact:clean(fd.get('motherContact')),guardian_name:clean(fd.get('guardianName')),guardian_relationship:clean(fd.get('guardianRelationship')),guardian_contact:clean(fd.get('guardianContact')),guardian_email:(clean(fd.get('guardianEmail'))||'').toLowerCase()||null,emergency_name:clean(fd.get('emergencyName')),emergency_relationship:clean(fd.get('emergencyRelationship')),emergency_contact:clean(fd.get('emergencyContact')),emergency_email:(clean(fd.get('emergencyEmail'))||'').toLowerCase()||null,emergency_address:clean(fd.get('emergencyAddress')),preferred_track:clean(fd.get('track')),preferred_academic_cluster:clean(fd.get('cluster')),first_elective:clean(fd.get('elective1')),second_elective:clean(fd.get('elective2')),third_elective:clean(fd.get('elective3')),why_track:clean(fd.get('whyTrack')),favorite_subjects:clean(fd.get('favoriteSubjects')),strongest_area:clean(fd.get('strongestArea')),skills_to_develop:clean(fd.get('skillsToDevelop')),career_interest:clean(fd.get('careerInterest')),preferred_college_course:clean(fd.get('collegeCourse')),future_profession:clean(fd.get('futureProfession')),extracurricular_interests:clean(fd.get('extracurricularInterests')),admission_reason:clean(fd.get('admissionReason')),photo_file_name:null,photo_file_path:null,declaration:fd.get('declaration')==='on'};
- try{
-  const {data,error}=await db.from('applications').insert(record).select('application_id').single();
-  if(error){if(error.code==='23505')throw new Error('This LRN has already been submitted. No duplicate application was created. Application ID: '+lrn);throw new Error(error.message+' [code '+(error.code||'unknown')+']')}
-  const applicationId=data.application_id;let emailSent=false;let emailErrorMessage='';
-  try{const result=await db.functions.invoke('send-admission-confirmation',{body:{applicationId:applicationId,email:record.email}});if(!result.error&&result.data&&result.data.sent){emailSent=true}else{emailErrorMessage=result.error?.message||result.data?.error||'Email service is not configured.'}}catch(err){emailErrorMessage=err?.message||'Unable to contact the email service.'}
-  const params=new URLSearchParams({application_id:applicationId,email_sent:emailSent?'1':'0'});if(!emailSent)params.set('email_error',emailErrorMessage);window.location.href='application-success.html?'+params.toString();
- }catch(err){console.error('Admission submission error:',err);showStatus('SUBMISSION FAILED\n'+(err.message||err)+'\n\nNo application was confirmed as saved. Please correct the issue and try again.','error');submitBtn.disabled=false;submitBtn.textContent='SUBMIT APPLICATION'}
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://zrqnneyioonoahgrdzgv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo";
+
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const form = document.getElementById('admissionForm');
+const statusBox = document.getElementById('status');
+const submitBtn = document.getElementById('submitBtn');
+
+function clean(v) {
+  return typeof v === 'string' ? v.trim() : (v ?? null);
+}
+
+function showStatus(m, c) {
+  statusBox.className = 'status ' + c;
+  statusBox.textContent = m;
+  statusBox.style.display = 'block';
+  statusBox.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+}
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  const fd = new FormData(form);
+  const lrn = clean(fd.get('lrn'));
+  const email = (clean(fd.get('email')) || '').toLowerCase();
+
+  if (!/^\d{8,20}$/.test(lrn)) {
+    showStatus(
+      'SUBMISSION FAILED\nLRN must contain 8–20 digits only.',
+      'error'
+    );
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'SUBMITTING...';
+  statusBox.style.display = 'none';
+
+  const record = {
+    application_id: lrn,
+    submitted_at: new Date().toISOString(),
+
+    first_name: clean(fd.get('firstName')),
+    middle_name: clean(fd.get('middleName')),
+    last_name: clean(fd.get('lastName')),
+    suffix: clean(fd.get('suffix')),
+
+    birth_date: clean(fd.get('birthDate')),
+    age: fd.get('age') ? Number(fd.get('age')) : null,
+    sex: clean(fd.get('sex')),
+    citizenship: clean(fd.get('citizenship')),
+    place_of_birth: clean(fd.get('placeOfBirth')),
+
+    lrn: lrn,
+    email: email || null,
+    mobile: clean(fd.get('mobile')),
+
+    house_no: clean(fd.get('houseNo')),
+    street: clean(fd.get('street')),
+    subdivision: clean(fd.get('subdivision')),
+    barangay: clean(fd.get('barangay')),
+    city: clean(fd.get('city')),
+    province: clean(fd.get('province')),
+    region: clean(fd.get('region')),
+    zip: clean(fd.get('zip')),
+
+    father_name: clean(fd.get('fatherName')),
+    father_contact: clean(fd.get('fatherContact')),
+
+    mother_name: clean(fd.get('motherName')),
+    mother_contact: clean(fd.get('motherContact')),
+
+    guardian_name: clean(fd.get('guardianName')),
+    guardian_relationship: clean(fd.get('guardianRelationship')),
+    guardian_contact: clean(fd.get('guardianContact')),
+    guardian_email:
+      (clean(fd.get('guardianEmail')) || '').toLowerCase() || null,
+
+    emergency_name: clean(fd.get('emergencyName')),
+    emergency_relationship: clean(fd.get('emergencyRelationship')),
+    emergency_contact: clean(fd.get('emergencyContact')),
+    emergency_email:
+      (clean(fd.get('emergencyEmail')) || '').toLowerCase() || null,
+    emergency_address: clean(fd.get('emergencyAddress')),
+
+    preferred_track: clean(fd.get('track')),
+    preferred_academic_cluster: clean(fd.get('cluster')),
+
+    first_elective: clean(fd.get('elective1')),
+    second_elective: clean(fd.get('elective2')),
+    third_elective: clean(fd.get('elective3')),
+
+    why_track: clean(fd.get('whyTrack')),
+    favorite_subjects: clean(fd.get('favoriteSubjects')),
+    strongest_area: clean(fd.get('strongestArea')),
+    skills_to_develop: clean(fd.get('skillsToDevelop')),
+    career_interest: clean(fd.get('careerInterest')),
+    preferred_college_course: clean(fd.get('collegeCourse')),
+    future_profession: clean(fd.get('futureProfession')),
+    extracurricular_interests: clean(fd.get('extracurricularInterests')),
+    admission_reason: clean(fd.get('admissionReason')),
+
+    photo_file_name: null,
+    photo_file_path: null,
+
+    declaration: fd.get('declaration') === 'on'
+  };
+
+  try {
+
+    /*
+     * IMPORTANT:
+     * Do NOT use .select() here.
+     *
+     * Your anonymous users have INSERT permission,
+     * but they do not have SELECT permission.
+     */
+    const { error } = await db
+      .from('applications')
+      .insert(record);
+
+    if (error) {
+
+      if (error.code === '23505') {
+        throw new Error(
+          'This LRN has already been submitted. ' +
+          'No duplicate application was created. ' +
+          'Application ID: ' + lrn
+        );
+      }
+
+      throw new Error(
+        error.message +
+        ' [code ' +
+        (error.code || 'unknown') +
+        ']'
+      );
+    }
+
+    /*
+     * The application ID is already known.
+     * It is the LRN we inserted above.
+     */
+    const applicationId = record.application_id;
+
+    let emailSent = false;
+    let emailErrorMessage = '';
+
+    try {
+
+      const result = await db.functions.invoke(
+        'send-admission-confirmation',
+        {
+          body: {
+            applicationId: applicationId,
+            email: record.email
+          }
+        }
+      );
+
+      if (
+        !result.error &&
+        result.data &&
+        result.data.sent
+      ) {
+        emailSent = true;
+      } else {
+        emailErrorMessage =
+          result.error?.message ||
+          result.data?.error ||
+          'Email service is not configured.';
+      }
+
+    } catch (err) {
+
+      emailErrorMessage =
+        err?.message ||
+        'Unable to contact the email service.';
+    }
+
+    const params = new URLSearchParams({
+      application_id: applicationId,
+      email_sent: emailSent ? '1' : '0'
+    });
+
+    if (!emailSent) {
+      params.set(
+        'email_error',
+        emailErrorMessage
+      );
+    }
+
+    window.location.href =
+      'application-success.html?' +
+      params.toString();
+
+  } catch (err) {
+
+    console.error(
+      'Admission submission error:',
+      err
+    );
+
+    showStatus(
+      'SUBMISSION FAILED\n' +
+      (err.message || err) +
+      '\n\n' +
+      'No application was confirmed as saved. ' +
+      'Please correct the issue and try again.',
+      'error'
+    );
+
+    submitBtn.disabled = false;
+    submitBtn.textContent =
+      'SUBMIT APPLICATION';
+  }
 });
-</script></body></html>
+</script>
