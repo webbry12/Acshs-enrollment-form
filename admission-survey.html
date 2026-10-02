@@ -8,7 +8,7 @@
   </title>
   <link href="acshs-logo.jpg" rel="icon"/>
   <style>
-   *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;color:#333}header{background:linear-gradient(90deg,#f5b400,#e85d04,#b71c1c);color:#fff;padding:14px 6%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.school{display:flex;align-items:center;gap:12px}.school img{width:55px;height:55px;object-fit:contain;background:#fff;border-radius:50%}h1{font-size:20px;margin:0}.school p{margin:3px 0}nav{display:flex;gap:8px;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;font-weight:bold;padding:9px 12px;border-radius:6px}.hero{background:#fff;text-align:center;padding:42px 20px;border-bottom:5px solid #f5b400}.hero h2{color:#b71c1c;font-size:34px;margin:0}.hero p{color:#666}main{max-width:1050px;margin:30px auto;padding:0 18px}.section{background:#fff;border-radius:14px;padding:28px;margin-bottom:20px;box-shadow:0 4px 18px #0001}.section h2{color:#b71c1c;margin:0 0 20px;border-bottom:3px solid #f5b400;padding-bottom:9px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.full{grid-column:1/-1}label{display:block;font-weight:bold;margin-bottom:6px}input,select,textarea{width:100%;padding:12px;border:1px solid #bbb;border-radius:7px;font-size:15px;background:#fff}textarea{min-height:105px;resize:vertical}.required{color:#b71c1c}.note{background:#fff8df;border-left:5px solid #f5b400;padding:12px;margin:12px 0;border-radius:5px}.actions{text-align:center}button{background:#b71c1c;color:#fff;border:0;border-radius:7px;padding:14px 30px;font-size:16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.6;cursor:not-allowed}.status{display:none;margin-top:16px;padding:16px;border-radius:7px;font-weight:bold;white-space:pre-wrap}.success{background:#e5f6e8;color:#176b2c}.error{background:#fde7e7;color:#9b1c1c}footer{background:#333;color:#fff;text-align:center;padding:28px 15px;margin-top:40px}@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}nav a{font-size:13px}.hero h2{font-size:27px}}
+   *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#F5FEFF;color:#333}header{background:linear-gradient(90deg,#68030E,#68030E,#68030E);color:#fff;padding:14px 6%;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.school{display:flex;align-items:center;gap:12px}.school img{width:55px;height:55px;object-fit:contain;background:#fff;border-radius:50%}h1{font-size:20px;margin:0}.school p{margin:3px 0}nav{display:flex;gap:8px;flex-wrap:wrap}nav a{color:#fff;text-decoration:none;font-weight:bold;padding:9px 12px;border-radius:6px}.hero{background:#fff;text-align:center;padding:42px 20px;border-bottom:5px solid #f5b400}.hero h2{color:#68030E;font-size:34px;margin:0}.hero p{color:#666}main{max-width:1050px;margin:30px auto;padding:0 18px}.section{background:#fff;border-radius:14px;padding:28px;margin-bottom:20px;box-shadow:0 4px 18px #0001}.section h2{color:#68030E;margin:0 0 20px;border-bottom:3px solid #FEC908;padding-bottom:9px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.full{grid-column:1/-1}label{display:block;font-weight:bold;margin-bottom:6px}input,select,textarea{width:100%;padding:12px;border:1px solid #bbb;border-radius:7px;font-size:15px;background:#fff}textarea{min-height:105px;resize:vertical}.required{color:#68030E}.note{background:#fff8df;border-left:5px solid #68030E;padding:12px;margin:12px 0;border-radius:5px}.actions{text-align:center}button{background:#68030E;color:#fff;border:0;border-radius:7px;padding:14px 30px;font-size:16px;font-weight:bold;cursor:pointer}button:disabled{opacity:.6;cursor:not-allowed}.status{display:none;margin-top:16px;padding:16px;border-radius:7px;font-weight:bold;white-space:pre-wrap}.success{background:#e5f6e8;color:#176b2c}.error{background:#fde7e7;color:#68030E}footer{background:#333;color:#fff;text-align:center;padding:28px 15px;margin-top:40px}@media(max-width:700px){.grid{grid-template-columns:1fr}.full{grid-column:auto}nav a{font-size:13px}.hero h2{font-size:27px}}
   </style>
  </head>
  <body>
@@ -54,7 +54,7 @@
    <form id="admissionForm" novalidate="">
     <section class="section">
      <h2>
-      1. Personal Information
+      Personal Information
      </h2>
      <div class="grid">
       <div>
@@ -70,7 +70,7 @@
        <label>
         Middle Name
        </label>
-       <input name="middleName"/>
+       <input name="middleName" placeholder="If applicable"/>
       </div>
       <div>
        <label>
@@ -85,7 +85,7 @@
        <label>
         Suffix
        </label>
-       <input name="suffix"/>
+       <input name="suffix" placeholder="Jr, Sr, II or III"/>
       </div>
       <div>
        <label>
@@ -99,7 +99,7 @@
       <div>
        <label>
         Age
-       </label>
+       <span class="required">*</span></label>
        <input max="30" min="10" name="age" type="number"/>
       </div>
       <div>
@@ -133,12 +133,12 @@
       <div>
        <label>
         Place of Birth
-       </label>
+       <span class="required">*</span></label>
        <input name="placeOfBirth"/>
       </div>
       <div>
        <label>
-        LRN / Application ID
+        Learners Reference Number
         <span class="required">
          *
         </span>
@@ -167,7 +167,7 @@
     </section>
     <section class="section">
      <h2>
-      2. Address Information
+      Address Information
      </h2>
      <div class="grid">
       <div>
@@ -197,72 +197,72 @@
       <div>
        <label>
         City/Municipality
-       </label>
+       <Span class="required">*</Span></label>
        <input name="city" value="Antipolo City"/>
       </div>
       <div>
        <label>
         Province
-       </label>
-       <input name="province" value="Rizal"/>
+       <span class="required">*</label>
+       </span><input name="province" value="Rizal"/>
       </div>
       <div>
        <label>
         Region
-       </label>
-       <input name="region" value="CALABARZON (Region IV-A)"/>
+       <span class="required">*</label>
+       </span><input name="region" value="CALABARZON (Region IV-A)"/>
       </div>
       <div>
        <label>
-        ZIP Code<span name="required">*</label>
+        ZIP Code<span name="required"> * </label>
        <input name="zip"/>
       </div>
      </div>
     </section>
     <section class="section">
      <h2>
-      3. Parent/Guardian Information
+      Parent/Guardian Information
      </h2>
      <div class="grid">
       <div>
        <label>
         Father's Name
-       </label>
-       <input name="fatherName"/>
+       <span required="required">*</span></label>
+       <input name="fatherName" placeholder="Write N/A if NONE"/>
       </div>
       <div>
        <label>
-        Father's Contact
+        Contact Number
        </label>
        <input name="fatherContact"/>
       </div>
       <div>
        <label>
-        Mother's Name
-       </label>
-       <input name="motherName"/>
+        Mother's Maiden Name
+       <span class="required">*</span></label>
+       <input name="motherName" placeholder="Write N/A if NONE"/>
       </div>
       <div>
        <label>
-        Mother's Contact
+       Contact Number
        </label>
-       <input name="motherContact"/>
+       <input name="motherContact" />
       </div>
       <div>
        <label>
         Guardian's Name
        </label>
-       <input name="guardianName"/>
+       <input name="guardianName" placeholder="If applicable"/>
       </div>
       <div>
        <label>
         Guardian Relationship
        </label>
-       <input name="guardianRelationship"/>
+       <input name="guardianRelationship" placeholder="If applicable"/>
       </div>
       <div>
        <label>
-        Guardian Contact
+         Contact Number
        </label>
        <input name="guardianContact"/>
       </div>
@@ -276,51 +276,51 @@
     </section>
     <section class="section">
      <h2>
-      4. Emergency Contact
+Emergency Contact
      </h2>
      <div class="grid">
       <div>
        <label>
         Name
-       </label>
+       <span class="required">*</label>
        <input name="emergencyName"/>
       </div>
       <div>
        <label>
         Relationship
-       </label>
+       <span class="required">*</span></label>
        <input name="emergencyRelationship"/>
       </div>
       <div>
        <label>
         Contact Number
-       </label>
+       <Span class="required">*</Span></label>
        <input name="emergencyContact"/>
       </div>
       <div>
        <label>
         Email
-       </label>
+       <span class="required">*</span></label>
        <input name="emergencyEmail" type="email"/>
       </div>
       <div class="full">
        <label>
         Address
-       </label>
+       <span class="required"> * </span></label>
        <textarea name="emergencyAddress"></textarea>
       </div>
      </div>
     </section>
     <section class="section">
      <h2>
-      5. Program Preferences
+   Program Preferences
      </h2>
      <div class="grid">
       <div>
        <label>
         Preferred Track
         <span class="required">
-         *
+      *
         </span>
        </label>
        <select name="track" required="">
@@ -337,22 +337,6 @@
       </div>
       <div>
        <label>
-        Preferred Academic Cluster
-       </label>
-       <select name="cluster">
-        <option value="">
-         Select Cluster
-        </option>
-        <option value="Science, Technology, Engineering, and Mathematics">
-         Science, Technology, Engineering, and Mathematics
-        </option>
-        <option value="Arts, Social Sciences, and Humanities">
-         Arts, Social Sciences, and Humanities
-        </option>
-        <option value="Business and Entrepreneurship">
-         Business and Entrepreneurship
-        </option>
-       </select>
       </div>
       <div>
        <label>
@@ -362,84 +346,21 @@
         <option value="">
          Select First Elective
         </option>
-        <option value="Finite Mathematics 1">
-         Finite Mathematics 1
-        </option>
-        <option value="Finite Mathematics 2">
-         Finite Mathematics 2
-        </option>
-        <option value="Biology 1">
-         Biology 1
-        </option>
-        <option value="Biology 2">
-         Biology 2
-        </option>
-        <option value="Chemistry 1">
-         Chemistry 1
-        </option>
-        <option value="Chemistry 2">
-         Chemistry 2
-        </option>
-        <option value="Earth and Space Science 1">
-         Earth and Space Science 1
-        </option>
-        <option value="Earth and Space Science 2">
-         Earth and Space Science 2
-        </option>
-        <option value="Physics 1">
-         Physics 1
-        </option>
-        <option value="Physics 2">
-         Physics 2
-        </option>
-        <option value="Pre-Calculus">
-         Pre-Calculus
-        </option>
-        <option value="Advanced Mathematics">
-         Advanced Mathematics
-        </option>
-        <option value="Contemporary Literature 1">
-         Contemporary Literature 1
-        </option>
-        <option value="Creative Composition 1">
-         Creative Composition 1
-        </option>
-        <option value="Arts 1">
-         Arts 1
-        </option>
-        <option value="Arts 2">
-         Arts 2
-        </option>
-        <option value="Filipino 1">
-         Filipino 1
-        </option>
-        <option value="Introduction to Philosophy">
-         Introduction to Philosophy
-        </option>
-        <option value="Social Sciences">
-         Social Sciences
-        </option>
-        <option value="Philippine Governance">
-         Philippine Governance
-        </option>
-        <option value="Business 1 - Basic Accounting">
-         Business 1 - Basic Accounting
-        </option>
-        <option value="Introduction to Organization and Management">
-         Introduction to Organization and Management
-        </option>
-        <option value="Business 2 - Business Finance and Income Taxation">
-         Business 2 - Business Finance and Income Taxation
-        </option>
-        <option value="Business 3 - Business Economics">
-         Business 3 - Business Economics
-        </option>
-        <option value="Contemporary Marketing">
-         Contemporary Marketing
-        </option>
-        <option value="Entrepreneurship">
-         Entrepreneurship
-        </option>
+        <option value="Finite Mathematics">Finite Mathematics</option>
+        <option value="Biology 1">Biology 1</option>
+        <option value="Biology 2"> Biology 2</option>
+        <option value="Chemistry 1">Chemistry 1</option>
+        <option value="Chemistry 2">Chemistry 2</option>
+        <option value="Earth and Space Science 1">Earth and Space Science 1</option>
+        <option value="Earth and Space Science 2">Earth and Space Science 2</option>
+        <option value="Physics 1">Physics 1</option>
+        <option value="Physics 2">Physics 2</option>
+        <option value="Pre-Calculus">Pre-Calculus</option>
+        <option value="Advanced Mathematics">Advanced Mathematics</option>
+        <option value="Fine Arts">Fine Arts</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Basic Accounting">Basic Accounting</option>
+        <option value="Entrepreneurship">Entrepreneurship</option>
        </select>
       </div>
       <div>
@@ -450,84 +371,21 @@
         <option value="">
          Select Second Elective
         </option>
-        <option value="Finite Mathematics 1">
-         Finite Mathematics 1
-        </option>
-        <option value="Finite Mathematics 2">
-         Finite Mathematics 2
-        </option>
-        <option value="Biology 1">
-         Biology 1
-        </option>
-        <option value="Biology 2">
-         Biology 2
-        </option>
-        <option value="Chemistry 1">
-         Chemistry 1
-        </option>
-        <option value="Chemistry 2">
-         Chemistry 2
-        </option>
-        <option value="Earth and Space Science 1">
-         Earth and Space Science 1
-        </option>
-        <option value="Earth and Space Science 2">
-         Earth and Space Science 2
-        </option>
-        <option value="Physics 1">
-         Physics 1
-        </option>
-        <option value="Physics 2">
-         Physics 2
-        </option>
-        <option value="Pre-Calculus">
-         Pre-Calculus
-        </option>
-        <option value="Advanced Mathematics">
-         Advanced Mathematics
-        </option>
-        <option value="Contemporary Literature 1">
-         Contemporary Literature 1
-        </option>
-        <option value="Creative Composition 1">
-         Creative Composition 1
-        </option>
-        <option value="Arts 1">
-         Arts 1
-        </option>
-        <option value="Arts 2">
-         Arts 2
-        </option>
-        <option value="Filipino 1">
-         Filipino 1
-        </option>
-        <option value="Introduction to Philosophy">
-         Introduction to Philosophy
-        </option>
-        <option value="Social Sciences">
-         Social Sciences
-        </option>
-        <option value="Philippine Governance">
-         Philippine Governance
-        </option>
-        <option value="Business 1 - Basic Accounting">
-         Business 1 - Basic Accounting
-        </option>
-        <option value="Introduction to Organization and Management">
-         Introduction to Organization and Management
-        </option>
-        <option value="Business 2 - Business Finance and Income Taxation">
-         Business 2 - Business Finance and Income Taxation
-        </option>
-        <option value="Business 3 - Business Economics">
-         Business 3 - Business Economics
-        </option>
-        <option value="Contemporary Marketing">
-         Contemporary Marketing
-        </option>
-        <option value="Entrepreneurship">
-         Entrepreneurship
-        </option>
+        <option value="Finite Mathematics">Finite Mathematics</option>
+        <option value="Biology 1">Biology 1</option>
+        <option value="Biology 2"> Biology 2</option>
+        <option value="Chemistry 1">Chemistry 1</option>
+        <option value="Chemistry 2">Chemistry 2</option>
+        <option value="Earth and Space Science 1">Earth and Space Science 1</option>
+        <option value="Earth and Space Science 2">Earth and Space Science 2</option>
+        <option value="Physics 1">Physics 1</option>
+        <option value="Physics 2">Physics 2</option>
+        <option value="Pre-Calculus">Pre-Calculus</option>
+        <option value="Advanced Mathematics">Advanced Mathematics</option>
+        <option value="Fine Arts">Fine Arts</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Basic Accounting">Basic Accounting</option>
+        <option value="Entrepreneurship">Entrepreneurship</option>
        </select>
       </div>
       <div>
@@ -538,123 +396,29 @@
         <option value="">
          Select Third Elective
         </option>
-        <option value="Finite Mathematics 1">
-         Finite Mathematics 1
-        </option>
-        <option value="Finite Mathematics 2">
-         Finite Mathematics 2
-        </option>
-        <option value="Biology 1">
-         Biology 1
-        </option>
-        <option value="Biology 2">
-         Biology 2
-        </option>
-        <option value="Chemistry 1">
-         Chemistry 1
-        </option>
-        <option value="Chemistry 2">
-         Chemistry 2
-        </option>
-        <option value="Earth and Space Science 1">
-         Earth and Space Science 1
-        </option>
-        <option value="Earth and Space Science 2">
-         Earth and Space Science 2
-        </option>
-        <option value="Physics 1">
-         Physics 1
-        </option>
-        <option value="Physics 2">
-         Physics 2
-        </option>
-        <option value="Pre-Calculus">
-         Pre-Calculus
-        </option>
-        <option value="Advanced Mathematics">
-         Advanced Mathematics
-        </option>
-        <option value="Contemporary Literature 1">
-         Contemporary Literature 1
-        </option>
-        <option value="Creative Composition 1">
-         Creative Composition 1
-        </option>
-        <option value="Arts 1">
-         Arts 1
-        </option>
-        <option value="Arts 2">
-         Arts 2
-        </option>
-        <option value="Filipino 1">
-         Filipino 1
-        </option>
-        <option value="Introduction to Philosophy">
-         Introduction to Philosophy
-        </option>
-        <option value="Social Sciences">
-         Social Sciences
-        </option>
-        <option value="Philippine Governance">
-         Philippine Governance
-        </option>
-        <option value="Business 1 - Basic Accounting">
-         Business 1 - Basic Accounting
-        </option>
-        <option value="Introduction to Organization and Management">
-         Introduction to Organization and Management
-        </option>
-        <option value="Business 2 - Business Finance and Income Taxation">
-         Business 2 - Business Finance and Income Taxation
-        </option>
-        <option value="Business 3 - Business Economics">
-         Business 3 - Business Economics
-        </option>
-        <option value="Contemporary Marketing">
-         Contemporary Marketing
-        </option>
-        <option value="Entrepreneurship">
-         Entrepreneurship
-        </option>
+ <option value="Finite Mathematics">Finite Mathematics</option>
+        <option value="Biology 1">Biology 1</option>
+        <option value="Biology 2"> Biology 2</option>
+        <option value="Chemistry 1">Chemistry 1</option>
+        <option value="Chemistry 2">Chemistry 2</option>
+        <option value="Earth and Space Science 1">Earth and Space Science 1</option>
+        <option value="Earth and Space Science 2">Earth and Space Science 2</option>
+        <option value="Physics 1">Physics 1</option>
+        <option value="Physics 2">Physics 2</option>
+        <option value="Pre-Calculus">Pre-Calculus</option>
+        <option value="Advanced Mathematics">Advanced Mathematics</option>
+        <option value="Fine Arts">Fine Arts</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Basic Accounting">Basic Accounting</option>
+        <option value="Entrepreneurship">Entrepreneurship</option>
        </select>
       </div>
-      <div class="full">
-       <label>
-        Why did you choose this track?
-       </label>
-       <textarea name="whyTrack"></textarea>
-      </div>
-     </div>
     </section>
     <section class="section">
      <h2>
-      6. Student Interests
+      Student Interests
      </h2>
-     <div class="grid">
-      <div>
-       <label>
-        Favorite Subjects
-       </label>
-       <input name="favoriteSubjects"/>
-      </div>
-      <div>
-       <label>
-        Strongest Area
-       </label>
-       <input name="strongestArea"/>
-      </div>
-      <div>
-       <label>
-        Skills to Develop
-       </label>
-       <input name="skillsToDevelop"/>
-      </div>
-      <div>
-       <label>
-        Career Interest
-       </label>
-       <input name="careerInterest"/>
-      </div>
+   
       <div>
        <label>
         Preferred College Course
@@ -667,17 +431,10 @@
        </label>
        <input name="futureProfession"/>
       </div>
-      <div class="full">
-       <label>
-        Extracurricular Interests
-       </label>
-       <textarea name="extracurricularInterests"></textarea>
-      </div>
-     </div>
     </section>
     <section class="section">
      <h2>
-      7. Admission Question
+      Admission Question
      </h2>
      <label>
       Why do you want to enroll at Antipolo City Senior High School?
@@ -689,14 +446,10 @@
     </section>
     <section class="section">
      <h2>
-      8. Declaration
-     </h2>
-     <label>
-
-      I confirm that the information I provided is accurate and that I have discussed this application with my parent/guardian.
-      <span class="required">
-       *
-                   <input name="declaration" required="" type="checkbox"/>
+   Confirmation
+    </h2>I confirm that the information I provided is accurate and that I have discussed this application with my parent/guardian.
+      <span class="required">*
+         <input name="declaration" required="" type="checkbox"/>
       </span>
      </label>
     </section>
