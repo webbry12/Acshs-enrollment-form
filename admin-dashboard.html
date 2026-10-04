@@ -1,3 +1,961 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ACSHS Admin Dashboard</title><style>body{font-family:Arial;margin:0;background:#f4f4f4}header{background:linear-gradient(90deg,#f5b400,#e85d04,#b71c1c);color:white;padding:20px}main{max-width:1200px;margin:25px auto;padding:15px}.card{background:white;padding:20px;border-radius:12px;margin-bottom:18px;box-shadow:0 3px 14px #0001}.toolbar{display:flex;gap:10px;flex-wrap:wrap}input,button{padding:10px;border-radius:6px;border:1px solid #bbb}button{background:#b71c1c;color:white;border:0}table{width:100%;border-collapse:collapse}th,td{padding:8px;border-bottom:1px solid #ddd;text-align:left;font-size:13px}.scroll{overflow:auto}#app{display:none}.status{padding:10px;margin-top:10px;white-space:pre-wrap}.error{background:#fee;color:#900}.success{background:#efe;color:#175c17}</style></head><body><header><h1>ACSHS Admission Admin Dashboard</h1><div>2027–2028</div></header><main><div class="card" id="login"><h2>Administrator Login</h2><input id="email" type="email" placeholder="Admin email"><input id="password" type="password" placeholder="Password"><button type="button" id="loginBtn">LOGIN</button><div id="loginStatus" class="status"></div></div><div id="app"><div class="card"><div class="toolbar"><button id="refreshBtn">REFRESH</button><button id="exportBtn">EXPORT CSV FOR EXCEL</button><button id="logoutBtn">LOG OUT</button><input id="search" placeholder="Search LRN, name, email"></div><h2 id="count">Applications</h2><div id="status" class="status"></div></div><div class="card"><div class="scroll"><table><thead><tr><th>LRN / ID</th><th>Name</th><th>Email</th><th>Track</th><th>Submitted</th><th>Excel</th></tr></thead><tbody id="rows"></tbody></table></div></div></div></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
-const db=window.supabase.createClient("https://zrqnneyioonoahgrdzgv.supabase.co","sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo"),headers=["Application ID","Submitted At","First Name","Middle Name","Last Name","Suffix","Date of Birth","Age","Sex","Citizenship","Place of Birth","LRN","Email","Mobile Number","House/Unit No.","Street","Subdivision/Village","Barangay","City/Municipality","Province","Region","ZIP Code","Father's Name","Father's Contact","Mother's Name","Mother's Contact","Guardian's Name","Guardian Relationship","Guardian Contact","Guardian Email","Emergency Name","Emergency Relationship","Emergency Contact","Emergency Email","Emergency Address","Preferred Track","Preferred Academic Cluster","First Elective","Second Elective","Third Elective","Why Track","Favorite Subjects","Strongest Area","Skill to Develop","Career Interest","Preferred College Course","Future Profession","Extracurricular Interests","Admission Reason","Photo File Name","Photo File Path","Declaration"],mapping={"Application ID":"application_id","Submitted At":"submitted_at","First Name":"first_name","Middle Name":"middle_name","Last Name":"last_name","Suffix":"suffix","Date of Birth":"birth_date","Age":"age","Sex":"sex","Citizenship":"citizenship","Place of Birth":"place_of_birth","LRN":"lrn","Email":"email","Mobile Number":"mobile","House/Unit No.":"house_no","Street":"street","Subdivision/Village":"subdivision","Barangay":"barangay","City/Municipality":"city","Province":"province","Region":"region","ZIP Code":"zip","Father's Name":"father_name","Father's Contact":"father_contact","Mother's Name":"mother_name","Mother's Contact":"mother_contact","Guardian's Name":"guardian_name","Guardian Relationship":"guardian_relationship","Guardian Contact":"guardian_contact","Guardian Email":"guardian_email","Emergency Name":"emergency_name","Emergency Relationship":"emergency_relationship","Emergency Contact":"emergency_contact","Emergency Email":"emergency_email","Emergency Address":"emergency_address","Preferred Track":"preferred_track","Preferred Academic Cluster":"preferred_academic_cluster","First Elective":"first_elective","Second Elective":"second_elective","Third Elective":"third_elective","Why Track":"why_track","Favorite Subjects":"favorite_subjects","Strongest Area":"strongest_area","Skill to Develop":"skills_to_develop","Career Interest":"career_interest","Preferred College Course":"preferred_college_course","Future Profession":"future_profession","Extracurricular Interests":"extracurricular_interests","Admission Reason":"admission_reason","Photo File Name":"photo_file_name","Photo File Path":"photo_file_path","Declaration":"declaration"};let all=[];const $=x=>document.getElementById(x);function msg(e,t,c){e.className='status '+(c||'');e.textContent=t}async function load(){msg($('status'),'Loading applications...','');const {data,error}=await db.from('applications').select('*').order('submitted_at',{ascending:false});if(error){msg($('status'),'DATABASE ERROR: '+error.message+'\nIf login works but this appears, run the Admin SELECT RLS SQL in the setup file.','error');all=[];render();return}all=data||[];render();msg($('status'),'Applications loaded successfully.','success')}function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}function render(){const q=$('search').value.toLowerCase(),a=all.filter(x=>JSON.stringify(x).toLowerCase().includes(q));$('count').textContent='Applications: '+a.length+' shown / '+all.length+' total';$('rows').innerHTML=a.map(x=>'<tr><td><b>'+esc(x.lrn)+'</b><br>'+esc(x.application_id)+'</td><td>'+esc([x.first_name,x.middle_name,x.last_name,x.suffix].filter(Boolean).join(' '))+'</td><td>'+esc(x.email)+'</td><td>'+esc(x.preferred_track)+'</td><td>'+esc(new Date(x.submitted_at).toLocaleString())+'</td><td>'+ (x.excel_synced?'YES':'PENDING')+'</td></tr>').join('')||'<tr><td colspan="6">No applications found.</td></tr>'}$('loginBtn').onclick=async()=>{const {error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){msg($('loginStatus'),'LOGIN FAILED: '+error.message,'error')}else{$('loginStatus').textContent='Login successful.';$('login').style.display='none';$('app').style.display='block';load()}};$('refreshBtn').onclick=load;$('search').oninput=render;$('logoutBtn').onclick=async()=>{await db.auth.signOut();location.reload()};$('exportBtn').onclick=()=>{const rows=all.map(x=>headers.map(c=>x[mapping[c]]??''));const csv=[headers,...rows].map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='ACSHS-Applications.csv';a.click()};
-</script></body></html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACSHS Admin Dashboard</title>
+
+<style>
+body{
+    font-family:Arial;
+    margin:0;
+    background:#f4f4f4
+}
+
+header{
+    background:linear-gradient(90deg,#68030E,#68030E,#68030E);
+    color:white;
+    padding:20px
+}
+
+main{
+    max-width:1200px;
+    margin:25px auto;
+    padding:15px
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:18px;
+    box-shadow:0 3px 14px #0001
+}
+
+.toolbar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap
+}
+
+input,button{
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #bbb
+}
+
+button{
+    background:#b71c1c;
+    color:white;
+    border:0;
+    cursor:pointer
+}
+
+button:hover{
+    opacity:.9
+}
+
+button:disabled{
+    background:#999;
+    cursor:not-allowed
+}
+
+.confirmBtn{
+    background:#198754;
+    white-space:nowrap
+}
+
+.confirmedBtn{
+    background:#555;
+    cursor:default
+}
+
+table{
+    width:100%;
+    border-collapse:collapse
+}
+
+th,td{
+    padding:8px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+    font-size:13px
+}
+
+.scroll{
+    overflow:auto
+}
+
+#app{
+    display:none
+}
+
+.status{
+    padding:10px;
+    margin-top:10px;
+    white-space:pre-wrap
+}
+
+.error{
+    background:#fee;
+    color:#900
+}
+
+.success{
+    background:#efe;
+    color:#175c17
+}
+
+.pendingStatus{
+    color:#a15c00;
+    font-weight:bold
+}
+
+.enrolledStatus{
+    color:#198754;
+    font-weight:bold
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>ACSHS Admission Admin Dashboard</h1>
+    <div>2027–2028</div>
+</header>
+
+<main>
+
+<!-- LOGIN -->
+<div class="card" id="login">
+
+    <h2>Administrator Login</h2>
+
+    <input
+        id="email"
+        type="email"
+        placeholder="Admin email"
+    >
+
+    <input
+        id="password"
+        type="password"
+        placeholder="Password"
+    >
+
+    <button
+        type="button"
+        id="loginBtn"
+    >
+        LOGIN
+    </button>
+
+    <div
+        id="loginStatus"
+        class="status"
+    ></div>
+
+</div>
+
+
+<!-- ADMIN APPLICATION -->
+<div id="app">
+
+    <div class="card">
+
+        <div class="toolbar">
+
+            <button id="refreshBtn">
+                REFRESH
+            </button>
+
+            <button id="exportBtn">
+                EXPORT CSV FOR EXCEL
+            </button>
+
+            <button id="logoutBtn">
+                LOG OUT
+            </button>
+
+            <input
+                id="search"
+                placeholder="Search LRN, name, email"
+            >
+
+        </div>
+
+        <h2 id="count">
+            Applications
+        </h2>
+
+        <div
+            id="status"
+            class="status"
+        ></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>LRN / ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Track</th>
+                        <th>Submitted</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        <th>Excel</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="rows"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const db = window.supabase.createClient(
+    "https://zrqnneyioonoahgrdzgv.supabase.co",
+    "sb_publishable_gIOuKtuBjPGbCT-zF95uRg_oJkn-nZo"
+);
+
+
+/* =========================================================
+     EXPORT
+========================================================= */
+
+const headers = [
+    "Application ID",
+    "Submitted At",
+    "First Name",
+    "Middle Name",
+    "Last Name",
+    "Suffix",
+    "Date of Birth",
+    "Age",
+    "Sex",
+    "Citizenship",
+    "Place of Birth",
+    "LRN",
+    "Email",
+    "Mobile Number",
+    "House/Unit No.",
+    "Street",
+    "Subdivision/Village",
+    "Barangay",
+    "City/Municipality",
+    "Province",
+    "Region",
+    "ZIP Code",
+    "Father's Name",
+    "Father's Contact",
+    "Mother's Name",
+    "Mother's Contact",
+    "Guardian's Name",
+    "Guardian Relationship",
+    "Guardian Contact",
+    "Guardian Email",
+    "Emergency Name",
+    "Emergency Relationship",
+    "Emergency Contact",
+    "Emergency Email",
+    "Emergency Address",
+    "Preferred Track",
+    "Preferred Academic Cluster",
+    "First Elective",
+    "Second Elective",
+    "Third Elective",
+    "Why Track",
+    "Favorite Subjects",
+    "Strongest Area",
+    "Skill to Develop",
+    "Career Interest",
+    "Preferred College Course",
+    "Future Profession",
+    "Extracurricular Interests",
+    "Admission Reason",
+    "Photo File Name",
+    "Photo File Path",
+    "Declaration"
+];
+
+
+const mapping = {
+
+    "Application ID":"application_id",
+    "Submitted At":"submitted_at",
+
+    "First Name":"first_name",
+    "Middle Name":"middle_name",
+    "Last Name":"last_name",
+    "Suffix":"suffix",
+
+    "Date of Birth":"birth_date",
+    "Age":"age",
+    "Sex":"sex",
+    "Citizenship":"citizenship",
+    "Place of Birth":"place_of_birth",
+
+    "LRN":"lrn",
+    "Email":"email",
+    "Mobile Number":"mobile",
+
+    "House/Unit No.":"house_no",
+    "Street":"street",
+    "Subdivision/Village":"subdivision",
+    "Barangay":"barangay",
+    "City/Municipality":"city",
+    "Province":"province",
+    "Region":"region",
+    "ZIP Code":"zip",
+
+    "Father's Name":"father_name",
+    "Father's Contact":"father_contact",
+
+    "Mother's Name":"mother_name",
+    "Mother's Contact":"mother_contact",
+
+    "Guardian's Name":"guardian_name",
+    "Guardian Relationship":"guardian_relationship",
+    "Guardian Contact":"guardian_contact",
+    "Guardian Email":"guardian_email",
+
+    "Emergency Name":"emergency_name",
+    "Emergency Relationship":"emergency_relationship",
+    "Emergency Contact":"emergency_contact",
+    "Emergency Email":"emergency_email",
+    "Emergency Address":"emergency_address",
+
+    "Preferred Track":"preferred_track",
+    "Preferred Academic Cluster":"preferred_academic_cluster",
+
+    "First Elective":"first_elective",
+    "Second Elective":"second_elective",
+    "Third Elective":"third_elective",
+
+    "Why Track":"why_track",
+    "Favorite Subjects":"favorite_subjects",
+    "Strongest Area":"strongest_area",
+    "Skill to Develop":"skills_to_develop",
+
+    "Career Interest":"career_interest",
+    "Preferred College Course":"preferred_college_course",
+    "Future Profession":"future_profession",
+
+    "Extracurricular Interests":"extracurricular_interests",
+    "Admission Reason":"admission_reason",
+
+    "Photo File Name":"photo_file_name",
+    "Photo File Path":"photo_file_path",
+
+    "Declaration":"declaration"
+};
+
+
+let all = [];
+
+
+/* =========================================================
+   HELPER
+========================================================= */
+
+const $ = x => document.getElementById(x);
+
+
+function msg(element,text,className){
+
+    element.className =
+        "status " + (className || "");
+
+    element.textContent = text;
+
+}
+
+
+/* =========================================================
+   LOAD APPLICATIONS
+========================================================= */
+
+async function load(){
+
+    msg(
+        $("status"),
+        "Loading applications...",
+        ""
+    );
+
+    const {
+        data,
+        error
+    } = await db
+        .from("applications")
+        .select("*")
+        .order("submitted_at",{
+            ascending:false
+        });
+
+
+    if(error){
+
+        msg(
+            $("status"),
+            "DATABASE ERROR: " +
+            error.message +
+            "\nIf login works but this appears, check your Admin SELECT RLS policy.",
+            "error"
+        );
+
+        all = [];
+
+        render();
+
+        return;
+    }
+
+
+    all = data || [];
+
+    render();
+
+
+    msg(
+        $("status"),
+        "Applications loaded successfully.",
+        "success"
+    );
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function esc(v){
+
+    return String(v ?? "")
+        .replace(
+            /[&<>"']/g,
+            m => ({
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#39;"
+            }[m])
+        );
+
+}
+
+
+/* =========================================================
+   GET LEARNER NAME
+========================================================= */
+
+function getLearnerName(application){
+
+    return [
+        application.first_name,
+        application.middle_name,
+        application.last_name,
+        application.suffix
+    ]
+    .filter(Boolean)
+    .join(" ");
+
+}
+
+
+/* =========================================================
+   RENDER TABLE
+========================================================= */
+
+function render(){
+
+    const q =
+        $("search")
+        .value
+        .toLowerCase();
+
+
+    const applications =
+        all.filter(x =>
+            JSON.stringify(x)
+                .toLowerCase()
+                .includes(q)
+        );
+
+
+    $("count").textContent =
+        "Applications: " +
+        applications.length +
+        " shown / " +
+        all.length +
+        " total";
+
+
+    $("rows").innerHTML =
+        applications.map(x => {
+
+            const learnerName =
+                getLearnerName(x);
+
+
+            const isEnrolled =
+                String(x.status || "")
+                    .toLowerCase() ===
+                "enrolled";
+
+
+            return `
+                <tr>
+
+                    <td>
+                        <b>${esc(x.lrn)}</b>
+                        <br>
+                        ${esc(x.application_id)}
+                    </td>
+
+                    <td>
+                        ${esc(learnerName)}
+                    </td>
+
+                    <td>
+                        ${esc(x.email)}
+                    </td>
+
+                    <td>
+                        ${esc(x.preferred_track)}
+                    </td>
+
+                    <td>
+                        ${esc(
+                            new Date(
+                                x.submitted_at
+                            ).toLocaleString()
+                        )}
+                    </td>
+
+                    <td>
+                        ${
+                            isEnrolled
+                            ?
+                            '<span class="enrolledStatus">ENROLLED</span>'
+                            :
+                            '<span class="pendingStatus">PENDING</span>'
+                        }
+                    </td>
+
+                    <td>
+
+                        ${
+                            isEnrolled
+
+                            ?
+
+                            `
+                            <button
+                                class="confirmedBtn"
+                                disabled
+                            >
+                                ENROLLED
+                            </button>
+                            `
+
+                            :
+
+                            `
+                            <button
+                                class="confirmBtn"
+                                onclick="confirmEnrollee('${esc(x.application_id)}')"
+                            >
+                                CONFIRM ENROLLEE
+                            </button>
+                            `
+                        }
+
+                    </td>
+
+                    <td>
+                        ${x.excel_synced
+                            ? "YES"
+                            : "PENDING"}
+                    </td>
+
+                </tr>
+            `;
+
+        }).join("")
+
+        ||
+
+        `
+        <tr>
+            <td colspan="8">
+                No applications found.
+            </td>
+        </tr>
+        `;
+}
+
+
+/* =========================================================
+   CONFIRM ENROLLEE
+   THIS SENDS EMAIL #2
+========================================================= */
+
+async function confirmEnrollee(applicationId){
+
+    const application =
+        all.find(
+            x =>
+                String(x.application_id) ===
+                String(applicationId)
+        );
+
+
+    if(!application){
+
+        alert(
+            "Application could not be found."
+        );
+
+        return;
+    }
+
+
+    if(!application.email){
+
+        alert(
+            "This learner does not have an email address."
+        );
+
+        return;
+    }
+
+
+    const learnerName =
+        getLearnerName(application);
+
+
+    const confirmed =
+        confirm(
+            "Confirm this learner as ENROLLED?\n\n" +
+            learnerName +
+            "\n" +
+            "LRN: " +
+            (application.lrn || "") +
+            "\n\n" +
+            "An enrollment confirmation email will be sent."
+        );
+
+
+    if(!confirmed){
+
+        return;
+    }
+
+
+    msg(
+        $("status"),
+        "Confirming learner and sending enrollment email...",
+        ""
+    );
+
+
+    try{
+
+        /* =========================================
+           1. UPDATE STATUS
+        ========================================= */
+
+        const {
+            error: updateError
+        } = await db
+            .from("applications")
+            .update({
+                status: "Enrolled"
+            })
+            .eq(
+                "application_id",
+                applicationId
+            );
+
+
+        if(updateError){
+
+            throw new Error(
+                "Could not update enrollment status: " +
+                updateError.message
+            );
+
+        }
+
+
+        /* =========================================
+           2. SEND EMAIL #2
+        ========================================= */
+
+        const {
+            data: emailResult,
+            error: emailError
+        } = await db.functions.invoke(
+            "send-admission-confirmation",
+            {
+                body: {
+
+                    applicationId:
+                        application.application_id,
+
+                    email:
+                        application.email,
+
+                    learnerName:
+                        learnerName,
+
+                    type:
+                        "enrolled"
+
+                }
+            }
+        );
+
+
+        if(emailError){
+
+            console.error(
+                "Enrollment email error:",
+                emailError
+            );
+
+
+            msg(
+                $("status"),
+
+                "Learner was marked as ENROLLED, " +
+                "but the enrollment confirmation email could not be sent.\n\n" +
+                emailError.message,
+
+                "error"
+            );
+
+
+            await load();
+
+            return;
+        }
+
+
+        if(
+            !emailResult ||
+            !emailResult.sent
+        ){
+
+            msg(
+                $("status"),
+
+                "Learner was marked as ENROLLED, " +
+                "but Email #2 was not sent.",
+
+                "error"
+            );
+
+
+            await load();
+
+            return;
+        }
+
+
+        /* =========================================
+           3. SUCCESS
+        ========================================= */
+
+        msg(
+            $("status"),
+
+            "SUCCESS!\n\n" +
+            learnerName +
+            " is now ENROLLED.\n\n" +
+            "Email #2 was sent to:\n" +
+            application.email,
+
+            "success"
+        );
+
+
+        await load();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+
+        msg(
+            $("status"),
+
+            "ERROR:\n" +
+            error.message,
+
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+$("loginBtn").onclick = async () => {
+
+    const {
+        error
+    } = await db.auth.signInWithPassword({
+
+        email:
+            $("email")
+            .value
+            .trim(),
+
+        password:
+            $("password")
+            .value
+
+    });
+
+
+    if(error){
+
+        msg(
+            $("loginStatus"),
+            "LOGIN FAILED: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+    else{
+
+        $("loginStatus").textContent =
+            "Login successful.";
+
+        $("login").style.display =
+            "none";
+
+        $("app").style.display =
+            "block";
+
+        load();
+
+    }
+
+};
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+$("refreshBtn").onclick = load;
+
+
+$("search").oninput = render;
+
+
+$("logoutBtn").onclick = async () => {
+
+    await db.auth.signOut();
+
+    location.reload();
+
+};
+
+
+/* =========================================================
+   EXPORT CSV
+========================================================= */
+
+$("exportBtn").onclick = () => {
+
+    const rows =
+        all.map(
+            x =>
+                headers.map(
+                    c =>
+                        x[mapping[c]] ?? ""
+                )
+        );
+
+
+    const csv =
+        [headers,...rows]
+        .map(
+            r =>
+                r.map(
+                    v =>
+                        '"' +
+                        String(v)
+                            .replaceAll(
+                                '"',
+                                '""'
+                            ) +
+                        '"'
+                ).join(",")
+        )
+        .join("\n");
+
+
+    const a =
+        document.createElement("a");
+
+
+    a.href =
+        URL.createObjectURL(
+            new Blob(
+                [csv],
+                {
+                    type:
+                        "text/csv;charset=utf-8"
+                }
+            )
+        );
+
+
+    a.download =
+        "ACSHS-Applications.csv";
+
+
+    a.click();
+
+};
+
+</script>
+
+</body>
+</html>
